@@ -1,0 +1,22 @@
+[
+    {
+        "person" : {
+            "firstName" : "Walter",
+            "lastName" : "Allen"
+        },
+        "address" : {
+            "address1" : "310 Hilbert Dr.",
+            "address2" : "",
+            "city" : {
+                "city" : "West Monroe",
+                "state" : "Louisiana",
+                "zip" : "71291"
+            }
+        },
+        "phone1" : "6192047586",
+        "phone1Type" : "0",
+        "phone2" : "",
+        "phone2Type" : null,
+        "email" : "wltrallen2@gmail.com"
+    }
+]
