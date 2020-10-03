@@ -18,16 +18,21 @@ class SYAAFamilyPortalTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testPersonContainsData() throws {
+        XCTAssert(personData.count == 4)
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testStudentDecodingProperly() throws {
+        let student = personData[2]
+        XCTAssert(student.student != nil)
+        XCTAssert(student.firstName == "Anya")
+        XCTAssert(student.student!.currentGrade == 2)
     }
+//    func testPerformanceExample() throws {
+//        // This is an example of a performance test case.
+//        self.measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
 
 }

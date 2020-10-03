@@ -10,10 +10,14 @@
 		3602867225258E30009E0CA9 /* RehearsalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3602867125258E30009E0CA9 /* RehearsalsView.swift */; };
 		365801652527D801004AE6A7 /* PortalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365801642527D801004AE6A7 /* PortalDatabase.swift */; };
 		365DC28125262B1E00312C05 /* states.json in Resources */ = {isa = PBXBuildFile; fileRef = 365DC28025262B1E00312C05 /* states.json */; };
+		368459EC2527F74900CA6851 /* personData.json in Resources */ = {isa = PBXBuildFile; fileRef = 368459EB2527F74900CA6851 /* personData.json */; };
+		368459F52527FE3D00CA6851 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 368459F42527FE3D00CA6851 /* userData.json */; };
+		368459FA25282F8600CA6851 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368459F925282F8600CA6851 /* Student.swift */; };
+		36845A0525283F3E00CA6851 /* NextSteps.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 36845A0425283F3E00CA6851 /* NextSteps.rtf */; };
 		36B467042526EE660056E349 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36B467032526EE660056E349 /* Colors.xcassets */; };
 		36C2350B2525376D0065DDBA /* adultData.json in Resources */ = {isa = PBXBuildFile; fileRef = 36C2350A2525376D0065DDBA /* adultData.json */; };
 		36C2351625258C760065DDBA /* HomeTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2351525258C760065DDBA /* HomeTabbedView.swift */; };
-		36C4EF0E25259A8F000286F7 /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4EF0D25259A8F000286F7 /* ProfileEditView.swift */; };
+		36C4EF0E25259A8F000286F7 /* AdultProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4EF0D25259A8F000286F7 /* AdultProfileEditView.swift */; };
 		36C4EF152525A42D000286F7 /* AQUI in Frameworks */ = {isa = PBXBuildFile; productRef = 36C4EF142525A42D000286F7 /* AQUI */; };
 		36ED5F00252529030022945C /* SYAAFamilyPortalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ED5EFF252529030022945C /* SYAAFamilyPortalApp.swift */; };
 		36ED5F02252529030022945C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36ED5F01252529030022945C /* ContentView.swift */; };
@@ -50,10 +54,14 @@
 		3602867125258E30009E0CA9 /* RehearsalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RehearsalsView.swift; sourceTree = "<group>"; };
 		365801642527D801004AE6A7 /* PortalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalDatabase.swift; sourceTree = "<group>"; };
 		365DC28025262B1E00312C05 /* states.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = states.json; sourceTree = "<group>"; };
+		368459EB2527F74900CA6851 /* personData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = personData.json; sourceTree = "<group>"; };
+		368459F42527FE3D00CA6851 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
+		368459F925282F8600CA6851 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		36845A0425283F3E00CA6851 /* NextSteps.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = NextSteps.rtf; sourceTree = "<group>"; };
 		36B467032526EE660056E349 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		36C2350A2525376D0065DDBA /* adultData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = adultData.json; path = ../../../../../Desktop/adultData.json; sourceTree = "<group>"; };
 		36C2351525258C760065DDBA /* HomeTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabbedView.swift; sourceTree = "<group>"; };
-		36C4EF0D25259A8F000286F7 /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
+		36C4EF0D25259A8F000286F7 /* AdultProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultProfileEditView.swift; sourceTree = "<group>"; };
 		36ED5EFC252529030022945C /* SYAAFamilyPortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SYAAFamilyPortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36ED5EFF252529030022945C /* SYAAFamilyPortalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SYAAFamilyPortalApp.swift; sourceTree = "<group>"; };
 		36ED5F01252529030022945C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -173,8 +181,11 @@
 		36ED5F33252529FF0022945C /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				368459F42527FE3D00CA6851 /* userData.json */,
+				368459EB2527F74900CA6851 /* personData.json */,
 				36C2350A2525376D0065DDBA /* adultData.json */,
 				365DC28025262B1E00312C05 /* states.json */,
+				36845A0425283F3E00CA6851 /* NextSteps.rtf */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -186,6 +197,7 @@
 				36ED5F5325252F690022945C /* Portal.swift */,
 				36ED5F4225252C970022945C /* User.swift */,
 				36ED5F4125252C970022945C /* Adult.swift */,
+				368459F925282F8600CA6851 /* Student.swift */,
 				36ED5F4325252C970022945C /* Person.swift */,
 				36ED5F3925252B650022945C /* Data.swift */,
 			);
@@ -198,7 +210,7 @@
 				36C2351525258C760065DDBA /* HomeTabbedView.swift */,
 				3602867125258E30009E0CA9 /* RehearsalsView.swift */,
 				36ED5F5B252533C70022945C /* ProfileWrapperView.swift */,
-				36C4EF0D25259A8F000286F7 /* ProfileEditView.swift */,
+				36C4EF0D25259A8F000286F7 /* AdultProfileEditView.swift */,
 			);
 			path = Portal;
 			sourceTree = "<group>";
@@ -314,9 +326,12 @@
 			files = (
 				36B467042526EE660056E349 /* Colors.xcassets in Resources */,
 				36ED5F07252529030022945C /* Preview Assets.xcassets in Resources */,
+				368459EC2527F74900CA6851 /* personData.json in Resources */,
 				36ED5F04252529030022945C /* Assets.xcassets in Resources */,
 				36C2350B2525376D0065DDBA /* adultData.json in Resources */,
+				36845A0525283F3E00CA6851 /* NextSteps.rtf in Resources */,
 				365DC28125262B1E00312C05 /* states.json in Resources */,
+				368459F52527FE3D00CA6851 /* userData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +363,8 @@
 				36ED5F4425252C970022945C /* Adult.swift in Sources */,
 				36ED5F02252529030022945C /* ContentView.swift in Sources */,
 				365801652527D801004AE6A7 /* PortalDatabase.swift in Sources */,
-				36C4EF0E25259A8F000286F7 /* ProfileEditView.swift in Sources */,
+				368459FA25282F8600CA6851 /* Student.swift in Sources */,
+				36C4EF0E25259A8F000286F7 /* AdultProfileEditView.swift in Sources */,
 				36ED5F3A25252B650022945C /* Data.swift in Sources */,
 				36ED5F4525252C970022945C /* User.swift in Sources */,
 				36ED5F5C252533C70022945C /* ProfileWrapperView.swift in Sources */,
@@ -443,6 +459,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -497,6 +514,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";

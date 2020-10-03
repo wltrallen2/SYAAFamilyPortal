@@ -12,11 +12,11 @@ class Portal: ObservableObject {
     @Published var error: String = ""
     
     @Published var user: User?
-    @Published var adult: Adult?
+    @Published var person: Person?
     
     init() {
         self.user = User.default
-        self.adult = Adult.default
+        self.person = Person.default
     }
     
     //**********************************************************************

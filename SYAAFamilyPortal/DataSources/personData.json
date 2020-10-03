@@ -1,0 +1,82 @@
+[
+    {
+        "id" : 4,
+        "firstName" : "Walter",
+        "lastName" : "Allen",
+        "hasVerified" : true,
+        "adult" : {
+            "address" : {
+                "id" : 3,
+                "address1" : "310 Hilbert Dr.",
+                "address2" : "",
+                "city" : {
+                    "city" : "West Monroe",
+                    "state" : "LA",
+                    "zip" : "71291"
+                }
+            },
+            "phone1" : "6192047586",
+            "phone1Type" : 0,
+            "phone2" : "",
+            "phone2Type" : null,
+            "email" : "wltrallen2@gmail.com"
+        }
+    },
+    {
+        "id" : 5,
+        "firstName" : "Richard",
+        "lastName" : "May-Allen",
+        "hasVerified" : true,
+        "adult" : {
+            "address" : {
+                "id" : 3,
+                "address1" : "310 Hilbert Dr.",
+                "address2" : "",
+                "city" : {
+                    "city" : "West Monroe",
+                    "state" : "LA",
+                    "zip" : "71291"
+                }
+            },
+            "phone1" : "6195082771",
+            "phone1Type" : 0,
+            "phone2" : "3188127922",
+            "phone2Type" : 1,
+            "email" : "wmrmay@aol.com"
+        }
+    },
+    {
+        "id" : 6,
+        "firstName": "Anya",
+        "lastName": "May-Allen",
+        "hasVerified": true,
+        "student" : {
+            "birthdate": "2019-01-26",
+            "school": "May-Allen Academy",
+            "teacher": null,
+            "currentGrade": 2,
+            "expectedGraduation": "2036",
+            "notes": "What an awesome child!",
+            "profileColor": "FF69B4",
+            "headshotURL": null,
+            "auditionVideoURL": null
+        }
+    },
+    {
+        "id" : 7,
+        "firstName": "Tati",
+        "lastName": "May-Allen",
+        "hasVerified": true,
+        "student" : {
+            "birthdate": "2013-09-30",
+            "school": "May-Allen Academy",
+            "teacher": null,
+            "currentGrade": 11,
+            "expectedGraduation": "2021",
+            "notes": "She's a handful!",
+            "profileColor": "00FF00",
+            "headshotURL": null,
+            "auditionVideoURL": null
+        }
+    }
+]

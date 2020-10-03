@@ -27,8 +27,7 @@ enum PhoneType: Int, Codable {
     }
 }
 
-struct Adult: Comparable {
-    var person: Person
+struct Adult: Equatable {
     var addressId: Int
     var address1: String
     var address2: String?
@@ -42,8 +41,7 @@ struct Adult: Comparable {
     var email: String
         
     static func == (a: Adult, b: Adult) -> Bool {
-        return a.person == b.person
-            && a.address1 == b.address1
+        return a.address1 == b.address1
             && a.address2 == b.address2
             && a.city == b.city
             && a.state == b.state
@@ -54,16 +52,11 @@ struct Adult: Comparable {
             && a.phone2Type == b.phone2Type
             && a.email == b.email
     }
-    
-    static func < (a: Adult, b: Adult) -> Bool {
-        return a.person < b.person
-    }
-    
-    static let `default` = adultData[0]
+        
+    static let `default` = Adult(addressId: 1, address1: "123 Address Rd.", address2: nil, city: "A City", state: "LA", zip: "11111", phone1: "1111111111", phone1Type: .Cell, phone2: nil, phone2Type: .NilValue, email: "anemail@acompany.com")
 }
 
 enum AdultCodingKeys: CodingKey {
-    case person
     case address
     case phone1
     case phone1Type
@@ -89,7 +82,6 @@ extension Adult: Decodable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: AdultCodingKeys.self)
         
-        person = try values.decode(Person.self, forKey: .person)
         phone1 = try values.decode(String.self, forKey: .phone1)
         phone2 = try values.decodeIfPresent(String.self, forKey: .phone2)
         email = try values.decode(String.self, forKey: .email)
@@ -112,9 +104,7 @@ extension Adult: Decodable {
 extension Adult: Encodable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: AdultCodingKeys.self)
-        
-        try container.encode(person, forKey: .person)
-        
+                
         var addressContainer = container.nestedContainer(keyedBy: AddressCodingKeys.self, forKey: .address)
         try addressContainer.encode(addressId, forKey: .id)
         try addressContainer.encode(address1, forKey: .address1)

@@ -15,7 +15,8 @@ enum PhoneIndicator {
     case Phone2
 }
 
-struct ProfileEditView: View {
+struct AdultProfileEditView: View {
+    @Binding var person: Person
     @Binding var adult: Adult
     @State private var showStatePopover: Bool = false
     @State private var showPhonePopover: PhoneIndicator = .None
@@ -28,12 +29,12 @@ struct ProfileEditView: View {
                         ProfileTextField(
                             labelText: "First Name",
                             placeholder: "First Name",
-                            fieldToDisplay: $adult.person.firstName)
+                            fieldToDisplay: $person.firstName)
                         
                         ProfileTextField(
                             labelText: "Last Name",
                             placeholder: "Last Name",
-                            fieldToDisplay: $adult.person.lastName)
+                            fieldToDisplay: $person.lastName)
                     }
                     
                     VStack (spacing: 4) {
@@ -41,19 +42,19 @@ struct ProfileEditView: View {
                             labelText: "Address",
                             placeholder: "Address, Line 1",
                             fieldToDisplay: $adult.address1)
-                        
+
                         ProfileTextField(
                             hasLabel: false,
                             placeholder: "Address, Line 2 (optional)",
                             fieldToDisplay: Binding($adult.address2, replacingNilWith: ""))
                     }
-                    
+//
                     HStack (spacing: 16) {
                         ProfileTextField(
                             labelText: "City",
                             placeholder: "City",
                             fieldToDisplay: $adult.city)
-                        
+
                         ProfileTextField(
                             labelText: "State",
                             placeholder: "State",
@@ -65,7 +66,7 @@ struct ProfileEditView: View {
                                     self.showStatePopover.toggle()
                                 }
                             }
-                        
+
                         ProfileTextField(
                             labelText: "Zip",
                             placeholder: "Zip",
@@ -73,14 +74,14 @@ struct ProfileEditView: View {
                             .frame(width: 90)
                             .keyboardType(.numberPad)
                     }
-                    
+//
                     HStack (spacing: 16) {
                         // TODO: Fix phone number formatting
                         ProfileTextField(
                             labelText: "Primary Phone",
                             placeholder: "Primary Phone",
                             fieldToDisplay: $adult.phone1)
-                        
+
                         ProfileDropDownPlaceholder(
                             placeholder: "Type",
                             valueToDisplay: self.adult.phone1Type.description)
@@ -91,14 +92,14 @@ struct ProfileEditView: View {
                                 }
                             }
                     }
-                    
+
                     HStack (spacing: 16) {
                         // TODO: Fix phone number formatting
                         ProfileTextField(
                             labelText: "Alternate Phone",
                             placeholder: "Alternate Phone",
                             fieldToDisplay: Binding($adult.phone2, replacingNilWith: ""))
-                        
+
                         ProfileDropDownPlaceholder(
                             placeholder: "Type",
                             valueToDisplay: self.adult.phone2Type?.description ?? "")
@@ -109,15 +110,12 @@ struct ProfileEditView: View {
                                 }
                             }
                     }
-                    
+
                     ProfileTextField(
                         labelText: "Email",
                         placeholder: "Email",
                         fieldToDisplay: $adult.email
                     )
-
-                    
-                    Spacer()
                 }
                 .disabled(self.showStatePopover
                             || self.showPhonePopover != .None
@@ -131,7 +129,7 @@ struct ProfileEditView: View {
         }
         
         if self.showStatePopover {
-            StatesPicker(adult:$adult, presentationMode: $showStatePopover)
+            StatesPicker(adult: $adult, presentationMode: $showStatePopover)
                 .transition(.move(edge: .bottom))
         }
         
@@ -278,8 +276,8 @@ struct PhoneTypePicker: View {
     }
 }
 
-struct ProfileEditView_Previews: PreviewProvider {
+struct AdultProfileEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileEditView(adult: .constant(.default))
+        AdultProfileEditView(person: .constant(.default), adult: .constant(.default))
     }
 }

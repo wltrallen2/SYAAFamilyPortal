@@ -7,7 +7,8 @@
 
 import Foundation
 
-let adultData: [Adult] = load("adultData.json")
+let personData: [Person] = load("personData.json")
+//let adultData: [Adult] = load("adultData.json")
 let statesData: [String: String] = load("states.json")
 let statesDict = statesData.sorted { s1, s2 in
     s1.value < s2.value

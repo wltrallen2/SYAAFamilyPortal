@@ -6,23 +6,25 @@
 //
 
 import SwiftUI
+import AQUI
 
 struct ProfileWrapperView: View {
     @EnvironmentObject var portal: Portal
-    @State var draftAdult: Adult = Adult.default
+    @State var draftPerson: Person = Person.default
     
     var body: some View {
         NavigationView {
             VStack {
-                if (portal.adult) != nil {
-                    ProfileEditView(adult: $draftAdult)
+                if (portal.person) != nil && portal.person!.adult != nil {
+                    AdultProfileEditView(person: $draftPerson, adult: Binding($draftPerson.adult, replacingNilWith: Adult.default))
                         .onAppear {
-                            self.draftAdult = self.portal.adult!
+                            self.draftPerson = self.portal.person!
                         }
                         .onDisappear {
-                            self.portal.adult! = self.draftAdult
+                            self.portal.person! = self.draftPerson
+                            print(self.portal.person!)
                         }
-                } else {
+                } else { // TODO: Create Student Profile and insert here.
                     Text("No adult data found.")
                 }
             }
