@@ -13,10 +13,5 @@
         "id": 3,
         "userToken": "anyamayallen",
         "isLinked": true
-    },
-    {
-        "id": 4,
-        "userToken": "tangelo",
-        "isLinked": true
     }
 ]

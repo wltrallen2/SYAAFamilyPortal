@@ -14,6 +14,12 @@
 		368459F52527FE3D00CA6851 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 368459F42527FE3D00CA6851 /* userData.json */; };
 		368459FA25282F8600CA6851 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368459F925282F8600CA6851 /* Student.swift */; };
 		36845A0525283F3E00CA6851 /* NextSteps.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 36845A0425283F3E00CA6851 /* NextSteps.rtf */; };
+		36845A0B2528CEB100CA6851 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A0A2528CEB100CA6851 /* LoginView.swift */; };
+		36845A132528D29400CA6851 /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A122528D29400CA6851 /* CreateUserView.swift */; };
+		36845A1B25291DDC00CA6851 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A1A25291DDC00CA6851 /* ForgotPasswordView.swift */; };
+		36845A202529213800CA6851 /* LoginWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A1F2529213800CA6851 /* LoginWrapperView.swift */; };
+		36845A3125292EB700CA6851 /* LinkUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A3025292EB700CA6851 /* LinkUserView.swift */; };
+		36845A3625292FEC00CA6851 /* userPersonLinksData.json in Resources */ = {isa = PBXBuildFile; fileRef = 36845A3525292FEC00CA6851 /* userPersonLinksData.json */; };
 		36B467042526EE660056E349 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36B467032526EE660056E349 /* Colors.xcassets */; };
 		36C2350B2525376D0065DDBA /* adultData.json in Resources */ = {isa = PBXBuildFile; fileRef = 36C2350A2525376D0065DDBA /* adultData.json */; };
 		36C2351625258C760065DDBA /* HomeTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2351525258C760065DDBA /* HomeTabbedView.swift */; };
@@ -58,6 +64,12 @@
 		368459F42527FE3D00CA6851 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
 		368459F925282F8600CA6851 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		36845A0425283F3E00CA6851 /* NextSteps.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = NextSteps.rtf; sourceTree = "<group>"; };
+		36845A0A2528CEB100CA6851 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		36845A122528D29400CA6851 /* CreateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
+		36845A1A25291DDC00CA6851 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		36845A1F2529213800CA6851 /* LoginWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWrapperView.swift; sourceTree = "<group>"; };
+		36845A3025292EB700CA6851 /* LinkUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkUserView.swift; sourceTree = "<group>"; };
+		36845A3525292FEC00CA6851 /* userPersonLinksData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userPersonLinksData.json; sourceTree = "<group>"; };
 		36B467032526EE660056E349 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		36C2350A2525376D0065DDBA /* adultData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = adultData.json; path = ../../../../../Desktop/adultData.json; sourceTree = "<group>"; };
 		36C2351525258C760065DDBA /* HomeTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabbedView.swift; sourceTree = "<group>"; };
@@ -116,6 +128,18 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
+		36845A092528CEA100CA6851 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				36845A1F2529213800CA6851 /* LoginWrapperView.swift */,
+				36845A0A2528CEB100CA6851 /* LoginView.swift */,
+				36845A122528D29400CA6851 /* CreateUserView.swift */,
+				36845A1A25291DDC00CA6851 /* ForgotPasswordView.swift */,
+				36845A3025292EB700CA6851 /* LinkUserView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		36ED5EF3252529020022945C = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +165,7 @@
 			children = (
 				36ED5EFF252529030022945C /* SYAAFamilyPortalApp.swift */,
 				36ED5F01252529030022945C /* ContentView.swift */,
+				36845A092528CEA100CA6851 /* Login */,
 				36ED5F4A25252DF90022945C /* Portal */,
 				36ED5F3825252B570022945C /* Model */,
 				36ED5F03252529030022945C /* Assets.xcassets */,
@@ -184,6 +209,7 @@
 				368459F42527FE3D00CA6851 /* userData.json */,
 				368459EB2527F74900CA6851 /* personData.json */,
 				36C2350A2525376D0065DDBA /* adultData.json */,
+				36845A3525292FEC00CA6851 /* userPersonLinksData.json */,
 				365DC28025262B1E00312C05 /* states.json */,
 				36845A0425283F3E00CA6851 /* NextSteps.rtf */,
 			);
@@ -326,6 +352,7 @@
 			files = (
 				36B467042526EE660056E349 /* Colors.xcassets in Resources */,
 				36ED5F07252529030022945C /* Preview Assets.xcassets in Resources */,
+				36845A3625292FEC00CA6851 /* userPersonLinksData.json in Resources */,
 				368459EC2527F74900CA6851 /* personData.json in Resources */,
 				36ED5F04252529030022945C /* Assets.xcassets in Resources */,
 				36C2350B2525376D0065DDBA /* adultData.json in Resources */,
@@ -357,14 +384,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				36C2351625258C760065DDBA /* HomeTabbedView.swift in Sources */,
+				36845A132528D29400CA6851 /* CreateUserView.swift in Sources */,
+				36845A1B25291DDC00CA6851 /* ForgotPasswordView.swift in Sources */,
 				3602867225258E30009E0CA9 /* RehearsalsView.swift in Sources */,
 				36ED5F4625252C970022945C /* Person.swift in Sources */,
+				36845A3125292EB700CA6851 /* LinkUserView.swift in Sources */,
 				36ED5F5425252F690022945C /* Portal.swift in Sources */,
 				36ED5F4425252C970022945C /* Adult.swift in Sources */,
 				36ED5F02252529030022945C /* ContentView.swift in Sources */,
 				365801652527D801004AE6A7 /* PortalDatabase.swift in Sources */,
 				368459FA25282F8600CA6851 /* Student.swift in Sources */,
+				36845A0B2528CEB100CA6851 /* LoginView.swift in Sources */,
 				36C4EF0E25259A8F000286F7 /* AdultProfileEditView.swift in Sources */,
+				36845A202529213800CA6851 /* LoginWrapperView.swift in Sources */,
 				36ED5F3A25252B650022945C /* Data.swift in Sources */,
 				36ED5F4525252C970022945C /* User.swift in Sources */,
 				36ED5F5C252533C70022945C /* ProfileWrapperView.swift in Sources */,

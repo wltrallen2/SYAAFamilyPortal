@@ -13,23 +13,29 @@ enum HomeTabs: Int {
 }
 
 struct HomeTabbedView: View {
+    @EnvironmentObject var portal: Portal
     @State private var selection: HomeTabs = .Profile
     
     var body: some View {
-        TabView(selection: $selection){
-            RehearsalsView()
-                .tabItem {
-                    Image(systemName: "calendar.circle.fill")
-                    Text("Rehearsals")
-                }
-                .tag(HomeTabs.Rehearsals)
-            
-            ProfileWrapperView()
-                .tabItem {
-                    Image(systemName: "person.crop.circle.fill")
-                    Text("User Profile")
-                }
-                .tag(HomeTabs.Profile)
+        if portal.person == nil {
+            EmptyView() // This is necessary to avoid a crash upon loggin out as environmentObject portal is updating variables. TODO: Research to see if there's a better solution, and handle this better for user.
+        } else {
+            TabView(selection: $selection){
+                RehearsalsView()
+                    .tabItem {
+                        Image(systemName: "calendar.circle.fill")
+                        Text("Rehearsals")
+                    }
+                    .tag(HomeTabs.Rehearsals)
+                
+                ProfileWrapperView(person: portal.person!,
+                                   adult: portal.person!.adult!)
+                    .tabItem {
+                        Image(systemName: "person.crop.circle.fill")
+                        Text("User Profile")
+                    }
+                    .tag(HomeTabs.Profile)
+            }
         }
     }
 }

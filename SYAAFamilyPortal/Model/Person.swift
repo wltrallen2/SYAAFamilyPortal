@@ -8,13 +8,17 @@
 
 import Foundation
 
-struct Person: Comparable {
+struct Person: Comparable, IdCodable {
     var id: Int
     var firstName: String
     var lastName: String
     var adult: Adult?
     var student: Student?
     var hasVerified: Bool
+    
+    mutating func setAdult(_ adult: Adult) {
+        self.adult = adult
+    }
     
     static func == (a: Person, b: Person) -> Bool {
         return a.id == b.id

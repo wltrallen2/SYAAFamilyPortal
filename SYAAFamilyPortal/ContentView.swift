@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var portal: Portal
+    
     var body: some View {
-        HomeTabbedView()
+        if !self.portal.isLoggedIn {
+            LoginWrapperView()
+        } else {
+            if(!self.portal.user!.isLinked) {
+                LinkUserView()
+            } else {
+                HomeTabbedView()
+            }
+        }
     }
 }
 
