@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AQUI",
+        "repositoryURL": "https://github.com/AlanQuatermain/AQUI.git",
+        "state": {
+          "branch": null,
+          "revision": "e1ced4a69915556a9af4c15791bb83eccc33e5b8",
+          "version": "0.1.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
