@@ -99,9 +99,9 @@ extension Student: Encodable {
         try container.encode(id, forKey: .id)
         try container.encode(person, forKey: .person)
         try container.encode(school, forKey: .school)
-        try container.encode(teacher, forKey: .school)
-        try container.encode(currentGrade, forKey: .school)
-        try container.encode(notes, forKey: .school)
+        try container.encode(teacher, forKey: .teacher)
+        try container.encode(currentGrade, forKey: .currentGrade)
+        try container.encode(notes, forKey: .notes)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"

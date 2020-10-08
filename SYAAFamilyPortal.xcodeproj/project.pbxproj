@@ -12,6 +12,7 @@
 		365DC28125262B1E00312C05 /* states.json in Resources */ = {isa = PBXBuildFile; fileRef = 365DC28025262B1E00312C05 /* states.json */; };
 		366A9E16252F97EC0066CDB6 /* studentData.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A9E14252F97EB0066CDB6 /* studentData.json */; };
 		366A9E17252F97EC0066CDB6 /* familyLinksData.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A9E15252F97EC0066CDB6 /* familyLinksData.json */; };
+		366A9E1F252F9E210066CDB6 /* StudentProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A9E1E252F9E210066CDB6 /* StudentProfileEditView.swift */; };
 		368459F52527FE3D00CA6851 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 368459F42527FE3D00CA6851 /* userData.json */; };
 		368459FA25282F8600CA6851 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368459F925282F8600CA6851 /* Student.swift */; };
 		36845A0525283F3E00CA6851 /* NextSteps.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 36845A0425283F3E00CA6851 /* NextSteps.rtf */; };
@@ -63,6 +64,7 @@
 		365DC28025262B1E00312C05 /* states.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = states.json; sourceTree = "<group>"; };
 		366A9E14252F97EB0066CDB6 /* studentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = studentData.json; sourceTree = "<group>"; };
 		366A9E15252F97EC0066CDB6 /* familyLinksData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyLinksData.json; sourceTree = "<group>"; };
+		366A9E1E252F9E210066CDB6 /* StudentProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfileEditView.swift; sourceTree = "<group>"; };
 		368459F42527FE3D00CA6851 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
 		368459F925282F8600CA6851 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		36845A0425283F3E00CA6851 /* NextSteps.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = NextSteps.rtf; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				3602867125258E30009E0CA9 /* RehearsalsView.swift */,
 				36ED5F5B252533C70022945C /* ProfileWrapperView.swift */,
 				36C4EF0D25259A8F000286F7 /* AdultProfileEditView.swift */,
+				366A9E1E252F9E210066CDB6 /* StudentProfileEditView.swift */,
 			);
 			path = Portal;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				36845A202529213800CA6851 /* LoginWrapperView.swift in Sources */,
 				36ED5F3A25252B650022945C /* Data.swift in Sources */,
 				36ED5F4525252C970022945C /* User.swift in Sources */,
+				366A9E1F252F9E210066CDB6 /* StudentProfileEditView.swift in Sources */,
 				36ED5F5C252533C70022945C /* ProfileWrapperView.swift in Sources */,
 				36ED5F00252529030022945C /* SYAAFamilyPortalApp.swift in Sources */,
 			);

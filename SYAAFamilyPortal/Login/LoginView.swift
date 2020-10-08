@@ -20,10 +20,14 @@ struct LoginView: View {
         VStack (spacing: 16) {
             Text("Login View")
             
-            Button("Login using Default User", action: {
-                _ = self.portal.verifyUser("", withPassword: "")
+            Button("Login using Default Adult User", action: {
+                _ = self.portal.verifyUser("wltrallen2", withPassword: "password")
             })
             
+            Button("Login using Default Student User", action: {
+                _ = self.portal.verifyUser("anyamayallen", withPassword: "password")
+            })
+
             VStack (spacing: 16) {
                 TextField("Username", text: $userToken)
                     .autocapitalization(.none)

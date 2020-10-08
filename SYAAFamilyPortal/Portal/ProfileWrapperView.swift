@@ -23,7 +23,8 @@ struct ProfileWrapperView: View {
                             saveData()
                         }
                 } else if student != nil {
-                    // TODO: Create Student Profile and insert here.
+                    StudentProfileEditView(student: Binding($student,
+                                                            replacingNilWith: Student.default))
                 } else {
                     // TODO: Handle this error for user. (Shouldn't ever happen...)
                     Text("No user data found.")
