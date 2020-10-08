@@ -13,6 +13,9 @@
 		366A9E16252F97EC0066CDB6 /* studentData.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A9E14252F97EB0066CDB6 /* studentData.json */; };
 		366A9E17252F97EC0066CDB6 /* familyLinksData.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A9E15252F97EC0066CDB6 /* familyLinksData.json */; };
 		366A9E1F252F9E210066CDB6 /* StudentProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A9E1E252F9E210066CDB6 /* StudentProfileEditView.swift */; };
+		366A9E25252FA11B0066CDB6 /* PortalPickerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A9E24252FA11B0066CDB6 /* PortalPickerViews.swift */; };
+		366A9E30252FA1530066CDB6 /* PortalCustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A9E2F252FA1530066CDB6 /* PortalCustomViews.swift */; };
+		366A9E42252FA6D30066CDB6 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A9E41252FA6D30066CDB6 /* ViewExtensions.swift */; };
 		368459F52527FE3D00CA6851 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 368459F42527FE3D00CA6851 /* userData.json */; };
 		368459FA25282F8600CA6851 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368459F925282F8600CA6851 /* Student.swift */; };
 		36845A0525283F3E00CA6851 /* NextSteps.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 36845A0425283F3E00CA6851 /* NextSteps.rtf */; };
@@ -65,6 +68,9 @@
 		366A9E14252F97EB0066CDB6 /* studentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = studentData.json; sourceTree = "<group>"; };
 		366A9E15252F97EC0066CDB6 /* familyLinksData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyLinksData.json; sourceTree = "<group>"; };
 		366A9E1E252F9E210066CDB6 /* StudentProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfileEditView.swift; sourceTree = "<group>"; };
+		366A9E24252FA11B0066CDB6 /* PortalPickerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalPickerViews.swift; sourceTree = "<group>"; };
+		366A9E2F252FA1530066CDB6 /* PortalCustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalCustomViews.swift; sourceTree = "<group>"; };
+		366A9E41252FA6D30066CDB6 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		368459F42527FE3D00CA6851 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
 		368459F925282F8600CA6851 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		36845A0425283F3E00CA6851 /* NextSteps.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = NextSteps.rtf; sourceTree = "<group>"; };
@@ -132,6 +138,23 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
+		366A9E23252FA0FF0066CDB6 /* SupportingViews */ = {
+			isa = PBXGroup;
+			children = (
+				366A9E2F252FA1530066CDB6 /* PortalCustomViews.swift */,
+				366A9E24252FA11B0066CDB6 /* PortalPickerViews.swift */,
+			);
+			path = SupportingViews;
+			sourceTree = "<group>";
+		};
+		366A9E40252FA6B10066CDB6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				366A9E41252FA6D30066CDB6 /* ViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		36845A092528CEA100CA6851 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +194,8 @@
 				36ED5F01252529030022945C /* ContentView.swift */,
 				36845A092528CEA100CA6851 /* Login */,
 				36ED5F4A25252DF90022945C /* Portal */,
+				366A9E23252FA0FF0066CDB6 /* SupportingViews */,
+				366A9E40252FA6B10066CDB6 /* Extensions */,
 				36ED5F3825252B570022945C /* Model */,
 				36ED5F03252529030022945C /* Assets.xcassets */,
 				36B467032526EE660056E349 /* Colors.xcassets */,
@@ -390,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				366A9E42252FA6D30066CDB6 /* ViewExtensions.swift in Sources */,
 				36C2351625258C760065DDBA /* HomeTabbedView.swift in Sources */,
 				36845A132528D29400CA6851 /* CreateUserView.swift in Sources */,
 				36845A1B25291DDC00CA6851 /* ForgotPasswordView.swift in Sources */,
@@ -398,12 +424,14 @@
 				36845A3125292EB700CA6851 /* LinkUserView.swift in Sources */,
 				36ED5F5425252F690022945C /* Portal.swift in Sources */,
 				36ED5F4425252C970022945C /* Adult.swift in Sources */,
+				366A9E25252FA11B0066CDB6 /* PortalPickerViews.swift in Sources */,
 				36ED5F02252529030022945C /* ContentView.swift in Sources */,
 				365801652527D801004AE6A7 /* PortalDatabase.swift in Sources */,
 				368459FA25282F8600CA6851 /* Student.swift in Sources */,
 				36845A0B2528CEB100CA6851 /* LoginView.swift in Sources */,
 				36C4EF0E25259A8F000286F7 /* AdultProfileEditView.swift in Sources */,
 				36845A202529213800CA6851 /* LoginWrapperView.swift in Sources */,
+				366A9E30252FA1530066CDB6 /* PortalCustomViews.swift in Sources */,
 				36ED5F3A25252B650022945C /* Data.swift in Sources */,
 				36ED5F4525252C970022945C /* User.swift in Sources */,
 				366A9E1F252F9E210066CDB6 /* StudentProfileEditView.swift in Sources */,
