@@ -14,21 +14,19 @@ class Portal: ObservableObject {
     private lazy var db: PortalDatabase = PortalDatabase()
     
     @Published var user: User?
-    @Published var person: Person?
-    
-    init() {
-        self.person = Person.default
-    }
-    
+    @Published var adult: Adult?
+    @Published var student: Student?
+        
     //**********************************************************************
     // MARK: - USER FUNCTIONS
     //**********************************************************************
     
     func logout() {
-        self.isLoggedIn = false
         self.user = nil
-        self.person = nil
+        self.adult = nil
+        self.student = nil
         self.error = ""
+        self.isLoggedIn = false
     }
     /**
      Logs in a user based on their userToken and password combination.
@@ -125,21 +123,27 @@ class Portal: ObservableObject {
         }
         
         // TODO: Implement this function
-        let persons: [Person] = db.load("personData.json")
         let links: [[String: Int]] = db.load("userPersonLinksData.json")
         
         let link = links.first(where: { link -> Bool in
             return link["userId"] == self.user!.id
         })
         
+        let adults: [Adult] = db.load("adultData.json")
+        let students: [Student] = db.load("studentData.json")
+        
         if let personId = link?["personId"] {
-            let person = persons.first(where: { person -> Bool in
-                return person.id == personId
+            self.adult = adults.first(where: { adult -> Bool in
+                return adult.id == personId
             })
-        
-            self.person = person
-            success = true
-        
+            
+            if self.adult == nil {
+                self.student = students.first(where: { student -> Bool in
+                    return student.id == personId
+                })
+            }
+            
+            success = self.adult != nil || self.student != nil
         }
         
         return success
@@ -156,26 +160,34 @@ class Portal: ObservableObject {
         }
         
         // TODO: Implement this function
-        let persons: [Person] = db.load("personData.json")
         let links: [[String: Int]] = db.load("userPersonLinksData.json")
         
         let link = links.first(where: { link -> Bool in
             return link["userId"] == self.user!.id
         })
         
+        let adults: [Adult] = db.load("adultData.json")
         if let personId = link?["personId"] {
-            let person = persons.first(where: { person -> Bool in
-                return person.id == personId
+            self.adult = adults.first(where: { adult -> Bool in
+                return adult.id == personId
             })
-        
-            self.user!.isLinked = true
-            let users: [User] = load("userData.json")
-            db.insert(codableObject: self.user!,
-                      intoArray: users,
-                      usingFileWithName: "userData.json")
             
-            self.person = person
-            success = true
+            if self.adult == nil {
+                let students: [Student] = db.load("studentData.json")
+                self.student = students.first(where: { student -> Bool in
+                    return student.id == personId
+                })
+            }
+        
+            if self.adult != nil || self.student != nil {
+                self.user!.isLinked = true
+                let users: [User] = load("userData.json")
+                db.insert(codableObject: self.user!,
+                          intoArray: users,
+                          usingFileWithName: "userData.json")
+                
+                success = true
+            }
         
         }
         
@@ -185,8 +197,33 @@ class Portal: ObservableObject {
     /**
      Updates the database with the given person information. Returns true on success. Else, sets the current user error message and returns false.
      */
-    func updatePersonUsing(_ person: Person) -> Bool {
+    func updatePersonUsing(_ person: Personable) -> Bool {
         // TODO: Implement this function
-        return true
+        var success = false
+        
+        // FIXME: Temporary Implementation
+        if person is Adult {
+            var adults: [Adult] = db.load("adultData.json")
+            adults.removeAll(where: { adult -> Bool in
+                return adult.id == person.id
+            })
+            
+            adults.append(person as! Adult)
+            db.save(encodableObject: adults, toFileWithName: "adultData.json")
+            
+            success = true
+        } else if person is Student {
+            var students: [Student] = db.load("studentData.json")
+            students.removeAll(where: { student -> Bool in
+                return student.id == person.id
+            })
+            
+            students.append(person as! Student)
+            db.save(encodableObject: students, toFileWithName: "studentData.json")
+            
+            success = true
+        }
+        
+        return success
     }
 }

@@ -16,8 +16,8 @@ enum PhoneIndicator {
 }
 
 struct AdultProfileEditView: View {
-    @Binding var person: Person
     @Binding var adult: Adult
+    
     @State private var showStatePopover: Bool = false
     @State private var showPhonePopover: PhoneIndicator = .None
     
@@ -29,12 +29,12 @@ struct AdultProfileEditView: View {
                         ProfileTextField(
                             labelText: "First Name",
                             placeholder: "First Name",
-                            fieldToDisplay: $person.firstName)
+                            fieldToDisplay: $adult.person.firstName)
                         
                         ProfileTextField(
                             labelText: "Last Name",
                             placeholder: "Last Name",
-                            fieldToDisplay: $person.lastName)
+                            fieldToDisplay: $adult.person.lastName)
                     }
                     
                     VStack (spacing: 4) {
@@ -116,6 +116,7 @@ struct AdultProfileEditView: View {
                         placeholder: "Email",
                         fieldToDisplay: $adult.email
                     )
+                    .autocapitalization(.none)
                 }
                 .disabled(self.showStatePopover
                             || self.showPhonePopover != .None
@@ -125,6 +126,7 @@ struct AdultProfileEditView: View {
                         || self.showPhonePopover != .None
                     ? 5 : 0)
             }
+            .navigationTitle(Text("\(self.adult.person.firstName)'s Profile"))
             .background(Color("LightGray"))
         }
         
@@ -250,7 +252,7 @@ struct PhoneTypePicker: View {
     @Binding var adult: Adult
     @Binding var presentationMode: PhoneIndicator
         
-    private let types: [PhoneType] = [ .Cell, .Work, .Landline ]
+    private let types: [PhoneType] = [ .NilValue, .Cell, .Work, .Landline ]
     var body: some View {
         VStack {
             HStack {
@@ -278,6 +280,6 @@ struct PhoneTypePicker: View {
 
 struct AdultProfileEditView_Previews: PreviewProvider {
     static var previews: some View {
-        AdultProfileEditView(person: .constant(.default), adult: .constant(.default))
+        AdultProfileEditView(adult: .constant(.default))
     }
 }

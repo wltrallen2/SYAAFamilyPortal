@@ -1,0 +1,53 @@
+[ 
+   {
+        "person": {
+            "id" : 6,
+            "firstName": "Anya",
+            "lastName": "May-Allen",
+            "hasVerified": true
+        },
+        "birthdate": "2019-01-26",
+        "school": "May-Allen Academy",
+        "teacher": null,
+        "currentGrade": 2,
+        "expectedGraduation": "2036",
+        "notes": "What an awesome child!",
+        "profileColor": "FF69B4",
+        "headshotURL": null,
+        "auditionVideoURL": null
+    },
+   {
+       "person": {
+           "id" : 7,
+           "firstName": "Tati",
+           "lastName": "May-Allen",
+           "hasVerified": true
+       },
+       "birthdate": "2013-09-30",
+       "school": "May-Allen Academy",
+       "teacher": null,
+       "currentGrade": 11,
+       "expectedGraduation": "2021",
+       "notes": "She's a handful!",
+       "profileColor": "00FF00",
+       "headshotURL": null,
+       "auditionVideoURL": null
+   },
+   {
+       "person": {
+           "id" : 9,
+           "firstName": "Heidi",
+           "lastName": "Jenkins",
+           "hasVerified": true
+       },
+       "birthdate": "2006-06-30",
+       "school": "East Texas High",
+       "teacher": null,
+       "currentGrade": 9,
+       "expectedGraduation": "2024",
+       "notes": "Loves Jack Skellington",
+       "profileColor": "000000",
+       "headshotURL": null,
+       "auditionVideoURL": null
+   }
+]

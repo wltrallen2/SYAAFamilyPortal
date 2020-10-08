@@ -17,7 +17,7 @@ struct HomeTabbedView: View {
     @State private var selection: HomeTabs = .Profile
     
     var body: some View {
-        if portal.person == nil {
+        if portal.adult == nil && portal.student == nil {
             EmptyView() // This is necessary to avoid a crash upon loggin out as environmentObject portal is updating variables. TODO: Research to see if there's a better solution, and handle this better for user.
         } else {
             TabView(selection: $selection){
@@ -28,8 +28,8 @@ struct HomeTabbedView: View {
                     }
                     .tag(HomeTabs.Rehearsals)
                 
-                ProfileWrapperView(person: portal.person!,
-                                   adult: portal.person!.adult!)
+                ProfileWrapperView(adult: portal.adult,
+                                   student: portal.student)
                     .tabItem {
                         Image(systemName: "person.crop.circle.fill")
                         Text("User Profile")

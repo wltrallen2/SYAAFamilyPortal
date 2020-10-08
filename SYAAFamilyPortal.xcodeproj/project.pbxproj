@@ -10,7 +10,8 @@
 		3602867225258E30009E0CA9 /* RehearsalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3602867125258E30009E0CA9 /* RehearsalsView.swift */; };
 		365801652527D801004AE6A7 /* PortalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365801642527D801004AE6A7 /* PortalDatabase.swift */; };
 		365DC28125262B1E00312C05 /* states.json in Resources */ = {isa = PBXBuildFile; fileRef = 365DC28025262B1E00312C05 /* states.json */; };
-		368459EC2527F74900CA6851 /* personData.json in Resources */ = {isa = PBXBuildFile; fileRef = 368459EB2527F74900CA6851 /* personData.json */; };
+		366A9E16252F97EC0066CDB6 /* studentData.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A9E14252F97EB0066CDB6 /* studentData.json */; };
+		366A9E17252F97EC0066CDB6 /* familyLinksData.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A9E15252F97EC0066CDB6 /* familyLinksData.json */; };
 		368459F52527FE3D00CA6851 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 368459F42527FE3D00CA6851 /* userData.json */; };
 		368459FA25282F8600CA6851 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368459F925282F8600CA6851 /* Student.swift */; };
 		36845A0525283F3E00CA6851 /* NextSteps.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 36845A0425283F3E00CA6851 /* NextSteps.rtf */; };
@@ -60,7 +61,8 @@
 		3602867125258E30009E0CA9 /* RehearsalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RehearsalsView.swift; sourceTree = "<group>"; };
 		365801642527D801004AE6A7 /* PortalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalDatabase.swift; sourceTree = "<group>"; };
 		365DC28025262B1E00312C05 /* states.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = states.json; sourceTree = "<group>"; };
-		368459EB2527F74900CA6851 /* personData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = personData.json; sourceTree = "<group>"; };
+		366A9E14252F97EB0066CDB6 /* studentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = studentData.json; sourceTree = "<group>"; };
+		366A9E15252F97EC0066CDB6 /* familyLinksData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyLinksData.json; sourceTree = "<group>"; };
 		368459F42527FE3D00CA6851 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
 		368459F925282F8600CA6851 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		36845A0425283F3E00CA6851 /* NextSteps.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = NextSteps.rtf; sourceTree = "<group>"; };
@@ -207,9 +209,10 @@
 			isa = PBXGroup;
 			children = (
 				368459F42527FE3D00CA6851 /* userData.json */,
-				368459EB2527F74900CA6851 /* personData.json */,
 				36C2350A2525376D0065DDBA /* adultData.json */,
+				366A9E14252F97EB0066CDB6 /* studentData.json */,
 				36845A3525292FEC00CA6851 /* userPersonLinksData.json */,
+				366A9E15252F97EC0066CDB6 /* familyLinksData.json */,
 				365DC28025262B1E00312C05 /* states.json */,
 				36845A0425283F3E00CA6851 /* NextSteps.rtf */,
 			);
@@ -350,13 +353,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				366A9E16252F97EC0066CDB6 /* studentData.json in Resources */,
 				36B467042526EE660056E349 /* Colors.xcassets in Resources */,
 				36ED5F07252529030022945C /* Preview Assets.xcassets in Resources */,
 				36845A3625292FEC00CA6851 /* userPersonLinksData.json in Resources */,
-				368459EC2527F74900CA6851 /* personData.json in Resources */,
 				36ED5F04252529030022945C /* Assets.xcassets in Resources */,
 				36C2350B2525376D0065DDBA /* adultData.json in Resources */,
 				36845A0525283F3E00CA6851 /* NextSteps.rtf in Resources */,
+				366A9E17252F97EC0066CDB6 /* familyLinksData.json in Resources */,
 				365DC28125262B1E00312C05 /* states.json in Resources */,
 				368459F52527FE3D00CA6851 /* userData.json in Resources */,
 			);

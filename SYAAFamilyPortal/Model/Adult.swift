@@ -27,7 +27,9 @@ enum PhoneType: Int, Codable {
     }
 }
 
-struct Adult: Equatable {
+struct Adult: Equatable, IdCodable, Personable {
+    var id: Int
+    var person: Person
     var addressId: Int
     var address1: String
     var address2: String?
@@ -41,7 +43,9 @@ struct Adult: Equatable {
     var email: String
         
     static func == (a: Adult, b: Adult) -> Bool {
-        return a.address1 == b.address1
+        return a.id == b.id
+            && a.person == b.person
+            && a.address1 == b.address1
             && a.address2 == b.address2
             && a.city == b.city
             && a.state == b.state
@@ -53,10 +57,12 @@ struct Adult: Equatable {
             && a.email == b.email
     }
         
-    static let `default` = Adult(addressId: 1, address1: "123 Address Rd.", address2: nil, city: "A City", state: "LA", zip: "11111", phone1: "1111111111", phone1Type: .Cell, phone2: nil, phone2Type: .NilValue, email: "anemail@acompany.com")
+    static let `default` = Adult(id: 1, person: Person(id: 1, firstName: "John", lastName: "Doe", hasVerified: true), addressId: 1, address1: "123 Address Rd.", address2: nil, city: "A City", state: "LA", zip: "11111", phone1: "1111111111", phone1Type: .Cell, phone2: nil, phone2Type: .NilValue, email: "anemail@acompany.com")
 }
 
 enum AdultCodingKeys: CodingKey {
+    case id
+    case person
     case address
     case phone1
     case phone1Type
@@ -81,6 +87,9 @@ enum CityCodingKeys: CodingKey {
 extension Adult: Decodable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: AdultCodingKeys.self)
+        
+        person = try values.decode(Person.self, forKey: .person)
+        id = person.id
         
         phone1 = try values.decode(String.self, forKey: .phone1)
         phone2 = try values.decodeIfPresent(String.self, forKey: .phone2)
@@ -115,6 +124,8 @@ extension Adult: Encodable {
         try cityContainer.encode(state, forKey: .state)
         try cityContainer.encode(zip, forKey: .zip)
         
+        try container.encode(id, forKey: .id)
+        try container.encode(person, forKey: .person)
         try container.encode(phone1, forKey: .phone1)
         try container.encode(phone1Type, forKey: .phone1Type)
         try container.encode(phone2, forKey: .phone2)
