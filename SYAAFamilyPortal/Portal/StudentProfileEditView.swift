@@ -13,6 +13,14 @@ struct StudentProfileEditView: View {
     var body: some View {
         VStack {
             Text("\(student.person.firstName)'s Profile Edit View")
+            
+            Text("Birthdate: \(student.birthdate.slashStyle())")
+            
+            Text("Grad: \(student.expectedGraduation)")
+            
+            ColorPicker("Profile Color",
+                        selection: $student.profileColor,
+                        supportsOpacity: false)
         }
         .navigationTitle("\(student.person.firstName)'s Profile")
     }

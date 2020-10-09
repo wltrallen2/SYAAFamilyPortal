@@ -17,9 +17,9 @@ struct Student: Equatable, IdCodable, Personable {
     var school: String?
     var teacher: String?
     var currentGrade: Int
-    var expectedGraduation: Date
+    var expectedGraduation: String
     var notes: String
-    var profileColor: UIColor
+    var profileColor: Color
     var headshotURL: URL?
     var auditionVideoURL: URL?
     
@@ -37,7 +37,7 @@ struct Student: Equatable, IdCodable, Personable {
             && a.auditionVideoURL == b.auditionVideoURL
     }
     
-    static let `default` = Student(id: 2, person: Person(id: 2, firstName: "Jane", lastName: "Doe", hasVerified: true), birthdate: Date(timeIntervalSinceNow: TimeInterval(-60 * 60 * 24 * 365 * 6)), school: "May-Allen Academy", teacher: nil, currentGrade: 2, expectedGraduation: Date(timeIntervalSinceNow: TimeInterval(60 * 60 * 24 * 365 * 12)), notes: "Such an awesome kiddo", profileColor: UIColor(red: 255/255, green: 182/255, blue: 203/255, alpha: 1.0), headshotURL: nil, auditionVideoURL: nil)
+    static let `default` = Student(id: 2, person: Person(id: 2, firstName: "Jane", lastName: "Doe", hasVerified: true), birthdate: Date(timeIntervalSinceNow: TimeInterval(-60 * 60 * 24 * 365 * 6)), school: "May-Allen Academy", teacher: nil, currentGrade: 2, expectedGraduation: "2024", notes: "Such an awesome kiddo", profileColor: Color(red: 255/255, green: 182/255, blue: 203/255, opacity: 1.0), headshotURL: nil, auditionVideoURL: nil)
 }
 
 enum StudentCodingKeys: CodingKey {
@@ -67,20 +67,12 @@ extension Student: Decodable {
         notes = try studentValues.decode(String.self, forKey: .notes)
         
         let birthdateString = try studentValues.decode(String.self, forKey: .birthdate)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        birthdate = dateFormatter.date(from: birthdateString) ?? Date()
+        birthdate = birthdateString.toDateFromFormat("yyyy-MM-dd") ?? Date()
         
-        let gradString = try studentValues.decode(String.self, forKey: .expectedGraduation)
-        let calendar = Calendar.current
-        var components = DateComponents()
-        components.month = 5
-        components.day = 31
-        components.year = Int(gradString) ?? calendar.component(.year, from: Date())
-        expectedGraduation = calendar.date(from: components) ?? Date()
+        expectedGraduation = try studentValues.decode(String.self, forKey: .expectedGraduation)
         
         let colorString = try studentValues.decode(String.self, forKey: .profileColor)
-        profileColor = UIColor(hex: "#" + colorString + "ff") ?? UIColor(Color.black)
+        profileColor = Color.init(hex: colorString)
         
         if let headshotURLString = try studentValues.decodeIfPresent(String.self, forKey: .headshotURL) {
             headshotURL = URL(string: headshotURLString)
@@ -110,49 +102,9 @@ extension Student: Encodable {
         dateFormatter.dateFormat = "yyyy"
         try container.encode(dateFormatter.string(for: expectedGraduation) ?? "", forKey: .expectedGraduation)
         
-        try container.encode(profileColor.hexString(), forKey: .profileColor)
+        try container.encode(profileColor.hexValue(withHash: false), forKey: .profileColor)
         
         try container.encode(headshotURL?.absoluteString, forKey: .headshotURL)
         try container.encode(auditionVideoURL?.absoluteString, forKey: .auditionVideoURL)
     }
-}
-
-// TODO: Extract extension and rewrite as needed.
-extension UIColor {
-    public convenience init?(hex: String) {
-        let r, g, b, a: CGFloat
-
-        if hex.hasPrefix("#") {
-            let start = hex.index(hex.startIndex, offsetBy: 1)
-            let hexColor = String(hex[start...])
-
-            if hexColor.count == 8 {
-                let scanner = Scanner(string: hexColor)
-                var hexNumber: UInt64 = 0
-
-                if scanner.scanHexInt64(&hexNumber) {
-                    r = CGFloat((hexNumber & 0xff000000) >> 24) / 255
-                    g = CGFloat((hexNumber & 0x00ff0000) >> 16) / 255
-                    b = CGFloat((hexNumber & 0x0000ff00) >> 8) / 255
-                    a = CGFloat(hexNumber & 0x000000ff) / 255
-
-                    self.init(red: r, green: g, blue: b, alpha: a)
-                    return
-                }
-            }
-        }
-
-        return nil
-    }
-    
-    public func hexString() -> String {
-        let components = self.cgColor.components
-        let r: CGFloat = components?[0] ?? 0.0
-        let g: CGFloat = components?[1] ?? 0.0
-        let b: CGFloat = components?[2] ?? 0.0
-
-        let hexString = String.init(format: "#%02lX%02lX%02lX", lroundf(Float(r * 255)), lroundf(Float(g * 255)), lroundf(Float(b * 255)))
-        return hexString
-     }
-
 }

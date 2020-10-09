@@ -191,6 +191,8 @@ class Portal: ObservableObject {
         
         }
         
+        print("\(String(describing: self.student))")
+        print("\(String(describing: self.adult))")
         return success
     }
     

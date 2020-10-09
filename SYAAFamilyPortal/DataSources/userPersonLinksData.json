@@ -18,5 +18,9 @@
     {
         "userId": 5,
         "personId" : 9
+    },
+    {
+        "userId": 6,
+        "personId": 7
     }
 ]

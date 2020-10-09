@@ -64,9 +64,7 @@ class PortalDatabase {
         guard let file = Bundle.main.url(forResource: filename, withExtension: nil) else {
             fatalError("Couldn't find \(filename) in main bundle.")
         }
-        
-        print("\n\n*** File location: \(file) ***")
-        
+                
         return file
     }
 }
