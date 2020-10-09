@@ -28,13 +28,15 @@ struct HomeTabbedView: View {
                     }
                     .tag(HomeTabs.Rehearsals)
                 
-                ProfileWrapperView(adult: portal.adult,
-                                   student: portal.student)
-                    .tabItem {
-                        Image(systemName: "person.crop.circle.fill")
-                        Text("User Profile")
-                    }
-                    .tag(HomeTabs.Profile)
+                NavigationView {
+                    ProfileWrapperView(adult: portal.adult,
+                                       student: portal.student)
+                }
+                .tabItem {
+                    Image(systemName: "person.crop.circle.fill")
+                    Text("User Profile")
+                }
+                .tag(HomeTabs.Profile)
             }
         }
     }

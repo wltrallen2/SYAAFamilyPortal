@@ -44,7 +44,17 @@ struct StudentProfileFields: View {
     
     var body: some View {
         VStack {
-            Text("\(student.person.firstName)'s Profile Edit View")
+            HStack(spacing: 8) {
+                ProfileTextField(
+                    labelText: "First Name",
+                    placeholder: "First Name",
+                    fieldToDisplay: $student.person.firstName)
+                
+                ProfileTextField(
+                    labelText: "Last Name",
+                    placeholder: "Last Name",
+                    fieldToDisplay: $student.person.lastName)
+            }
             
             Text("Birthdate: \(student.birthdate.slashStyle())")
             

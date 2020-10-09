@@ -46,6 +46,15 @@ extension Color {
         
     
     func hexValue(withHash: Bool) -> String {
+        let (outputR, outputG, outputB) = self.getComponents()
+        
+        return (withHash ? "#" : "")
+            + String(format:"%02X", outputR)
+            + String(format:"%02X", outputG)
+            + String(format:"%02X", outputB)
+    }
+    
+    func getComponents() -> (Int, Int, Int) {
         let values = self.cgColor?.components
         
         let outputR: Int = Int(255 * values![0])
@@ -54,10 +63,12 @@ extension Color {
         let outputB: Int = Int(255 * (values!.count < 3
                                 ? values![0] : values![2]))
         
-        return (withHash ? "#" : "")
-            + String(format:"%02X", outputR)
-            + String(format:"%02X", outputG)
-            + String(format:"%02X", outputB)
+        return (outputR, outputG, outputB)
+    }
+    
+    func getBrightness() -> Double {
+        let (r, g, b) = self.getComponents()
+        return (Double(r + g + b) / 3.0) / 255
     }
 }
 

@@ -17,6 +17,7 @@ enum PhoneIndicator {
 
 // MARK: -
 struct AdultProfileEditView: View {
+    @EnvironmentObject var portal: Portal
     @Binding var adult: Adult
     
     @State private var showStatePopover: Bool = false
@@ -29,13 +30,19 @@ struct AdultProfileEditView: View {
                     AdultProfileFields(adult: $adult,
                                        showStatePopover: $showStatePopover,
                                        showPhonePopover: $showPhonePopover)
+                        .padding(16)
                     
-                    // TODO: FamilyProfileLinks()
+                    if(self.adult == self.portal.adult) {
+                        Divider()
+                            .padding(.top, 16)
+                            .padding(.horizontal, 16)
+                        
+                        FamilyProfileLinks()
+                    }
                 }
                 .disabled(self.showStatePopover
                             || self.showPhonePopover != .None
                             ? true : false)
-                .padding(16)
                 .blur(radius: self.showStatePopover
                         || self.showPhonePopover != .None
                     ? 5 : 0)
@@ -174,8 +181,72 @@ struct AdultProfileFields: View {
 }
 
 // MARK: -
+struct FamilyProfileLinks: View {
+    @EnvironmentObject var portal: Portal
+    
+    var body: some View {
+        VStack (alignment: .leading, spacing: 0){
+            Group {
+                Text("Family Members")
+                    .bold()
+                    .font(.title)
+                    .padding(.bottom, 4)
+            
+                HStack {
+                    Text("Tap to Edit")
+                        .italic()
+                    
+                    VStack {
+                        Divider()
+                    }
+                }
+            }
+            .padding(.horizontal, 16)
+            
+            ScrollView (.horizontal) {
+                HStack(spacing: 16) {
+                    ForEach(self.portal.getFamilyMembersOfType(Student.self), id:\.id) { student in
+                        NavigationLink(destination: ProfileWrapperView(
+                                        adult: nil,
+                                        student: student)) {
+                            StudentTab(name: student.person.firstName,
+                                       color: student.profileColor)
+                        }
+                    }
+                }
+                .padding()
+            }
+            .ignoresSafeArea()
+            
+            HStack {
+                Text("Other Adults")
+                    .italic()
+                    .font(.title2)
+                
+                VStack {
+                    Divider()
+                }
+            }
+            .padding(.horizontal, 16)
+        }
+        
+        ForEach(self.portal.getFamilyMembersOfType(Adult.self), id:\.id) { adult in
+            NavigationLink(destination:
+                            ProfileWrapperView(
+                                adult: adult,
+                                student: nil)) {
+                AdultTab(name: "\(adult.person.firstName) \(adult.person.lastName)")
+            }
+            .buttonStyle(PlainButtonStyle())
+        }
+    }
+}
+
+// MARK: -
 struct AdultProfileEditView_Previews: PreviewProvider {
     static var previews: some View {
         AdultProfileEditView(adult: .constant(.default))
+            .environmentObject(Portal())
+            .previewLayout(.fixed(width: 400, height: 1000))
     }
 }

@@ -14,14 +14,10 @@ struct ProfileWrapperView: View {
     @State var student: Student?
     
     var body: some View {
-        NavigationView {
             VStack {
                 if adult != nil {
                     AdultProfileEditView(adult: Binding($adult,
                                                         replacingNilWith: Adult.default))
-                        .onDisappear {
-                            saveData()
-                        }
                 } else if student != nil {
                     StudentProfileEditView(student: Binding($student,
                                                             replacingNilWith: Student.default))
@@ -30,19 +26,25 @@ struct ProfileWrapperView: View {
                     Text("No user data found.")
                 }
             }
+            .onDisappear() {
+                saveData()
+            }
             .navigationBarItems(trailing: Button("Log Out") {
                 saveData()
                 self.portal.logout()
             })
-        }
     }
     
     private func saveData() {
         if portal.isLoggedIn {
             if self.adult != nil {
+                print("Updating Adult")
                 _ = portal.updatePersonUsing(adult!)
             } else if self.student != nil {
+                print("Updating Student")
                 _ = portal.updatePersonUsing(student!)
+            } else {
+                print("Updating No One")
             }
         }
     }

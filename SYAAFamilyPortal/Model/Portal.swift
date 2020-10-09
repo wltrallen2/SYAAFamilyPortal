@@ -14,8 +14,16 @@ class Portal: ObservableObject {
     private lazy var db: PortalDatabase = PortalDatabase()
     
     @Published var user: User?
-    @Published var adult: Adult?
+    @Published var adult: Adult? {
+        didSet {
+            if self.adult != nil {
+                self.fetchFamily()
+            }
+        }
+    }
     @Published var student: Student?
+    
+    @Published var family: [Personable] = [Student.default, Student.default, Student.default, Adult.default, Adult.default]
         
     //**********************************************************************
     // MARK: - USER FUNCTIONS
@@ -226,6 +234,69 @@ class Portal: ObservableObject {
             success = true
         }
         
+        if adult?.id == person.id { adult = person as? Adult}
+        else if student?.id == person.id { student = person as? Student }
+        else if(family.contains(where: { familyMember in
+                return familyMember.id == person.id
+            })) {
+            
+            family.removeAll(where: { familyMember in
+                return familyMember.id == person.id
+            })
+            family.append(person)
+        }
+        
         return success
+    }
+    
+    func fetchFamily() {
+        // TODO: Implement this function.
+        guard let adultId = self.adult?.person.id else { return }
+        self.family.removeAll()
+        
+        // FIXME: Temporary Implementation
+        let families: [[Int]] = db.load("familyLinksData.json")
+        var ids = families.first(where: { ids -> Bool in
+            return ids.contains(adultId)
+        })
+        
+        if ids == nil { return }
+        if ids!.count <= 1 { return }
+        
+        let adults: [Adult] = db.load("adultData.json")
+        let students: [Student] = db.load("studentData.json")
+        
+        ids!.removeAll(where: {id in
+            return id == adultId
+        })
+        
+        for id in ids! {
+            var person: Personable? = adults.first(where: { adult in
+                return adult.id == id
+            })
+            
+            if person == nil {
+                person = students.first(where: { student in
+                    return student.id == id
+                })
+            }
+            
+            print(person!.person.firstName)
+            if person != nil { self.family.append(person!) }
+        }
+    }
+    
+    func getFamilyMembersOfType<T: Personable>(_ type: T.Type) -> [T] {
+        var members: [T] = []
+        for person in self.family {
+            if person is T {
+                let member = person as! T
+                members.append(member)
+            }
+        }
+        
+        return members.sorted(by: { a, b in
+            return a.person.firstName < b.person.firstName
+        })
     }
 }

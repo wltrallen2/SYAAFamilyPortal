@@ -12,6 +12,14 @@ extension View {
         self.modifier(PortalFieldStyle())
     }
     
+    func portalPickerStyle() -> some View {
+        self.modifier(PortalPickerStyle())
+    }
+    
+    func portalPickerStyle(height: CGFloat) -> some View {
+        self.modifier(PortalPickerStyle(height: height))
+    }
+    
 }
 
 extension Text {
@@ -49,6 +57,20 @@ struct PortalLabelStyle: ViewModifier {
         content
             .font(.title3)
             .opacity(opacity)
+    }
+}
+
+struct PortalPickerStyle: ViewModifier {
+    var height: CGFloat = 240.0
+    
+    func body(content: Content) -> some View {
+        content
+            .frame(height: height)
+            .padding()
+            .background(Rectangle()
+                            .fill(Color.white)
+                            .shadow(color: Color.gray, radius: 10.0)
+                        )
     }
 }
 

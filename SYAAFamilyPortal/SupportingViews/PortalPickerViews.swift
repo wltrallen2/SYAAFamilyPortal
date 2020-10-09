@@ -28,10 +28,7 @@ struct StatesPicker: View {
                 }
             }
         }
-        .frame(height: 240)
-        .padding()
-        .background(Color.white)
-        .shadow(color: Color.gray, radius: 10.0)
+        .portalPickerStyle()
     }
 }
 
@@ -58,10 +55,7 @@ struct PhoneTypePicker: View {
                 }
             }
         }
-        .frame(height: 240)
-        .padding()
-        .background(Color.white)
-        .shadow(color: Color.gray, radius: 10.0)
+        .portalPickerStyle()
     }
 }
 
