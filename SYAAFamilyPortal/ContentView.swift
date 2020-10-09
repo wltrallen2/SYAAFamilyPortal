@@ -17,9 +17,21 @@ struct ContentView: View {
             if(!self.portal.user!.isLinked) {
                 LinkUserView()
             } else {
-                HomeTabbedView()
+                HomeTabbedView(selection: hasVerified() ? .Rehearsals : .Profile)
             }
         }
+    }
+    
+    private func hasVerified() -> Bool {
+        var hasVerified = false
+        
+        if portal.adult != nil {
+            hasVerified = portal.adult!.person.hasVerified
+        } else if portal.student != nil {
+            hasVerified = portal.student!.person.hasVerified
+        }
+        
+        return hasVerified
     }
 }
 

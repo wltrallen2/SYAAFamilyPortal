@@ -281,7 +281,6 @@ class Portal: ObservableObject {
                 })
             }
             
-            print(person!.person.firstName)
             if person != nil { self.family.append(person!) }
         }
     }

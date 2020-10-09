@@ -14,12 +14,13 @@ enum HomeTabs: Int {
 
 struct HomeTabbedView: View {
     @EnvironmentObject var portal: Portal
-    @State private var selection: HomeTabs = .Profile
+    @State var selection: HomeTabs
     
     var body: some View {
-        if portal.adult == nil && portal.student == nil {
-            EmptyView() // This is necessary to avoid a crash upon loggin out as environmentObject portal is updating variables. TODO: Research to see if there's a better solution, and handle this better for user.
-        } else {
+        // TODO: Remove this old code.
+//        if portal.adult == nil && portal.student == nil {
+//            EmptyView() // This is necessary to avoid a crash upon logging out as environmentObject portal is updating variables. TODO: Research to see if there's a better solution, and handle this better for user.
+//        } else {
             TabView(selection: $selection){
                 RehearsalsView()
                     .tabItem {
@@ -39,12 +40,12 @@ struct HomeTabbedView: View {
                 .tag(HomeTabs.Profile)
             }
         }
-    }
+//    }
 }
 
 struct HomeTabbedView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeTabbedView()
+        HomeTabbedView(selection: .Profile)
             .environmentObject(Portal())
     }
 }

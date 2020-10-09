@@ -17,22 +17,28 @@ enum StudentFieldPicker {
 
 struct StudentProfileEditView: View {
     @Binding var student: Student
-    @State var showPicker: StudentFieldPicker = .Color
+    
+    @Binding var alertTitle: String
+    @Binding var alertMessage: String
+    @Binding var showAlert: Bool
+    
+    @State var showPicker: StudentFieldPicker = .None
     
     var body: some View {
         ZStack (alignment: .bottom){
             VStack (spacing: 16) {
                 ScrollView {
                     StudentProfileFields(student: $student,
+                                         alertTitle: $alertTitle,
+                                         alertMessage: $alertMessage,
+                                         showAlert: $showAlert,
                                          showPicker: $showPicker)
                 }
-//                .disabled(self.showStatePopover
-//                            || self.showPhonePopover != .None
-//                            ? true : false)
+                .disabled(self.showPicker != .None
+                            ? true : false)
                 .padding(16)
-//                .blur(radius: self.showStatePopover
-//                        || self.showPhonePopover != .None
-//                    ? 5 : 0)
+                .blur(radius: self.showPicker != .None
+                    ? 5 : 0)
             }
             .navigationTitle(Text("\(self.student.person.firstName)'s Profile"))
             .background(Rectangle()
@@ -61,8 +67,12 @@ struct StudentProfileEditView: View {
 
 struct StudentProfileFields: View {
     @Binding var student: Student
+    
+    @Binding var alertTitle: String
+    @Binding var alertMessage: String
+    @Binding var showAlert: Bool
+    
     @Binding var showPicker: StudentFieldPicker
-    @State var showUnimplementedAlert: Bool = false
     
     fileprivate var age: Int {
         get {
@@ -144,7 +154,7 @@ struct StudentProfileFields: View {
                 placeholder: "School",
                 fieldToDisplay: Binding($student.school, replacingNilWith: ""))
                 .onTapGesture {
-                    self.showUnimplementedAlert.toggle()
+                    showUnimplementedAlert()
                 }
             
             ProfileTextField(
@@ -152,7 +162,7 @@ struct StudentProfileFields: View {
                 placeholder: "Teacher",
                 fieldToDisplay: Binding($student.teacher, replacingNilWith: ""))
                 .onTapGesture {
-                    self.showUnimplementedAlert.toggle()
+                    showUnimplementedAlert()
                 }
             
             VStack (alignment: .leading){
@@ -165,14 +175,12 @@ struct StudentProfileFields: View {
             }
 
         }
-        .alert(isPresented: $showUnimplementedAlert,
-               content: {
-                Alert(title: Text("Coming Soon!"),
-                      message:
-                        Text("This feature will be implemented in a future release"),
-                      dismissButton: .default(Text("OK")))
-               }
-        )
+    }
+    
+    private func showUnimplementedAlert() {
+        self.alertTitle = "Coming Soon!"
+        self.alertMessage = "This feature will be implemented in a future release"
+        self.showAlert.toggle()
     }
     
     private func calculateAgeFromDate(_ date: Date) -> Int {
@@ -188,9 +196,11 @@ struct StudentProfileFields: View {
 
 struct StudentProfileEditView_Previews: PreviewProvider {
     @State static var student: Student = Student.default
+    @State static var alertTitle: String = "Title"
+    @State static var alertMsg: String = "Message"
     
     static var previews: some View {
-        StudentProfileEditView(student: $student)
+        StudentProfileEditView(student: $student, alertTitle: $alertTitle, alertMessage: $alertMsg, showAlert: .constant(true))
             .environmentObject(Portal())
     }
 }
