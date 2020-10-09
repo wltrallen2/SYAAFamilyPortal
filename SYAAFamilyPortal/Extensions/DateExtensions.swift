@@ -10,7 +10,13 @@ import Foundation
 extension Date {
     func slashStyle() -> String {
         let df = DateFormatter()
-        df.dateFormat = "MM/dd/YYYY"
+        df.dateFormat = "MM/dd/yyyy"
+        return df.string(from: self)
+    }
+    
+    func year() -> String {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy"
         return df.string(from: self)
     }
 }

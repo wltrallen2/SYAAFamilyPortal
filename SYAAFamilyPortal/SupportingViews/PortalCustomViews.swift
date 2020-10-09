@@ -28,7 +28,7 @@ struct ProfileTextField: View {
     }
 }
 
-struct PickerPlaceholder: View {
+struct ProfilePickerPlaceholder: View {
     var labelText: String?
     var placeholder: String
     var valueToDisplay: String?

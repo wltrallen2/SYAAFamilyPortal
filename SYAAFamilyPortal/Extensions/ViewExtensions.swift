@@ -12,6 +12,11 @@ extension View {
         self.modifier(PortalFieldStyle())
     }
     
+    func portalFieldStyle(fillColor: Color) -> some View {
+        self.modifier(
+            PortalFieldStyle(fillColor: fillColor))
+    }
+    
     func portalPickerStyle() -> some View {
         self.modifier(PortalPickerStyle())
     }
@@ -35,6 +40,8 @@ extension Text {
 }
 
 struct PortalFieldStyle: ViewModifier {
+    var fillColor: Color = Color.white
+    
     func body(content: Content) -> some View {
         content
             .font(.title2)
@@ -44,7 +51,7 @@ struct PortalFieldStyle: ViewModifier {
                     .stroke(Color.gray)
                     .background(
                         RoundedRectangle(cornerRadius: 5.0)
-                            .fill(Color.white)
+                            .fill(fillColor)
                     )
             )
     }

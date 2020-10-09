@@ -93,15 +93,13 @@ extension Student: Encodable {
         try container.encode(school, forKey: .school)
         try container.encode(teacher, forKey: .teacher)
         try container.encode(currentGrade, forKey: .currentGrade)
+        try container.encode(expectedGraduation, forKey: .expectedGraduation)
         try container.encode(notes, forKey: .notes)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         try container.encode(dateFormatter.string(for: birthdate) ?? "", forKey: .birthdate)
-        
-        dateFormatter.dateFormat = "yyyy"
-        try container.encode(dateFormatter.string(for: expectedGraduation) ?? "", forKey: .expectedGraduation)
-        
+                
         try container.encode(profileColor.hexValue(withHash: false), forKey: .profileColor)
         
         try container.encode(headshotURL?.absoluteString, forKey: .headshotURL)

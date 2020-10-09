@@ -139,7 +139,7 @@ struct AdultProfileFields: View {
                     placeholder: "Primary Phone",
                     fieldToDisplay: $adult.phone1)
 
-                PickerPlaceholder(
+                ProfilePickerPlaceholder(
                     placeholder: "Type",
                     valueToDisplay: self.adult.phone1Type.description)
                     .frame(width: 130)
@@ -157,7 +157,7 @@ struct AdultProfileFields: View {
                     placeholder: "Alternate Phone",
                     fieldToDisplay: Binding($adult.phone2, replacingNilWith: ""))
 
-                PickerPlaceholder(
+                ProfilePickerPlaceholder(
                     placeholder: "Type",
                     valueToDisplay: self.adult.phone2Type?.description ?? "")
                     .frame(width: 130)
