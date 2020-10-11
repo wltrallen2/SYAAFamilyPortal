@@ -8,16 +8,22 @@
 import Foundation
 
 extension Date {
-    func slashStyle() -> String {
+    func toStringWithFormat(_ format: String) -> String {
         let df = DateFormatter()
-        df.dateFormat = "MM/dd/yyyy"
+        df.dateFormat = format
         return df.string(from: self)
     }
     
+    func slashStyle() -> String {
+        return self.toStringWithFormat("MM/dd/yyyy")
+    }
+    
+    func dashStyle() -> String {
+        return self.toStringWithFormat("yyyy-MM-dd")
+    }
+    
     func year() -> String {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy"
-        return df.string(from: self)
+        return self.toStringWithFormat("yyyy")
     }
 }
 

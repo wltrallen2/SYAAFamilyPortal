@@ -21,11 +21,11 @@ struct LoginView: View {
             Text("Login View")
             
             Button("Login using Default Adult User", action: {
-                _ = self.portal.verifyUser("wltrallen2", withPassword: "password")
+                _ = self.portal.verifyUser("cook", withPassword: "password")
             })
             
             Button("Login using Default Student User", action: {
-                _ = self.portal.verifyUser("anyamayallen", withPassword: "password")
+                _ = self.portal.verifyUser("ak", withPassword: "password")
             })
 
             VStack (spacing: 16) {

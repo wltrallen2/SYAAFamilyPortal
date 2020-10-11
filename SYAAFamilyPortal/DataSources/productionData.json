@@ -1,0 +1,2518 @@
+[
+    {
+        "id": 1,
+        "title": "Willy Wonka and the Chocolate Factory, Jr.",
+        "season": "2020-2021",
+        "start": "2020-08-01",
+        "end": "2020-11-01",
+        "rehearsals": [
+            {
+                "id": 1,
+                "start": "2020-08-18 17:00:00",
+                "end": "2020-08-18 20:00:00",
+                "description": "Read-Through",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": [
+                    {
+                        "id": 1147,
+                        "rehearsalId": 1,
+                        "studentId": 147,
+                        "type": "arrive_late"
+                    },
+                    {
+                        "id": 1163,
+                        "rehearsalId": 1,
+                        "studentId": 163,
+                        "type": "arrive_late"
+                    },
+                    {
+                        "id": 1166,
+                        "rehearsalId": 1,
+                        "studentId": 166,
+                        "type": "conflict"
+                    },
+                    {
+                        "id": 1175,
+                        "rehearsalId": 1,
+                        "studentId": 175,
+                        "type": "arrive_late"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "start": "2020-08-20 17:00:00",
+                "end": "2020-07-16 20:00:00",
+                "description": "Character Development: Bucket Family, Wonka, & Speaking Kids",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    19,
+                    20
+                ],
+                "conflicts": [
+                    {
+                        "id": 2163,
+                        "rehearsalId": 2,
+                        "studentId": 163,
+                        "type": "arrive_late"
+                    },
+                    {
+                        "id": 2173,
+                        "rehearsalId": 2,
+                        "studentId": 173,
+                        "type": "arrive_late"
+                    },
+                    {
+                        "id": 2175,
+                        "rehearsalId": 2,
+                        "studentId": 175,
+                        "type": "arrive_late"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "start": "2020-08-21 17:00:00",
+                "end": "2020-07-17 20:00:00",
+                "description": "Music: Golden Age of Chocolate, Candy Man",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": [
+                    {
+                        "id": 3146,
+                        "rehearsalId": 3,
+                        "studentId": 146,
+                        "type": "conflict"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "start": "2020-08-22 08:00:00",
+                "end": "2020-08-22 11:00:00",
+                "description": "Blocking, pp. 1-36",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": [
+                    {
+                        "id": 4172,
+                        "rehearsalId": 4,
+                        "studentId": 172,
+                        "type": "conflict"
+                    },
+                    {
+                        "id": 4175,
+                        "rehearsalId": 4,
+                        "studentId": 175,
+                        "type": "conflict"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "start": "2020-08-24 17:00:00",
+                "end": "2020-08-24 20:00:00",
+                "description": "Music: Think Positive\/Golden Ticket\/Finale",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": [
+                    {
+                        "id": 5176,
+                        "rehearsalId": 5,
+                        "studentId": 176,
+                        "type": "conflict"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "start": "2020-08-25 17:00:00",
+                "end": "2020-08-25 20:00:00",
+                "description": "Music: Oompa Loompas 1-4",
+                "productionId": 1,
+                "characterIds": [
+                    9,
+                    11,
+                    13,
+                    15,
+                    18
+                ],
+                "conflicts": [
+                    {
+                        "id": 6147,
+                        "rehearsalId": 6,
+                        "studentId": 147,
+                        "type": "arrive_late"
+                    },
+                    {
+                        "id": 6163,
+                        "rehearsalId": 6,
+                        "studentId": 163,
+                        "type": "arrive_late"
+                    },
+                    {
+                        "id": 6176,
+                        "rehearsalId": 6,
+                        "studentId": 176,
+                        "type": "conflict"
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "start": "2020-08-27 17:00:00",
+                "end": "2020-08-27 20:00:00",
+                "description": "Character Development: Winners & Parents I",
+                "productionId": 1,
+                "characterIds": [
+                    10,
+                    11,
+                    13,
+                    14,
+                    15,
+                    16
+                ],
+                "conflicts": [
+                    {
+                        "id": 7163,
+                        "rehearsalId": 7,
+                        "studentId": 163,
+                        "type": "arrive_late"
+                    },
+                    {
+                        "id": 7176,
+                        "rehearsalId": 7,
+                        "studentId": 176,
+                        "type": "conflict"
+                    }
+                ]
+            },
+            {
+                "id": 8,
+                "start": "2020-08-28 17:00:00",
+                "end": "2020-08-28 17:40:00",
+                "description": "Music: Think Positive",
+                "productionId": 1,
+                "characterIds": [
+                    2,
+                    3
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 9,
+                "start": "2020-08-28 17:40:00",
+                "end": "2020-08-28 18:20:00",
+                "description": "Music: Cheer Up, Charlie",
+                "productionId": 1,
+                "characterIds": [
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 10,
+                "start": "2020-08-28 18:20:00",
+                "end": "2020-08-28 19:00:00",
+                "description": "Music: Flying\/Burping Song",
+                "productionId": 1,
+                "characterIds": [
+                    2,
+                    5
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 11,
+                "start": "2020-08-29 08:00:00",
+                "end": "2020-08-29 11:00:00",
+                "description": "Blocking, pp. 37-74",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": [
+                    {
+                        "id": 11150,
+                        "rehearsalId": 11,
+                        "studentId": 150,
+                        "type": "conflict"
+                    },
+                    {
+                        "id": 11166,
+                        "rehearsalId": 11,
+                        "studentId": 166,
+                        "type": "conflict"
+                    }
+                ]
+            },
+            {
+                "id": 12,
+                "start": "2020-08-31 17:30:00",
+                "end": "2020-08-31 18:10:00",
+                "description": "Music: I Eat more",
+                "productionId": 1,
+                "characterIds": [
+                    9,
+                    10,
+                    17
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 13,
+                "start": "2020-08-31 18:10:00",
+                "end": "2020-08-31 18:50:00",
+                "description": "Music: I See It All on TV",
+                "productionId": 1,
+                "characterIds": [
+                    15,
+                    16,
+                    17
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 14,
+                "start": "2020-08-31 18:50:00",
+                "end": "2020-08-31 19:30:00",
+                "description": "Music: I Want It All",
+                "productionId": 1,
+                "characterIds": [
+                    13
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 15,
+                "start": "2020-09-01 17:00:00",
+                "end": "2020-09-01 20:00:00",
+                "description": "Music: Pure Imagination\/In This Room Here",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    5,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16
+                ],
+                "conflicts": [
+                    {
+                        "id": 15147,
+                        "rehearsalId": 15,
+                        "studentId": 147,
+                        "type": "arrive_late"
+                    },
+                    {
+                        "id": 15163,
+                        "rehearsalId": 15,
+                        "studentId": 163,
+                        "type": "arrive_late"
+                    }
+                ]
+            },
+            {
+                "id": 16,
+                "start": "2020-09-03 17:00:00",
+                "end": "2020-09-03 20:00:00",
+                "description": "Character Development: In the Factory",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    5,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16
+                ],
+                "conflicts": [
+                    {
+                        "id": 16163,
+                        "rehearsalId": 16,
+                        "studentId": 163,
+                        "type": "arrive_late"
+                    }
+                ]
+            },
+            {
+                "id": 17,
+                "start": "2020-09-04 17:00:00",
+                "end": "2020-09-04 20:00:00",
+                "description": "Music: Pink Candy Boat, Chew It",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    5,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 18,
+                "start": "2020-09-05 08:00:00",
+                "end": "2020-09-05 11:00:00",
+                "description": "Blocking, pp. 73-106",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 19,
+                "start": "2020-09-07 17:00:00",
+                "end": "2020-09-07 20:00:00",
+                "description": "Clean-up, Act 1",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 20,
+                "start": "2020-09-08 17:00:00",
+                "end": "2020-09-08 20:00:00",
+                "description": "Clean-up, Act 2",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": [
+                    {
+                        "id": 20147,
+                        "rehearsalId": 20,
+                        "studentId": 147,
+                        "type": "arrive_late"
+                    },
+                    {
+                        "id": 20163,
+                        "rehearsalId": 20,
+                        "studentId": 163,
+                        "type": "arrive_late"
+                    }
+                ]
+            },
+            {
+                "id": 21,
+                "start": "2020-09-10 17:00:00",
+                "end": "2020-09-10 20:00:00",
+                "description": "Stumble-Through, Act 1",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": [
+                    {
+                        "id": 21163,
+                        "rehearsalId": 21,
+                        "studentId": 163,
+                        "type": "arrive_late"
+                    },
+                    {
+                        "id": 21166,
+                        "rehearsalId": 21,
+                        "studentId": 166,
+                        "type": "arrive_late"
+                    }
+                ]
+            },
+            {
+                "id": 22,
+                "start": "2020-09-11 17:00:00",
+                "end": "2020-09-11 20:00:00",
+                "description": "Stumble-Through, Act 2",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 23,
+                "start": "2020-09-12 08:00:00",
+                "end": "2020-09-12 12:00:00",
+                "description": "Run Show (Both Casts)",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 24,
+                "start": "2020-09-14 17:00:00",
+                "end": "2020-09-14 20:00:00",
+                "description": "Tech Rehearsal, Act 1",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 25,
+                "start": "2020-09-15 17:00:00",
+                "end": "2020-09-15 20:00:00",
+                "description": "Tech Rehearsal, Act 2",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 26,
+                "start": "2020-09-17 17:00:00",
+                "end": "2020-09-17 20:00:00",
+                "description": "Tech Rehearsal: Wonka Bar Cast",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 27,
+                "start": "2020-09-18 17:00:00",
+                "end": "2020-09-18 20:00:00",
+                "description": "Tech Rehearsal: Gobstopper Cast",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 28,
+                "start": "2020-09-19 08:00:00",
+                "end": "2020-09-19 12:00:00",
+                "description": "Dress Rehearsal: Both Casts",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 29,
+                "start": "2020-09-21 16:00:00",
+                "end": "2020-09-21 19:00:00",
+                "description": "Dress Rehearsal: Wonka Bar Cast",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 30,
+                "start": "2020-09-22 16:00:00",
+                "end": "2020-09-22 19:00:00",
+                "description": "Dress Rehearsal: Gobstopper Cast",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 31,
+                "start": "2020-09-23 16:00:00",
+                "end": "2020-09-23 19:00:00",
+                "description": "Dress Rehearsal: Wonka Bar Cast",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 32,
+                "start": "2020-09-24 16:00:00",
+                "end": "2020-09-24 19:00:00",
+                "description": "Dress Rehearsal: Gobstopper Cast",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 33,
+                "start": "2020-09-25 15:30:00",
+                "end": "2020-09-25 19:15:00",
+                "description": "Public Performance: Wonka Bar Cast\r\n(Call @ 3:30, Curtain @ 5)",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 34,
+                "start": "2020-09-26 15:30:00",
+                "end": "2020-09-26 19:15:00",
+                "description": "Public Performance: Gobstopper Cast\r\n(Call @ 3:30, Curtain @ 5)",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 35,
+                "start": "2020-09-27 15:30:00",
+                "end": "2020-09-27 19:15:00",
+                "description": "Public Performance: Wonka Bar Cast\r\n(Call @ 3:30, Curtain @ 5)",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 36,
+                "start": "2020-10-08 17:00:00",
+                "end": "2020-10-08 19:15:00",
+                "description": "Pick-up Rehearsal",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 37,
+                "start": "2020-10-09 15:30:00",
+                "end": "2020-10-09 19:15:00",
+                "description": "Public Performance: Gobstopper Cast\r\n(Call @ 3:30, Curtain @ 5)",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 38,
+                "start": "2020-10-10 15:30:00",
+                "end": "2020-10-10 19:15:00",
+                "description": "Public Performance: Wonka Bar Cast\r\n(Call @ 3:30, Curtain @ 5)",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            },
+            {
+                "id": 39,
+                "start": "2020-10-11 15:30:00",
+                "end": "2020-10-11 19:15:00",
+                "description": "Public Performance: Gobstopper Cast\r\n(Call @ 3:30, Curtain @ 5)",
+                "productionId": 1,
+                "characterIds": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20
+                ],
+                "conflicts": []
+            }
+        ],
+        "casting": [
+            {
+                "id": 22,
+                "student": {
+                    "person": {
+                        "id": 145,
+                        "firstName": "Alayna",
+                        "lastName": "Johnson",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2008-09-16",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 6,
+                    "expectedGraduation": "2026",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 2,
+                    "productionId": 1,
+                    "name": "Charlie Bucket"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 233,
+                "student": {
+                    "person": {
+                        "id": 233,
+                        "firstName": "Anya",
+                        "lastName": "May-Allen",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2019-01-26",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 0,
+                    "expectedGraduation": "2037",
+                    "notes": "What an amazing kiddo!",
+                    "profileColor": "b92d5d",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 1,
+                    "productionId": 1,
+                    "name": "Willy Wonka"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 21,
+                "student": {
+                    "person": {
+                        "id": 146,
+                        "firstName": "Chanley",
+                        "lastName": "Patterson",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2003-02-14",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 12,
+                    "expectedGraduation": "2021",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 1,
+                    "productionId": 1,
+                    "name": "Willy Wonka"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 4,
+                "student": {
+                    "person": {
+                        "id": 147,
+                        "firstName": "Keagan",
+                        "lastName": "Jones",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2002-08-13",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 12,
+                    "expectedGraduation": "2020",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 5,
+                    "productionId": 1,
+                    "name": "Grandpa Joe"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 15,
+                "student": {
+                    "person": {
+                        "id": 148,
+                        "firstName": "Anna Grace",
+                        "lastName": "Denny",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2003-08-01",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 12,
+                    "expectedGraduation": "2021",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 13,
+                    "productionId": 1,
+                    "name": "Veruca"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 25,
+                "student": {
+                    "person": {
+                        "id": 149,
+                        "firstName": "Mirabella",
+                        "lastName": "Acosta",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2009-10-20",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 5,
+                    "expectedGraduation": "2027",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 7,
+                    "productionId": 1,
+                    "name": "Grandma Josephina"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 10,
+                "student": {
+                    "person": {
+                        "id": 149,
+                        "firstName": "Mirabella",
+                        "lastName": "Acosta",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2009-10-20",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 5,
+                    "expectedGraduation": "2027",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 19,
+                    "productionId": 1,
+                    "name": "Matilda"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 3,
+                "student": {
+                    "person": {
+                        "id": 150,
+                        "firstName": "Caed",
+                        "lastName": "Baines",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2009-07-07",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 6,
+                    "expectedGraduation": "2027",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 2,
+                    "productionId": 1,
+                    "name": "Charlie Bucket"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 26,
+                "student": {
+                    "person": {
+                        "id": 150,
+                        "firstName": "Caed",
+                        "lastName": "Baines",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2009-07-07",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 6,
+                    "expectedGraduation": "2027",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 6,
+                    "productionId": 1,
+                    "name": "Grandpa George"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 51,
+                "student": {
+                    "person": {
+                        "id": 151,
+                        "firstName": "Mila",
+                        "lastName": "Webb",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2011-06-23",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 3,
+                    "expectedGraduation": "2029",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 50,
+                "student": {
+                    "person": {
+                        "id": 151,
+                        "firstName": "Mila",
+                        "lastName": "Webb",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2011-06-23",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 3,
+                    "expectedGraduation": "2029",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 9,
+                "student": {
+                    "person": {
+                        "id": 152,
+                        "firstName": "Sarah",
+                        "lastName": "Cook",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2004-02-03",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 11,
+                    "expectedGraduation": "2022",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 4,
+                    "productionId": 1,
+                    "name": "Mrs. Bucket"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 28,
+                "student": {
+                    "person": {
+                        "id": 152,
+                        "firstName": "Sarah",
+                        "lastName": "Cook",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2004-02-03",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 11,
+                    "expectedGraduation": "2022",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 4,
+                    "productionId": 1,
+                    "name": "Mrs. Bucket"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 12,
+                "student": {
+                    "person": {
+                        "id": 154,
+                        "firstName": "James",
+                        "lastName": "Phoenix",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2002-04-04",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 12,
+                    "expectedGraduation": "2020",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 17,
+                    "productionId": 1,
+                    "name": "Phineas Trout"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 31,
+                "student": {
+                    "person": {
+                        "id": 154,
+                        "firstName": "James",
+                        "lastName": "Phoenix",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2002-04-04",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 12,
+                    "expectedGraduation": "2020",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 17,
+                    "productionId": 1,
+                    "name": "Phineas Trout"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 44,
+                "student": {
+                    "person": {
+                        "id": 155,
+                        "firstName": "Isabelle",
+                        "lastName": "Sharp",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2010-10-19",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 4,
+                    "expectedGraduation": "2028",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 45,
+                "student": {
+                    "person": {
+                        "id": 155,
+                        "firstName": "Isabelle",
+                        "lastName": "Sharp",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2010-10-19",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 4,
+                    "expectedGraduation": "2028",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 16,
+                "student": {
+                    "person": {
+                        "id": 156,
+                        "firstName": "Jacob",
+                        "lastName": "Cook",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2006-10-28",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 8,
+                    "expectedGraduation": "2024",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 14,
+                    "productionId": 1,
+                    "name": "Mr. Salt"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 35,
+                "student": {
+                    "person": {
+                        "id": 156,
+                        "firstName": "Jacob",
+                        "lastName": "Cook",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2006-10-28",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 8,
+                    "expectedGraduation": "2024",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 14,
+                    "productionId": 1,
+                    "name": "Mr. Salt"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 47,
+                "student": {
+                    "person": {
+                        "id": 157,
+                        "firstName": "Leah",
+                        "lastName": "Michener",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2011-06-16",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 4,
+                    "expectedGraduation": "2029",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 46,
+                "student": {
+                    "person": {
+                        "id": 157,
+                        "firstName": "Leah",
+                        "lastName": "Michener",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2011-06-16",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 4,
+                    "expectedGraduation": "2029",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 32,
+                "student": {
+                    "person": {
+                        "id": 158,
+                        "firstName": "Kate",
+                        "lastName": "Holyfield",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2007-08-07",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 7,
+                    "expectedGraduation": "2025",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 9,
+                    "productionId": 1,
+                    "name": "Augusta"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 18,
+                "student": {
+                    "person": {
+                        "id": 159,
+                        "firstName": "Emily",
+                        "lastName": "Shumate",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2003-03-15",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 12,
+                    "expectedGraduation": "2021",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 12,
+                    "productionId": 1,
+                    "name": "Mrs. Beauregard"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 37,
+                "student": {
+                    "person": {
+                        "id": 159,
+                        "firstName": "Emily",
+                        "lastName": "Shumate",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2003-03-15",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 12,
+                    "expectedGraduation": "2021",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 12,
+                    "productionId": 1,
+                    "name": "Mrs. Beauregard"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 38,
+                "student": {
+                    "person": {
+                        "id": 160,
+                        "firstName": "Maggie",
+                        "lastName": "Rocconi",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2006-09-16",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 8,
+                    "expectedGraduation": "2024",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 16,
+                    "productionId": 1,
+                    "name": "Mrs. TeeVee"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 42,
+                "student": {
+                    "person": {
+                        "id": 161,
+                        "firstName": "Georgie",
+                        "lastName": "Kielwasser",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2011-04-29",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 4,
+                    "expectedGraduation": "2029",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 43,
+                "student": {
+                    "person": {
+                        "id": 161,
+                        "firstName": "Georgie",
+                        "lastName": "Kielwasser",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2011-04-29",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 4,
+                    "expectedGraduation": "2029",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 8,
+                "student": {
+                    "person": {
+                        "id": 162,
+                        "firstName": "Wesley",
+                        "lastName": "Curtis",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2004-12-07",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 10,
+                    "expectedGraduation": "2022",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 3,
+                    "productionId": 1,
+                    "name": "Mr. Bucket"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 27,
+                "student": {
+                    "person": {
+                        "id": 162,
+                        "firstName": "Wesley",
+                        "lastName": "Curtis",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2004-12-07",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 10,
+                    "expectedGraduation": "2022",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 3,
+                    "productionId": 1,
+                    "name": "Mr. Bucket"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 19,
+                "student": {
+                    "person": {
+                        "id": 163,
+                        "firstName": "Loralie",
+                        "lastName": "Smith",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2006-10-11",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 8,
+                    "expectedGraduation": "2024",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 16,
+                    "productionId": 1,
+                    "name": "Mrs. TeeVee"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 34,
+                "student": {
+                    "person": {
+                        "id": 164,
+                        "firstName": "Anna-Kate",
+                        "lastName": "Miller",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2004-05-12",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 11,
+                    "expectedGraduation": "2022",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 13,
+                    "productionId": 1,
+                    "name": "Veruca"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 40,
+                "student": {
+                    "person": {
+                        "id": 165,
+                        "firstName": "Brynlyn",
+                        "lastName": "Collette",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2020-03-01",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 3,
+                    "expectedGraduation": "2038",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 41,
+                "student": {
+                    "person": {
+                        "id": 165,
+                        "firstName": "Brynlyn",
+                        "lastName": "Collette",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2020-03-01",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 3,
+                    "expectedGraduation": "2038",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 53,
+                "student": {
+                    "person": {
+                        "id": 166,
+                        "firstName": "Molly",
+                        "lastName": "Jefcoat",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2020-08-18",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 5,
+                    "expectedGraduation": "2038",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 52,
+                "student": {
+                    "person": {
+                        "id": 166,
+                        "firstName": "Molly",
+                        "lastName": "Jefcoat",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2020-08-18",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 5,
+                    "expectedGraduation": "2038",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 36,
+                "student": {
+                    "person": {
+                        "id": 167,
+                        "firstName": "Savannah",
+                        "lastName": "Miller",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2007-11-21",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 7,
+                    "expectedGraduation": "2025",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 11,
+                    "productionId": 1,
+                    "name": "Violet"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 14,
+                "student": {
+                    "person": {
+                        "id": 168,
+                        "firstName": "Alyssa",
+                        "lastName": "Nobles",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2006-09-18",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 9,
+                    "expectedGraduation": "2024",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 10,
+                    "productionId": 1,
+                    "name": "Mrs. Gloop"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 33,
+                "student": {
+                    "person": {
+                        "id": 168,
+                        "firstName": "Alyssa",
+                        "lastName": "Nobles",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2006-09-18",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 9,
+                    "expectedGraduation": "2024",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 10,
+                    "productionId": 1,
+                    "name": "Mrs. Gloop"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 49,
+                "student": {
+                    "person": {
+                        "id": 169,
+                        "firstName": "Madison",
+                        "lastName": "Pickett",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2011-05-06",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 4,
+                    "expectedGraduation": "2029",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 48,
+                "student": {
+                    "person": {
+                        "id": 169,
+                        "firstName": "Madison",
+                        "lastName": "Pickett",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2011-05-06",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 4,
+                    "expectedGraduation": "2029",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 18,
+                    "productionId": 1,
+                    "name": "Ensemble"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 20,
+                "student": {
+                    "person": {
+                        "id": 170,
+                        "firstName": "Cade",
+                        "lastName": "Olinger",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2010-09-30",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 5,
+                    "expectedGraduation": "2028",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 15,
+                    "productionId": 1,
+                    "name": "Mike"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 17,
+                "student": {
+                    "person": {
+                        "id": 171,
+                        "firstName": "Satene",
+                        "lastName": "Breaux",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2005-02-11",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 10,
+                    "expectedGraduation": "2023",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 11,
+                    "productionId": 1,
+                    "name": "Violet"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 13,
+                "student": {
+                    "person": {
+                        "id": 172,
+                        "firstName": "Darby",
+                        "lastName": "Elliott",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2008-04-25",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 7,
+                    "expectedGraduation": "2026",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 9,
+                    "productionId": 1,
+                    "name": "Augusta"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 6,
+                "student": {
+                    "person": {
+                        "id": 173,
+                        "firstName": "Addisyn",
+                        "lastName": "Wade",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2007-11-28",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 7,
+                    "expectedGraduation": "2025",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 7,
+                    "productionId": 1,
+                    "name": "Grandma Josephina"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 29,
+                "student": {
+                    "person": {
+                        "id": 173,
+                        "firstName": "Addisyn",
+                        "lastName": "Wade",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2007-11-28",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 7,
+                    "expectedGraduation": "2025",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 19,
+                    "productionId": 1,
+                    "name": "Matilda"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 24,
+                "student": {
+                    "person": {
+                        "id": 174,
+                        "firstName": "Isla",
+                        "lastName": "Sirmon",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2010-02-22",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 5,
+                    "expectedGraduation": "2028",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 8,
+                    "productionId": 1,
+                    "name": "Grandma Georgina"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 11,
+                "student": {
+                    "person": {
+                        "id": 174,
+                        "firstName": "Isla",
+                        "lastName": "Sirmon",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2010-02-22",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 5,
+                    "expectedGraduation": "2028",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 20,
+                    "productionId": 1,
+                    "name": "Jane"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 23,
+                "student": {
+                    "person": {
+                        "id": 175,
+                        "firstName": "Andrew",
+                        "lastName": "Dickinson",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2004-01-30",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 11,
+                    "expectedGraduation": "2022",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 5,
+                    "productionId": 1,
+                    "name": "Grandpa Joe"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 7,
+                "student": {
+                    "person": {
+                        "id": 176,
+                        "firstName": "Vaughn",
+                        "lastName": "Wetzel",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2009-01-07",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 6,
+                    "expectedGraduation": "2027",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 6,
+                    "productionId": 1,
+                    "name": "Grandpa George"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 39,
+                "student": {
+                    "person": {
+                        "id": 176,
+                        "firstName": "Vaughn",
+                        "lastName": "Wetzel",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2009-01-07",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 6,
+                    "expectedGraduation": "2027",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 15,
+                    "productionId": 1,
+                    "name": "Mike"
+                },
+                "castName": "Gobstopper"
+            },
+            {
+                "id": 5,
+                "student": {
+                    "person": {
+                        "id": 178,
+                        "firstName": "Natalie",
+                        "lastName": "Swain",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2009-07-22",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 6,
+                    "expectedGraduation": "2027",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 8,
+                    "productionId": 1,
+                    "name": "Grandma Georgina"
+                },
+                "castName": "Wonka Bar"
+            },
+            {
+                "id": 30,
+                "student": {
+                    "person": {
+                        "id": 178,
+                        "firstName": "Natalie",
+                        "lastName": "Swain",
+                        "hasVerified": false
+                    },
+                    "birthdate": "2009-07-22",
+                    "school": null,
+                    "teacher": null,
+                    "currentGrade": 6,
+                    "expectedGraduation": "2027",
+                    "notes": "",
+                    "profileColor": "000000",
+                    "headshotURL": null,
+                    "auditionVideoURL": null
+                },
+                "character": {
+                    "id": 20,
+                    "productionId": 1,
+                    "name": "Jane"
+                },
+                "castName": "Gobstopper"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Holiday Hoedown 2: Christmas Around the Campfire",
+        "season": "2020-2021",
+        "start": "2020-10-24",
+        "end": "2020-12-20",
+        "rehearsals": [],
+        "casting": []
+    }
+]

@@ -13,7 +13,13 @@ class Portal: ObservableObject {
     
     private lazy var db: PortalDatabase = PortalDatabase()
     
-    @Published var user: User?
+    @Published var user: User? {
+        didSet {
+            if user != nil {
+                self.setProductions()
+            }
+        }
+    }
     @Published var adult: Adult? {
         didSet {
             if self.adult != nil {
@@ -24,6 +30,8 @@ class Portal: ObservableObject {
     @Published var student: Student?
     
     @Published var family: [Personable] = [Student.default, Student.default, Student.default, Adult.default, Adult.default]
+    
+    @Published var productions: [Production] = [Production.default]
         
     //**********************************************************************
     // MARK: - USER FUNCTIONS
@@ -34,6 +42,7 @@ class Portal: ObservableObject {
         self.adult = nil
         self.student = nil
         self.family = []
+        self.productions = []
         self.error = ""
         self.isLoggedIn = false
     }
@@ -200,8 +209,6 @@ class Portal: ObservableObject {
         
         }
         
-        print("\(String(describing: self.student))")
-        print("\(String(describing: self.adult))")
         return success
     }
     
@@ -285,8 +292,6 @@ class Portal: ObservableObject {
             
             if person != nil { self.family.append(person!) }
         }
-        
-        print("\(self.family)")
     }
     
     func getFamilyMembersOfType<T: Personable>(_ type: T.Type) -> [T] {
@@ -297,11 +302,25 @@ class Portal: ObservableObject {
                 members.append(member)
             }
         }
-        
-        print("\(members)")
-        
+                
         return members.sorted(by: { a, b in
             return a.person.firstName < b.person.firstName
         })
+    }
+    
+    //**********************************************************************
+    // MARK: - PRODUCTION FUNCTIONS
+    //**********************************************************************
+    
+    func setProductions() {
+        // FIXME: Temporary Implementation
+        productions = db.load("productionData.json");
+    }
+    
+    func getProductionForRehearsal(_ rehearsal: Rehearsal) -> Production? {
+        let pid = rehearsal.productionId
+        return self.productions.first(where: { production in
+            return production.id == pid
+        }) ?? nil
     }
 }
