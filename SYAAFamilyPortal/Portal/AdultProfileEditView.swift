@@ -32,6 +32,7 @@ struct AdultProfileEditView: View {
                                        showPhonePopover: $showPhonePopover)
                         .padding(16)
                     
+                    
                     if(self.adult == self.portal.adult) {
                         Divider()
                             .padding(.top, 16)

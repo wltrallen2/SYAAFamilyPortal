@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3602867225258E30009E0CA9 /* RehearsalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3602867125258E30009E0CA9 /* RehearsalsView.swift */; };
+		3630BDA425324AF3002B5AC4 /* adultData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3630BDA325324AF3002B5AC4 /* adultData.json */; };
+		3630BDB425324F05002B5AC4 /* studentData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3630BDB325324F05002B5AC4 /* studentData.json */; };
 		364B2DB32530A331001E3436 /* AdultTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364B2DB22530A331001E3436 /* AdultTab.swift */; };
 		365801652527D801004AE6A7 /* PortalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365801642527D801004AE6A7 /* PortalDatabase.swift */; };
 		365DC28125262B1E00312C05 /* states.json in Resources */ = {isa = PBXBuildFile; fileRef = 365DC28025262B1E00312C05 /* states.json */; };
-		366A9E16252F97EC0066CDB6 /* studentData.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A9E14252F97EB0066CDB6 /* studentData.json */; };
 		366A9E17252F97EC0066CDB6 /* familyLinksData.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A9E15252F97EC0066CDB6 /* familyLinksData.json */; };
 		366A9E1F252F9E210066CDB6 /* StudentProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A9E1E252F9E210066CDB6 /* StudentProfileEditView.swift */; };
 		366A9E25252FA11B0066CDB6 /* PortalPickerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A9E24252FA11B0066CDB6 /* PortalPickerViews.swift */; };
@@ -30,7 +31,6 @@
 		36845A3125292EB700CA6851 /* LinkUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A3025292EB700CA6851 /* LinkUserView.swift */; };
 		36845A3625292FEC00CA6851 /* userPersonLinksData.json in Resources */ = {isa = PBXBuildFile; fileRef = 36845A3525292FEC00CA6851 /* userPersonLinksData.json */; };
 		36B467042526EE660056E349 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36B467032526EE660056E349 /* Colors.xcassets */; };
-		36C2350B2525376D0065DDBA /* adultData.json in Resources */ = {isa = PBXBuildFile; fileRef = 36C2350A2525376D0065DDBA /* adultData.json */; };
 		36C2351625258C760065DDBA /* HomeTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2351525258C760065DDBA /* HomeTabbedView.swift */; };
 		36C4EF0E25259A8F000286F7 /* AdultProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4EF0D25259A8F000286F7 /* AdultProfileEditView.swift */; };
 		36C4EF152525A42D000286F7 /* AQUI in Frameworks */ = {isa = PBXBuildFile; productRef = 36C4EF142525A42D000286F7 /* AQUI */; };
@@ -67,10 +67,11 @@
 
 /* Begin PBXFileReference section */
 		3602867125258E30009E0CA9 /* RehearsalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RehearsalsView.swift; sourceTree = "<group>"; };
+		3630BDA325324AF3002B5AC4 /* adultData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = adultData.json; sourceTree = "<group>"; };
+		3630BDB325324F05002B5AC4 /* studentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = studentData.json; sourceTree = "<group>"; };
 		364B2DB22530A331001E3436 /* AdultTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultTab.swift; sourceTree = "<group>"; };
 		365801642527D801004AE6A7 /* PortalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalDatabase.swift; sourceTree = "<group>"; };
 		365DC28025262B1E00312C05 /* states.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = states.json; sourceTree = "<group>"; };
-		366A9E14252F97EB0066CDB6 /* studentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = studentData.json; sourceTree = "<group>"; };
 		366A9E15252F97EC0066CDB6 /* familyLinksData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyLinksData.json; sourceTree = "<group>"; };
 		366A9E1E252F9E210066CDB6 /* StudentProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfileEditView.swift; sourceTree = "<group>"; };
 		366A9E24252FA11B0066CDB6 /* PortalPickerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalPickerViews.swift; sourceTree = "<group>"; };
@@ -89,7 +90,6 @@
 		36845A3025292EB700CA6851 /* LinkUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkUserView.swift; sourceTree = "<group>"; };
 		36845A3525292FEC00CA6851 /* userPersonLinksData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userPersonLinksData.json; sourceTree = "<group>"; };
 		36B467032526EE660056E349 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		36C2350A2525376D0065DDBA /* adultData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = adultData.json; path = ../../../../../Desktop/adultData.json; sourceTree = "<group>"; };
 		36C2351525258C760065DDBA /* HomeTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabbedView.swift; sourceTree = "<group>"; };
 		36C4EF0D25259A8F000286F7 /* AdultProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultProfileEditView.swift; sourceTree = "<group>"; };
 		36ED5EFC252529030022945C /* SYAAFamilyPortal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SYAAFamilyPortal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +138,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		364B2DDF253100DB001E3436 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				3602867125258E30009E0CA9 /* RehearsalsView.swift */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
 		365801632527D151004AE6A7 /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +214,7 @@
 				36ED5F01252529030022945C /* ContentView.swift */,
 				36845A092528CEA100CA6851 /* Login */,
 				36ED5F4A25252DF90022945C /* Portal */,
+				364B2DDF253100DB001E3436 /* Schedule */,
 				366A9E23252FA0FF0066CDB6 /* SupportingViews */,
 				366A9E40252FA6B10066CDB6 /* Extensions */,
 				36ED5F3825252B570022945C /* Model */,
@@ -248,8 +257,8 @@
 			isa = PBXGroup;
 			children = (
 				368459F42527FE3D00CA6851 /* userData.json */,
-				36C2350A2525376D0065DDBA /* adultData.json */,
-				366A9E14252F97EB0066CDB6 /* studentData.json */,
+				3630BDA325324AF3002B5AC4 /* adultData.json */,
+				3630BDB325324F05002B5AC4 /* studentData.json */,
 				36845A3525292FEC00CA6851 /* userPersonLinksData.json */,
 				366A9E15252F97EC0066CDB6 /* familyLinksData.json */,
 				365DC28025262B1E00312C05 /* states.json */,
@@ -276,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				36C2351525258C760065DDBA /* HomeTabbedView.swift */,
-				3602867125258E30009E0CA9 /* RehearsalsView.swift */,
 				36ED5F5B252533C70022945C /* ProfileWrapperView.swift */,
 				36C4EF0D25259A8F000286F7 /* AdultProfileEditView.swift */,
 				366A9E1E252F9E210066CDB6 /* StudentProfileEditView.swift */,
@@ -294,6 +302,7 @@
 				36ED5EF8252529020022945C /* Sources */,
 				36ED5EF9252529020022945C /* Frameworks */,
 				36ED5EFA252529020022945C /* Resources */,
+				364B2DDB2531004D001E3436 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -393,12 +402,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				366A9E16252F97EC0066CDB6 /* studentData.json in Resources */,
+				3630BDA425324AF3002B5AC4 /* adultData.json in Resources */,
+				3630BDB425324F05002B5AC4 /* studentData.json in Resources */,
 				36B467042526EE660056E349 /* Colors.xcassets in Resources */,
 				36ED5F07252529030022945C /* Preview Assets.xcassets in Resources */,
 				36845A3625292FEC00CA6851 /* userPersonLinksData.json in Resources */,
 				36ED5F04252529030022945C /* Assets.xcassets in Resources */,
-				36C2350B2525376D0065DDBA /* adultData.json in Resources */,
 				36845A0525283F3E00CA6851 /* NextSteps.rtf in Resources */,
 				366A9E17252F97EC0066CDB6 /* familyLinksData.json in Resources */,
 				365DC28125262B1E00312C05 /* states.json in Resources */,
@@ -421,6 +430,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		364B2DDB2531004D001E3436 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#TAGS=\"TODO:|FIXME:\"\n#ERRORTAG=\"ERROR:\"\n#find \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		36ED5EF8252529020022945C /* Sources */ = {

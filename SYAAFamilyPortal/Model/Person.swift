@@ -18,11 +18,16 @@ struct Person: Codable, Comparable, IdCodable {
     var firstName: String
     var lastName: String
     var hasVerified: Bool
+    
+    mutating func verify() {
+        self.hasVerified = true
+    }
         
     static func == (a: Person, b: Person) -> Bool {
         return a.id == b.id
             && a.firstName == b.firstName
             && a.lastName == b.lastName
+            && a.hasVerified == b.hasVerified
     }
     
     static func < (a: Person, b: Person) -> Bool {

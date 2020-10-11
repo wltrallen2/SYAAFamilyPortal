@@ -33,6 +33,7 @@ class Portal: ObservableObject {
         self.user = nil
         self.adult = nil
         self.student = nil
+        self.family = []
         self.error = ""
         self.isLoggedIn = false
     }
@@ -213,6 +214,7 @@ class Portal: ObservableObject {
         
         // FIXME: Temporary Implementation
         if person is Adult {
+            print("UpdatePerson \(person.person.firstName) has verified? \(person.person.hasVerified)")
             var adults: [Adult] = db.load("adultData.json")
             adults.removeAll(where: { adult -> Bool in
                 return adult.id == person.id
@@ -283,6 +285,8 @@ class Portal: ObservableObject {
             
             if person != nil { self.family.append(person!) }
         }
+        
+        print("\(self.family)")
     }
     
     func getFamilyMembersOfType<T: Personable>(_ type: T.Type) -> [T] {
@@ -293,6 +297,8 @@ class Portal: ObservableObject {
                 members.append(member)
             }
         }
+        
+        print("\(members)")
         
         return members.sorted(by: { a, b in
             return a.person.firstName < b.person.firstName

@@ -17,9 +17,9 @@ struct HomeTabbedView: View {
     @State var selection: HomeTabs
     
     var body: some View {
-        // TODO: Remove this old code.
+        // TODO: Remove this old code. Better solution found.
 //        if portal.adult == nil && portal.student == nil {
-//            EmptyView() // This is necessary to avoid a crash upon logging out as environmentObject portal is updating variables. TODO: Research to see if there's a better solution, and handle this better for user.
+//            EmptyView() // This is necessary to avoid a crash upon logging out as environmentObject portal is updating variables.
 //        } else {
             TabView(selection: $selection){
                 RehearsalsView()

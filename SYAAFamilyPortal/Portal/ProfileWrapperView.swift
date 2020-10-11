@@ -34,6 +34,17 @@ struct ProfileWrapperView: View {
                     Text("No user data found.")
                 }
             }
+            .alert(isPresented: $showAlert,
+                   content: {
+                    Alert(title: Text(alertTitle),
+                          message: Text(alertMessage),
+                          dismissButton: .default(Text("OK"), action: {
+                            self.showAlert = false;
+                            if adult != nil { adult!.person.verify()}
+                            else if student != nil { student!.person.verify() }
+                            saveData()
+                          }))
+                   })
             .onAppear() {
                 if adult != nil && adult! == portal.adult {
                     showAlert = !adult!.person.hasVerified
@@ -44,15 +55,6 @@ struct ProfileWrapperView: View {
             .onDisappear() {
                 saveData()
             }
-            .alert(isPresented: $showAlert,
-                   content: {
-                    Alert(title: Text(alertTitle),
-                          message: Text(alertMessage),
-                          dismissButton: .default(Text("OK"), action: {
-                            if adult != nil { adult!.person.hasVerified.toggle() }
-                            else if student != nil { student!.person.hasVerified.toggle() }
-                          }))
-                   })
             .navigationBarItems(trailing: Button("Log Out") {
                 saveData()
                 self.portal.logout()
