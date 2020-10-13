@@ -19,6 +19,10 @@ struct Person: Codable, Comparable, IdCodable {
     var lastName: String
     var hasVerified: Bool
     
+    var fullName: String {
+        firstName + " " + lastName
+    }
+    
     mutating func verify() {
         self.hasVerified = true
     }

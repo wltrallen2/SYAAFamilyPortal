@@ -29,8 +29,12 @@ class Portal: ObservableObject {
     }
     @Published var student: Student?
     
-    @Published var family: [Personable] = [Student.default, Student.default, Student.default, Adult.default, Adult.default]
+    @Published var family: [Personable] = [Production.default.cast[0].student, Student.default, Student.default, Adult.default, Adult.default]
     
+    // NEXT: Refractor so that productions, rehearsals, otherStudents are all published items even though they won't be changed.
+    // NEXT: Refractor so that productions has a list of characters, not cast elements.
+    // NEXT: Refractor so that conflicts are all published items that can be changed.
+    // NEXT: Refractor cast to use character and student ids
     @Published var productions: [Production] = [Production.default]
         
     //**********************************************************************
@@ -221,7 +225,6 @@ class Portal: ObservableObject {
         
         // FIXME: Temporary Implementation
         if person is Adult {
-            print("UpdatePerson \(person.person.firstName) has verified? \(person.person.hasVerified)")
             var adults: [Adult] = db.load("adultData.json")
             adults.removeAll(where: { adult -> Bool in
                 return adult.id == person.id
@@ -383,11 +386,94 @@ class Portal: ObservableObject {
             return cast.student.id == student.id
         })
     }
+    
+    func getConflictForStudent(_ student: Student, atRehearsal rehearsal: Rehearsal) -> ConflictType? {
+        let conflicts = rehearsal.conflicts
+        return conflicts.first(where: { conflict in
+            return student.id == conflict.studentId
+        }).map{ conflict in
+            return conflict.type
+        }
+    }
+    
+    func getAllConflictsForFamily() -> [Conflict] {
+        var conflicts = [Conflict]()
+        
+        for production in productions {
+            for rehearsal in production.rehearsals {
+                if rehearsal.conflicts.count > 0 {
+                    for conflict in rehearsal.conflicts {
+                        if family.contains(where: { person in
+                            return person.id == conflict.studentId
+                        }) {
+                            conflicts.append(conflict)
+                        }
+                    }
+                }
+            }
+        }
+        
+        return conflicts
+    }
+    
+    func getRehearsalWithId(_ id: Int) -> Rehearsal? {
+        return productions.filter({ production in
+            production.rehearsals.contains(where: { rehearsal in
+                rehearsal.id == id
+            })
+        })[0].rehearsals.filter({ rehearsal in
+            rehearsal.id == id
+        })[0]
+    }
+    
+    func getStudentsInProduction(_ production: Production) -> [Student] {
+        var students = [Student]()
+        
+        for castDetail in production.cast {
+            if !students.contains(where: { student in
+                student.id == castDetail.student.id
+            }) {
+                students.append(castDetail.student)
+            }
+        }
+        
+        for person in family {
+            if students.contains(where: { student in
+                student.id == person.person.id
+            }) {
+                students.removeAll(where: { student in
+                    student.id == person.person.id
+                })
+                
+                students.append(person as! Student)
+            }
+        }
+        
+        return students.sorted(by: { (a, b) in
+            if family.contains(where: { member in
+                member.person.id == a.person.id
+            }) == family.contains(where: { member in
+                member.person.id == b.person.id
+            }) {
+                return a.person.fullName < b.person.fullName
+            } else {
+                return family.contains(where: { member in
+                    member.person.id == a.person.id
+                })
+            }
+        })
+    }
+    
+    func getStudentWithId(_ id: Int, inProduction production: Production) -> Student? {
+        return getStudentsInProduction(production).first(where: { student in
+            student.id == id
+        })
+    }
 
     func getProductionTitleForRehearsal(_ rehearsal: Rehearsal) -> String? {
         return self.getProductionForRehearsal(rehearsal)?.title
     }
-    
+        
     func getRehearsalDateStringForRehearsal(_ rehearsal: Rehearsal) -> String {
         return rehearsal.start.toStringWithFormat("EEEE, MMMM d, yyyy")
     }

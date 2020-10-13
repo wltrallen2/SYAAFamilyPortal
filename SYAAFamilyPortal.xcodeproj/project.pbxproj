@@ -20,6 +20,8 @@
 		3630BE0E2533D230002B5AC4 /* RehearsalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BE0D2533D230002B5AC4 /* RehearsalDetailView.swift */; };
 		364B2DB32530A331001E3436 /* AdultTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364B2DB22530A331001E3436 /* AdultTab.swift */; };
 		365801652527D801004AE6A7 /* PortalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365801642527D801004AE6A7 /* PortalDatabase.swift */; };
+		365B78842535FD0800CB49F0 /* ConflictsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B78832535FD0800CB49F0 /* ConflictsList.swift */; };
+		365B78922536007400CB49F0 /* ConflictTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B78912536007400CB49F0 /* ConflictTab.swift */; };
 		365DC28125262B1E00312C05 /* states.json in Resources */ = {isa = PBXBuildFile; fileRef = 365DC28025262B1E00312C05 /* states.json */; };
 		366A9E17252F97EC0066CDB6 /* familyLinksData.json in Resources */ = {isa = PBXBuildFile; fileRef = 366A9E15252F97EC0066CDB6 /* familyLinksData.json */; };
 		366A9E1F252F9E210066CDB6 /* StudentProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A9E1E252F9E210066CDB6 /* StudentProfileEditView.swift */; };
@@ -90,6 +92,8 @@
 		3630BE0D2533D230002B5AC4 /* RehearsalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RehearsalDetailView.swift; sourceTree = "<group>"; };
 		364B2DB22530A331001E3436 /* AdultTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultTab.swift; sourceTree = "<group>"; };
 		365801642527D801004AE6A7 /* PortalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalDatabase.swift; sourceTree = "<group>"; };
+		365B78832535FD0800CB49F0 /* ConflictsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictsList.swift; sourceTree = "<group>"; };
+		365B78912536007400CB49F0 /* ConflictTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictTab.swift; sourceTree = "<group>"; };
 		365DC28025262B1E00312C05 /* states.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = states.json; sourceTree = "<group>"; };
 		366A9E15252F97EC0066CDB6 /* familyLinksData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyLinksData.json; sourceTree = "<group>"; };
 		366A9E1E252F9E210066CDB6 /* StudentProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfileEditView.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 				3630BE0D2533D230002B5AC4 /* RehearsalDetailView.swift */,
 				367367842534E24C0010FA43 /* CharacterListView.swift */,
 				367367B2253530B00010FA43 /* ActorListView.swift */,
+				365B78822535FCEA00CB49F0 /* Conflicts */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -202,6 +207,14 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
+		365B78822535FCEA00CB49F0 /* Conflicts */ = {
+			isa = PBXGroup;
+			children = (
+				365B78832535FD0800CB49F0 /* ConflictsList.swift */,
+			);
+			path = Conflicts;
+			sourceTree = "<group>";
+		};
 		366A9E23252FA0FF0066CDB6 /* SupportingViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +223,7 @@
 				366A9E80252FE6550066CDB6 /* StudentTab.swift */,
 				364B2DB22530A331001E3436 /* AdultTab.swift */,
 				3630BDFC2533AAD3002B5AC4 /* RehearsalTab.swift */,
+				365B78912536007400CB49F0 /* ConflictTab.swift */,
 			);
 			path = SupportingViews;
 			sourceTree = "<group>";
@@ -263,7 +277,8 @@
 				36ED5EFF252529030022945C /* SYAAFamilyPortalApp.swift */,
 				36ED5F01252529030022945C /* ContentView.swift */,
 				36845A092528CEA100CA6851 /* Login */,
-				36ED5F4A25252DF90022945C /* Portal */,
+				36C2351525258C760065DDBA /* HomeTabbedView.swift */,
+				36ED5F4A25252DF90022945C /* Profile */,
 				364B2DDF253100DB001E3436 /* Schedule */,
 				366A9E23252FA0FF0066CDB6 /* SupportingViews */,
 				366A9E40252FA6B10066CDB6 /* Extensions */,
@@ -330,15 +345,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		36ED5F4A25252DF90022945C /* Portal */ = {
+		36ED5F4A25252DF90022945C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				36C2351525258C760065DDBA /* HomeTabbedView.swift */,
 				36ED5F5B252533C70022945C /* ProfileWrapperView.swift */,
 				36C4EF0D25259A8F000286F7 /* AdultProfileEditView.swift */,
 				366A9E1E252F9E210066CDB6 /* StudentProfileEditView.swift */,
 			);
-			path = Portal;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -497,7 +511,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#TAGS=\"TODO:|FIXME:\"\n#ERRORTAG=\"ERROR:\"\n#find \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nTAGS=\"NEXT:\"\n#TAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -536,6 +550,8 @@
 				3630BDE025337672002B5AC4 /* Rehearsal.swift in Sources */,
 				36ED5F4525252C970022945C /* User.swift in Sources */,
 				3630BE0E2533D230002B5AC4 /* RehearsalDetailView.swift in Sources */,
+				365B78842535FD0800CB49F0 /* ConflictsList.swift in Sources */,
+				365B78922536007400CB49F0 /* ConflictTab.swift in Sources */,
 				366A9E1F252F9E210066CDB6 /* StudentProfileEditView.swift in Sources */,
 				3630BDFD2533AAD3002B5AC4 /* RehearsalTab.swift in Sources */,
 				366A9E81252FE6550066CDB6 /* StudentTab.swift in Sources */,

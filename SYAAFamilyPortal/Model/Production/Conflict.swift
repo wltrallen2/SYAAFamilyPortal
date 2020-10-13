@@ -11,6 +11,17 @@ enum ConflictType: String {
     case Conflict = "conflict"
     case ArriveLate = "arrive_late"
     case LeaveEarly = "leave_early"
+    
+    var description: String {
+        switch self {
+        case .Conflict:
+            return "Unable to Attend"
+        case .ArriveLate:
+            return "Will Arrive Late"
+        case .LeaveEarly:
+            return "Need to Leave Early"
+        }
+    }
 }
 
 struct Conflict: IdCodable {

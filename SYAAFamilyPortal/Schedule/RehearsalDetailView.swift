@@ -120,7 +120,8 @@ struct RehearsalDetails: View {
                     if(students.count > 0) {
                         ForEach(students, id:\.id) { student in
                             StudentTab(name: student.person.firstName,
-                                       color: student.profileColor)
+                                       color: student.profileColor,
+                                       conflict: portal.getConflictForStudent(student, atRehearsal: rehearsal))
                                 .frame(width: 120)
                                 .scaleEffect(0.75)
                         }

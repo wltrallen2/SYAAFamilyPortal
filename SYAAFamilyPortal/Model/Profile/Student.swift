@@ -22,7 +22,7 @@ struct Student: Equatable, IdCodable, Personable {
     var profileColor: Color
     var headshotURL: URL?
     var auditionVideoURL: URL?
-    
+        
     static func == (a: Student, b: Student) -> Bool {
         return a.id == b.id
             && a.person == b.person

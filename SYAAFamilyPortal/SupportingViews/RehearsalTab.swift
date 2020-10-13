@@ -23,8 +23,10 @@ struct RehearsalTab: View {
                     HStack {
                         if(students.count > 0) {
                             ForEach(students, id:\.id) { student in
-                                StudentTab(name: student.person.firstName,
-                                           color: student.profileColor)
+                                StudentTab(
+                                    name: student.person.firstName,
+                                    color: student.profileColor,
+                                    conflict: portal.getConflictForStudent(student, atRehearsal: rehearsal))
                                     .frame(width: 120)
                                     .scaleEffect(0.75)
                             }
@@ -54,7 +56,6 @@ struct RehearsalTab: View {
             
             Divider()
         }
-
     }
                 
     func getBackgroundColor() -> Color {
@@ -62,13 +63,12 @@ struct RehearsalTab: View {
             ? Color.yellow.opacity(0.3)
             : Color.white
     }
-
 }
 
 struct RehearsalTab_Previews: PreviewProvider {
     static var previews: some View {
         RehearsalTab(rehearsal: Production.default.rehearsals[0],
-                     students: [Student.default, Student.default])
+                     students: [Production.default.cast[0].student, Production.default.cast[2].student])
             .environmentObject(Portal())
             .previewLayout(.sizeThatFits)
     }

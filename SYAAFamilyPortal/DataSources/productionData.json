@@ -36,9 +36,9 @@
                 ],
                 "conflicts": [
                     {
-                        "id": 1147,
+                        "id": 1145,
                         "rehearsalId": 1,
-                        "studentId": 147,
+                        "studentId": 145,
                         "type": "arrive_late"
                     },
                     {
@@ -48,15 +48,15 @@
                         "type": "arrive_late"
                     },
                     {
-                        "id": 1166,
+                        "id": 1156,
                         "rehearsalId": 1,
-                        "studentId": 166,
+                        "studentId": 156,
                         "type": "conflict"
                     },
                     {
-                        "id": 1175,
+                        "id": 1152,
                         "rehearsalId": 1,
-                        "studentId": 175,
+                        "studentId": 152,
                         "type": "arrive_late"
                     }
                 ]
@@ -81,10 +81,16 @@
                 ],
                 "conflicts": [
                     {
-                        "id": 2163,
+                        "id": 1145,
+                        "rehearsalId": 1,
+                        "studentId": 145,
+                        "type": "leave_early"
+                    },
+                    {
+                        "id": 2152,
                         "rehearsalId": 2,
-                        "studentId": 163,
-                        "type": "arrive_late"
+                        "studentId": 152,
+                        "type": "leave_early"
                     },
                     {
                         "id": 2173,
@@ -114,6 +120,12 @@
                     20
                 ],
                 "conflicts": [
+                    {
+                        "id": 1145,
+                        "rehearsalId": 1,
+                        "studentId": 145,
+                        "type": "conflict"
+                    },
                     {
                         "id": 3146,
                         "rehearsalId": 3,
@@ -152,15 +164,27 @@
                 ],
                 "conflicts": [
                     {
-                        "id": 4172,
+                        "id": 4145,
                         "rehearsalId": 4,
-                        "studentId": 172,
+                        "studentId": 145,
                         "type": "conflict"
                     },
                     {
-                        "id": 4175,
+                        "id": 4163,
                         "rehearsalId": 4,
-                        "studentId": 175,
+                        "studentId": 163,
+                        "type": "conflict"
+                    },
+                    {
+                        "id": 4156,
+                        "rehearsalId": 4,
+                        "studentId": 156,
+                        "type": "conflict"
+                    },
+                    {
+                        "id": 4152,
+                        "rehearsalId": 4,
+                        "studentId": 152,
                         "type": "conflict"
                     }
                 ]
@@ -1122,8 +1146,8 @@
             },
             {
                 "id": 39,
-                "start": "2020-10-11 15:30:00",
-                "end": "2020-10-11 19:15:00",
+                "start": "2020-10-13 15:30:00",
+                "end": "2020-10-13 19:15:00",
                 "description": "Public Performance: Gobstopper Cast\r\n(Call @ 3:30, Curtain @ 5)",
                 "productionId": 1,
                 "characterIds": [
@@ -1167,7 +1191,7 @@
                     "currentGrade": 6,
                     "expectedGraduation": "2026",
                     "notes": "",
-                    "profileColor": "000000",
+                    "profileColor": "3333DD",
                     "headshotURL": null,
                     "auditionVideoURL": null
                 },
@@ -1219,7 +1243,7 @@
                     "currentGrade": 12,
                     "expectedGraduation": "2021",
                     "notes": "",
-                    "profileColor": "000000",
+                    "profileColor": "882222",
                     "headshotURL": null,
                     "auditionVideoURL": null
                 },
