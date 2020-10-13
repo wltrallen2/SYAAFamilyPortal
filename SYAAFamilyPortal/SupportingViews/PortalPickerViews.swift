@@ -156,8 +156,18 @@ struct GradeSliderView: View {
                 Text("12")
             }
             .padding(.horizontal, 4)
+            
+            HStack {
+                Text("Grade Selected: ")
+                    .portalLabelStyle()
+                
+                Text(grade == 0 ? "K" : "\(grade)")
+                    .frame(width: 80)
+                    .portalFieldStyle()
+                    .padding(.bottom, 16)
+            }
         }
-        .portalPickerStyle(height: 100)
+        .portalPickerStyle(height: 145)
     }
 }
 

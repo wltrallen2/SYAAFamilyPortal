@@ -14,11 +14,19 @@ struct RehearsalsView: View {
         VStack {
             ScrollView {
                 ForEach(self.getAllRehearsals(), id:\.id) { rehearsal in
-                    RehearsalTab(rehearsal: rehearsal)
-                        .padding(-4)
+                    NavigationLink(destination:
+                                    RehearsalDetailView(
+                                        rehearsal: rehearsal,
+                                        students: portal.getStudentsForRehearsal(rehearsal))) {
+                        RehearsalTab(rehearsal: rehearsal,
+                                     students: portal.getStudentsForRehearsal(rehearsal))
+                            .padding(-4)
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
         }
+        .navigationTitle("Rehearsal Schedule")
     }
     
     func getAllRehearsals() -> [Rehearsal] {

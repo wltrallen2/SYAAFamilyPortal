@@ -17,6 +17,7 @@
 		3630BDED25337A45002B5AC4 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BDEC25337A45002B5AC4 /* Cast.swift */; };
 		3630BDF225337A8B002B5AC4 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BDF125337A8B002B5AC4 /* Character.swift */; };
 		3630BDFD2533AAD3002B5AC4 /* RehearsalTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BDFC2533AAD3002B5AC4 /* RehearsalTab.swift */; };
+		3630BE0E2533D230002B5AC4 /* RehearsalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BE0D2533D230002B5AC4 /* RehearsalDetailView.swift */; };
 		364B2DB32530A331001E3436 /* AdultTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364B2DB22530A331001E3436 /* AdultTab.swift */; };
 		365801652527D801004AE6A7 /* PortalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365801642527D801004AE6A7 /* PortalDatabase.swift */; };
 		365DC28125262B1E00312C05 /* states.json in Resources */ = {isa = PBXBuildFile; fileRef = 365DC28025262B1E00312C05 /* states.json */; };
@@ -28,6 +29,9 @@
 		366A9E65252FAC930066CDB6 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A9E64252FAC930066CDB6 /* DateExtensions.swift */; };
 		366A9E73252FB18F0066CDB6 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A9E72252FB18F0066CDB6 /* ColorExtensions.swift */; };
 		366A9E81252FE6550066CDB6 /* StudentTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A9E80252FE6550066CDB6 /* StudentTab.swift */; };
+		367367852534E24C0010FA43 /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367367842534E24C0010FA43 /* CharacterListView.swift */; };
+		3673678A2534E9600010FA43 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367367892534E9600010FA43 /* ArrayExtensions.swift */; };
+		367367B3253530B00010FA43 /* ActorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367367B2253530B00010FA43 /* ActorListView.swift */; };
 		368459F52527FE3D00CA6851 /* userData.json in Resources */ = {isa = PBXBuildFile; fileRef = 368459F42527FE3D00CA6851 /* userData.json */; };
 		368459FA25282F8600CA6851 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368459F925282F8600CA6851 /* Student.swift */; };
 		36845A0525283F3E00CA6851 /* NextSteps.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 36845A0425283F3E00CA6851 /* NextSteps.rtf */; };
@@ -83,6 +87,7 @@
 		3630BDEC25337A45002B5AC4 /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		3630BDF125337A8B002B5AC4 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		3630BDFC2533AAD3002B5AC4 /* RehearsalTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RehearsalTab.swift; sourceTree = "<group>"; };
+		3630BE0D2533D230002B5AC4 /* RehearsalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RehearsalDetailView.swift; sourceTree = "<group>"; };
 		364B2DB22530A331001E3436 /* AdultTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultTab.swift; sourceTree = "<group>"; };
 		365801642527D801004AE6A7 /* PortalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalDatabase.swift; sourceTree = "<group>"; };
 		365DC28025262B1E00312C05 /* states.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = states.json; sourceTree = "<group>"; };
@@ -94,6 +99,9 @@
 		366A9E64252FAC930066CDB6 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		366A9E72252FB18F0066CDB6 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		366A9E80252FE6550066CDB6 /* StudentTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTab.swift; sourceTree = "<group>"; };
+		367367842534E24C0010FA43 /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
+		367367892534E9600010FA43 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		367367B2253530B00010FA43 /* ActorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorListView.swift; sourceTree = "<group>"; };
 		368459F42527FE3D00CA6851 /* userData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userData.json; sourceTree = "<group>"; };
 		368459F925282F8600CA6851 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		36845A0425283F3E00CA6851 /* NextSteps.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = NextSteps.rtf; sourceTree = "<group>"; };
@@ -179,6 +187,9 @@
 			isa = PBXGroup;
 			children = (
 				3602867125258E30009E0CA9 /* RehearsalsView.swift */,
+				3630BE0D2533D230002B5AC4 /* RehearsalDetailView.swift */,
+				367367842534E24C0010FA43 /* CharacterListView.swift */,
+				367367B2253530B00010FA43 /* ActorListView.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -209,6 +220,7 @@
 				366A9E41252FA6D30066CDB6 /* ViewExtensions.swift */,
 				366A9E64252FAC930066CDB6 /* DateExtensions.swift */,
 				366A9E72252FB18F0066CDB6 /* ColorExtensions.swift */,
+				367367892534E9600010FA43 /* ArrayExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -506,9 +518,12 @@
 				36ED5F4625252C970022945C /* Person.swift in Sources */,
 				36845A3125292EB700CA6851 /* LinkUserView.swift in Sources */,
 				36ED5F5425252F690022945C /* Portal.swift in Sources */,
+				367367852534E24C0010FA43 /* CharacterListView.swift in Sources */,
 				36ED5F4425252C970022945C /* Adult.swift in Sources */,
+				367367B3253530B00010FA43 /* ActorListView.swift in Sources */,
 				366A9E25252FA11B0066CDB6 /* PortalPickerViews.swift in Sources */,
 				36ED5F02252529030022945C /* ContentView.swift in Sources */,
+				3673678A2534E9600010FA43 /* ArrayExtensions.swift in Sources */,
 				365801652527D801004AE6A7 /* PortalDatabase.swift in Sources */,
 				368459FA25282F8600CA6851 /* Student.swift in Sources */,
 				36845A0B2528CEB100CA6851 /* LoginView.swift in Sources */,
@@ -520,6 +535,7 @@
 				3630BDED25337A45002B5AC4 /* Cast.swift in Sources */,
 				3630BDE025337672002B5AC4 /* Rehearsal.swift in Sources */,
 				36ED5F4525252C970022945C /* User.swift in Sources */,
+				3630BE0E2533D230002B5AC4 /* RehearsalDetailView.swift in Sources */,
 				366A9E1F252F9E210066CDB6 /* StudentProfileEditView.swift in Sources */,
 				3630BDFD2533AAD3002B5AC4 /* RehearsalTab.swift in Sources */,
 				366A9E81252FE6550066CDB6 /* StudentTab.swift in Sources */,

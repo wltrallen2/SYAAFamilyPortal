@@ -323,4 +323,78 @@ class Portal: ObservableObject {
             return production.id == pid
         }) ?? nil
     }
+    
+    func getStudentsForRehearsal(_ rehearsal: Rehearsal) -> [Student] {
+        var students: [Student] = []
+        
+        // Get a list of students, either a list of one student (me) for student user or a list of students in my family for adult user.
+        let myStudents = self.student != nil
+            ? [ self.student! ]
+            : self.getFamilyMembersOfType(Student.self)
+        
+        // Get the production and a list of all castings for that production
+        guard let production = self.getProductionForRehearsal(rehearsal) else { return [] }
+        let casting = production.cast
+        
+        // For each student in the myStudents list, find all castings for that student, and for each casting, if the character is called to this rehearsal, add the student to the students array if they are not added already.
+        for student in myStudents {
+            let castings = casting.filter({ casting in
+                return student.id == casting.student.id
+            })
+            
+            for c in castings {
+                if rehearsal.characterIds.contains(c.character.id)
+                    && !students.contains(where: {s in
+                        return s.id == student.id
+                    }) {
+                    students.append(student)
+                }
+            }
+        }
+        
+        return students
+    }
+    
+    func getCharactersForRehearsal(_ rehearsal: Rehearsal) -> [Character] {
+        guard let production = self.getProductionForRehearsal(rehearsal) else { return [] }
+        let casting = production.cast
+        
+        let characters: [Character] = casting.filter({ casting in
+            return rehearsal.characterIds.contains(casting.character.id)
+        }).map({ casting in
+            return casting.character
+        }).removingDuplicates()
+        
+        return characters.sorted(by: {(a, b) in
+            return a.name < b.name
+        })
+    }
+    
+    func getCastForRehearsal(_ rehearsal: Rehearsal) -> [Cast] {
+        guard let production = self.getProductionForRehearsal(rehearsal) else { return [] }
+        
+        return production.cast.filter({cast in
+            return rehearsal.characterIds.contains(cast.character.id)
+        })
+    }
+    
+    func getCastingsForStudent(_ student: Student, inProduction production: Production) -> [Cast] {
+        return production.cast.filter({cast in
+            return cast.student.id == student.id
+        })
+    }
+
+    func getProductionTitleForRehearsal(_ rehearsal: Rehearsal) -> String? {
+        return self.getProductionForRehearsal(rehearsal)?.title
+    }
+    
+    func getRehearsalDateStringForRehearsal(_ rehearsal: Rehearsal) -> String {
+        return rehearsal.start.toStringWithFormat("EEEE, MMMM d, yyyy")
+    }
+    
+    func getRehearsalTimeStringForRehearsal(_ rehearsal: Rehearsal) -> String {
+        return rehearsal.start.toStringWithFormat("h:mm a")
+        + "-"
+            + rehearsal.end.toStringWithFormat("h:mm a")
+    }
 }

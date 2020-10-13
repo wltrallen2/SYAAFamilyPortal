@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cast: IdCodable {
+struct Cast: IdCodable, Equatable {
     var id: Int
     var student: Student
     var character: Character
