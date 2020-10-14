@@ -13,16 +13,18 @@ struct StudentTab: View {
     var conflict: ConflictType?
     
     var body: some View {
-        HStack {
+        HStack (spacing: 0){
             
             Text(name)
-                .font(.title3)
+                .font(.body)
                 .bold()
+                .padding(.horizontal, 8)
+                .lineLimit(1)
+                .frame(minWidth: 80)
                 .shadow(color: getShadowColor(forColor: self.color),
                         radius: 3, x: 1.0, y: 1.0)
                 .foregroundColor(getForegroundColor(forColor: self.color))
                 .padding(.vertical, 4)
-                .padding(.horizontal, 12)
 
             if(conflict != nil) {
                 let halfShape =
@@ -36,20 +38,11 @@ struct StudentTab: View {
                         .foregroundColor(.white)
                         .shadow(color: Color.black,
                                 radius: 3, x: 1.0, y: 1.0)
-//                        .background(Circle().stroke(Color.white, lineWidth: 2.0))
-                    
-//                    if(conflict == .Conflict) {
-//                        Text("X").bold()
-//                    } else {
-//                        let token = conflict == .ArriveLate ? "AL" : "LE"
-//                        Text(token).font(Font.system(size: 8.0)).bold()
-//                    }
-                    
-                    
                 }
+                .frame(width: 14, height: 14)
             }
         }
-        .frame(minWidth: 150)
+        .padding(.horizontal, 12)
         .background(RoundedRectangle(cornerRadius: 25.0)
                         .fill(color)
                         .shadow(color: Color.black,
@@ -80,13 +73,13 @@ struct StudentTab_Previews: PreviewProvider {
                 .padding()
                 .previewLayout(.sizeThatFits)
             
-            StudentTab(name: student.person.firstName,
+            StudentTab(name: "Sarah Katherine",
                        color: student.profileColor,
                        conflict: .Conflict)
                 .padding()
                 .previewLayout(.sizeThatFits)
 
-            StudentTab(name: student.person.firstName,
+            StudentTab(name: "Anna-Kate",
                        color: student.profileColor,
                        conflict: .LeaveEarly)
                 .padding()

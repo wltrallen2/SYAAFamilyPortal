@@ -14,7 +14,6 @@ struct Rehearsal: IdCodable {
     var end: Date
     var description: String
     var characterIds: [Int]
-    var conflicts: [Conflict]
 }
 
 enum RehearsalCodingKeys: CodingKey {
@@ -24,7 +23,6 @@ enum RehearsalCodingKeys: CodingKey {
     case end
     case description
     case characterIds
-    case conflicts
 }
 
 extension Rehearsal: Decodable {
@@ -35,7 +33,6 @@ extension Rehearsal: Decodable {
         productionId = try rehearsalValues.decode((Int.self), forKey: .productionId)
         description = try rehearsalValues.decode(String.self, forKey: .description)
         characterIds = try rehearsalValues.decode(Array<Int>.self, forKey: .characterIds)
-        conflicts = try rehearsalValues.decode(Array<Conflict>.self, forKey: .conflicts)
         
         let startString = try rehearsalValues.decode(String.self, forKey: .start)
         let endString = try rehearsalValues.decode(String.self, forKey: .end)
@@ -53,7 +50,6 @@ extension Rehearsal: Encodable {
         try container.encode(productionId, forKey: .productionId)
         try container.encode(description, forKey: .description)
         try container.encode(characterIds, forKey: .characterIds)
-        try container.encode(conflicts, forKey: .conflicts)
         
         let df = "yyyy-MM-dd HH:mm:ss"
         try container.encode(start.toStringWithFormat(df), forKey: .start)

@@ -14,7 +14,7 @@
 		3630BDDB253375FD002B5AC4 /* Production.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BDDA253375FD002B5AC4 /* Production.swift */; };
 		3630BDE025337672002B5AC4 /* Rehearsal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BDDF25337672002B5AC4 /* Rehearsal.swift */; };
 		3630BDE52533777B002B5AC4 /* Conflict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BDE42533777B002B5AC4 /* Conflict.swift */; };
-		3630BDED25337A45002B5AC4 /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BDEC25337A45002B5AC4 /* Cast.swift */; };
+		3630BDED25337A45002B5AC4 /* CastingLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BDEC25337A45002B5AC4 /* CastingLink.swift */; };
 		3630BDF225337A8B002B5AC4 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BDF125337A8B002B5AC4 /* Character.swift */; };
 		3630BDFD2533AAD3002B5AC4 /* RehearsalTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BDFC2533AAD3002B5AC4 /* RehearsalTab.swift */; };
 		3630BE0E2533D230002B5AC4 /* RehearsalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BE0D2533D230002B5AC4 /* RehearsalDetailView.swift */; };
@@ -43,6 +43,7 @@
 		36845A202529213800CA6851 /* LoginWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A1F2529213800CA6851 /* LoginWrapperView.swift */; };
 		36845A3125292EB700CA6851 /* LinkUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A3025292EB700CA6851 /* LinkUserView.swift */; };
 		36845A3625292FEC00CA6851 /* userPersonLinksData.json in Resources */ = {isa = PBXBuildFile; fileRef = 36845A3525292FEC00CA6851 /* userPersonLinksData.json */; };
+		368C571A2536364C0061419B /* conflictData.json in Resources */ = {isa = PBXBuildFile; fileRef = 368C57192536364C0061419B /* conflictData.json */; };
 		36B467042526EE660056E349 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36B467032526EE660056E349 /* Colors.xcassets */; };
 		36C2351625258C760065DDBA /* HomeTabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2351525258C760065DDBA /* HomeTabbedView.swift */; };
 		36C4EF0E25259A8F000286F7 /* AdultProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C4EF0D25259A8F000286F7 /* AdultProfileEditView.swift */; };
@@ -86,7 +87,7 @@
 		3630BDDA253375FD002B5AC4 /* Production.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Production.swift; sourceTree = "<group>"; };
 		3630BDDF25337672002B5AC4 /* Rehearsal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rehearsal.swift; sourceTree = "<group>"; };
 		3630BDE42533777B002B5AC4 /* Conflict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conflict.swift; sourceTree = "<group>"; };
-		3630BDEC25337A45002B5AC4 /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
+		3630BDEC25337A45002B5AC4 /* CastingLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastingLink.swift; sourceTree = "<group>"; };
 		3630BDF125337A8B002B5AC4 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		3630BDFC2533AAD3002B5AC4 /* RehearsalTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RehearsalTab.swift; sourceTree = "<group>"; };
 		3630BE0D2533D230002B5AC4 /* RehearsalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RehearsalDetailView.swift; sourceTree = "<group>"; };
@@ -115,6 +116,7 @@
 		36845A1F2529213800CA6851 /* LoginWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWrapperView.swift; sourceTree = "<group>"; };
 		36845A3025292EB700CA6851 /* LinkUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkUserView.swift; sourceTree = "<group>"; };
 		36845A3525292FEC00CA6851 /* userPersonLinksData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userPersonLinksData.json; sourceTree = "<group>"; };
+		368C57192536364C0061419B /* conflictData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conflictData.json; sourceTree = "<group>"; };
 		36B467032526EE660056E349 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		36C2351525258C760065DDBA /* HomeTabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabbedView.swift; sourceTree = "<group>"; };
 		36C4EF0D25259A8F000286F7 /* AdultProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultProfileEditView.swift; sourceTree = "<group>"; };
@@ -180,9 +182,9 @@
 			children = (
 				3630BDDA253375FD002B5AC4 /* Production.swift */,
 				3630BDDF25337672002B5AC4 /* Rehearsal.swift */,
-				3630BDE42533777B002B5AC4 /* Conflict.swift */,
-				3630BDEC25337A45002B5AC4 /* Cast.swift */,
 				3630BDF125337A8B002B5AC4 /* Character.swift */,
+				3630BDEC25337A45002B5AC4 /* CastingLink.swift */,
+				3630BDE42533777B002B5AC4 /* Conflict.swift */,
 			);
 			path = Production;
 			sourceTree = "<group>";
@@ -327,6 +329,7 @@
 				36845A3525292FEC00CA6851 /* userPersonLinksData.json */,
 				366A9E15252F97EC0066CDB6 /* familyLinksData.json */,
 				3630BDD02533754B002B5AC4 /* productionData.json */,
+				368C57192536364C0061419B /* conflictData.json */,
 				365DC28025262B1E00312C05 /* states.json */,
 				36845A0425283F3E00CA6851 /* NextSteps.rtf */,
 			);
@@ -466,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3630BDA425324AF3002B5AC4 /* adultData.json in Resources */,
+				368C571A2536364C0061419B /* conflictData.json in Resources */,
 				3630BDB425324F05002B5AC4 /* studentData.json in Resources */,
 				36B467042526EE660056E349 /* Colors.xcassets in Resources */,
 				36ED5F07252529030022945C /* Preview Assets.xcassets in Resources */,
@@ -546,7 +550,7 @@
 				36845A202529213800CA6851 /* LoginWrapperView.swift in Sources */,
 				366A9E30252FA1530066CDB6 /* PortalCustomViews.swift in Sources */,
 				36ED5F3A25252B650022945C /* Data.swift in Sources */,
-				3630BDED25337A45002B5AC4 /* Cast.swift in Sources */,
+				3630BDED25337A45002B5AC4 /* CastingLink.swift in Sources */,
 				3630BDE025337672002B5AC4 /* Rehearsal.swift in Sources */,
 				36ED5F4525252C970022945C /* User.swift in Sources */,
 				3630BE0E2533D230002B5AC4 /* RehearsalDetailView.swift in Sources */,

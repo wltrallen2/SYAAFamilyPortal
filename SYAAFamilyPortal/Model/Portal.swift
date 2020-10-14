@@ -27,16 +27,31 @@ class Portal: ObservableObject {
             }
         }
     }
-    @Published var student: Student?
+    @Published var student: Student? {
+        didSet {
+            self.setFamilyConflicts()
+        }
+    }
     
-    @Published var family: [Personable] = [Production.default.cast[0].student, Student.default, Student.default, Adult.default, Adult.default]
+    @Published var family: [Personable] = [
+                                    Student.default, Student.default,
+                                    Adult.default,
+                                    Adult.default
+                                ] {
+        didSet {
+            self.setFamilyConflicts()
+        }
+    }
+    @Published var familyConflicts: [Conflict] = []
+
     
-    // NEXT: Refractor so that productions, rehearsals, otherStudents are all published items even though they won't be changed.
-    // NEXT: Refractor so that productions has a list of characters, not cast elements.
-    // NEXT: Refractor so that conflicts are all published items that can be changed.
-    // NEXT: Refractor cast to use character and student ids
-    @Published var productions: [Production] = [Production.default]
-        
+    @Published var productions: [Production] = [Production.default] {
+        didSet {
+            self.setOtherStudents()
+        }
+    }
+    @Published var otherStudents: [Student] = load("studentData.json") // NEXT: Remove all default values from testing
+            
     //**********************************************************************
     // MARK: - USER FUNCTIONS
     //**********************************************************************
@@ -45,8 +60,10 @@ class Portal: ObservableObject {
         self.user = nil
         self.adult = nil
         self.student = nil
-        self.family = []
-        self.productions = []
+        self.family.removeAll()
+        self.familyConflicts.removeAll()
+        self.productions.removeAll()
+        self.otherStudents.removeAll()
         self.error = ""
         self.isLoggedIn = false
     }
@@ -312,13 +329,45 @@ class Portal: ObservableObject {
     }
     
     //**********************************************************************
-    // MARK: - PRODUCTION FUNCTIONS
+    // MARK: - PRODUCTION FUNCTIONS: Setters
     //**********************************************************************
     
     func setProductions() {
         // FIXME: Temporary Implementation
         productions = db.load("productionData.json");
+        for rehearsal in productions.flatMap({ $0.rehearsals }) {
+            print("\(rehearsal.description)")
+        }
     }
+        
+    func setOtherStudents() {
+        // FIXME: Temporary Implementation
+        let students: [Student] = db.load("studentData.json");
+        
+        otherStudents.append(contentsOf: students.filter( { student in
+            !family.contains(where: { person in
+                person.person.id == student.person.id
+            })
+        }))
+    }
+    
+    func setFamilyConflicts() {
+        // FIXME: Temporary Implementation
+        let conflicts: [Conflict] = db.load("conflictData.json")
+        
+        let students = self.student != nil ? [ self.student ] : family.compactMap( { $0 as? Student })
+        
+        familyConflicts.removeAll()
+        familyConflicts.append(contentsOf: conflicts.filter({ conflict in
+            students.contains(where: { student in
+                student?.person.id == conflict.studentId
+            })
+        }))
+    }
+    
+    //**********************************************************************
+    // MARK: - PRODUCTION FUNCTIONS: Get by Rehearsal
+    //**********************************************************************
     
     func getProductionForRehearsal(_ rehearsal: Rehearsal) -> Production? {
         let pid = rehearsal.productionId
@@ -327,149 +376,124 @@ class Portal: ObservableObject {
         }) ?? nil
     }
     
+    // MARK: Get Characters
+    func getCharactersForRehearsal(_ rehearsal: Rehearsal) -> [Character] {
+        // Get a list of studentIds for all students cast in this production
+        guard let production = getProductionForRehearsal(rehearsal) else { return [] }
+        return production.characters.filter({ character in
+            rehearsal.characterIds.contains(character.id)
+        })
+    }
+    
+    func getMyCharactersForRehearsal(_ rehearsal: Rehearsal) -> [Character] {
+        guard let production = getProductionForRehearsal(rehearsal) else { return [] }
+        return production.characters.filter({ character in
+            getMyCastForRehearsal(rehearsal).map({ link in return link.characterId}).contains(character.id)
+        }).sorted(by: { (a, b) in a.name < b.name })
+    }
+    
+    func getOtherCharactersForRehearsal(_ rehearsal: Rehearsal) -> [Character] {
+        guard let production = getProductionForRehearsal(rehearsal) else { return [] }
+        return production.characters.filter({ character in
+            getOtherCastForRehearsal(rehearsal).map({ link in return link.characterId}).contains(character.id)
+        }).sorted(by: { (a, b) in a.name < b.name })
+    }
+    
+    // MARK: Get Cast
+    func getMyCastForRehearsal(_ rehearsal: Rehearsal) -> [CastingLink] {
+        guard let production = getProductionForRehearsal(rehearsal) else { return [] }
+        
+        return production.castingLinks.filter({ link in
+            getStudentIdsForUser().contains(link.studentId)
+                && rehearsal.characterIds.contains(link.characterId)
+        })
+    }
+    
+    func getOtherCastForRehearsal(_ rehearsal: Rehearsal) -> [CastingLink] {
+        guard let production = getProductionForRehearsal(rehearsal) else { return [] }
+        
+        return production.castingLinks.filter({ link in
+            otherStudents.map({ student in return student.person.id }).contains(link.studentId)
+                && rehearsal.characterIds.contains(link.characterId)
+        })
+    }
+    
+    // MARK: Get Students
     func getStudentsForRehearsal(_ rehearsal: Rehearsal) -> [Student] {
-        var students: [Student] = []
-        
-        // Get a list of students, either a list of one student (me) for student user or a list of students in my family for adult user.
-        let myStudents = self.student != nil
-            ? [ self.student! ]
-            : self.getFamilyMembersOfType(Student.self)
-        
-        // Get the production and a list of all castings for that production
-        guard let production = self.getProductionForRehearsal(rehearsal) else { return [] }
-        let casting = production.cast
-        
-        // For each student in the myStudents list, find all castings for that student, and for each casting, if the character is called to this rehearsal, add the student to the students array if they are not added already.
-        for student in myStudents {
-            let castings = casting.filter({ casting in
-                return student.id == casting.student.id
-            })
-            
-            for c in castings {
-                if rehearsal.characterIds.contains(c.character.id)
-                    && !students.contains(where: {s in
-                        return s.id == student.id
-                    }) {
-                    students.append(student)
-                }
-            }
-        }
-        
+        var students = [Student]()
+        students.append(contentsOf: getMyStudentsForRehearsal(rehearsal))
+        students.append(contentsOf: getOtherStudentsForRehearsal(rehearsal))
         return students
     }
     
-    func getCharactersForRehearsal(_ rehearsal: Rehearsal) -> [Character] {
-        guard let production = self.getProductionForRehearsal(rehearsal) else { return [] }
-        let casting = production.cast
+    func getMyStudentsForRehearsal(_ rehearsal: Rehearsal) -> [Student] {
+        let myLinks = getMyCastForRehearsal(rehearsal)
         
-        let characters: [Character] = casting.filter({ casting in
-            return rehearsal.characterIds.contains(casting.character.id)
-        }).map({ casting in
-            return casting.character
-        }).removingDuplicates()
-        
-        return characters.sorted(by: {(a, b) in
-            return a.name < b.name
-        })
-    }
-    
-    func getCastForRehearsal(_ rehearsal: Rehearsal) -> [Cast] {
-        guard let production = self.getProductionForRehearsal(rehearsal) else { return [] }
-        
-        return production.cast.filter({cast in
-            return rehearsal.characterIds.contains(cast.character.id)
-        })
-    }
-    
-    func getCastingsForStudent(_ student: Student, inProduction production: Production) -> [Cast] {
-        return production.cast.filter({cast in
-            return cast.student.id == student.id
-        })
-    }
-    
-    func getConflictForStudent(_ student: Student, atRehearsal rehearsal: Rehearsal) -> ConflictType? {
-        let conflicts = rehearsal.conflicts
-        return conflicts.first(where: { conflict in
-            return student.id == conflict.studentId
-        }).map{ conflict in
-            return conflict.type
-        }
-    }
-    
-    func getAllConflictsForFamily() -> [Conflict] {
-        var conflicts = [Conflict]()
-        
-        for production in productions {
-            for rehearsal in production.rehearsals {
-                if rehearsal.conflicts.count > 0 {
-                    for conflict in rehearsal.conflicts {
-                        if family.contains(where: { person in
-                            return person.id == conflict.studentId
-                        }) {
-                            conflicts.append(conflict)
-                        }
-                    }
-                }
-            }
-        }
-        
-        return conflicts
-    }
-    
-    func getRehearsalWithId(_ id: Int) -> Rehearsal? {
-        return productions.filter({ production in
-            production.rehearsals.contains(where: { rehearsal in
-                rehearsal.id == id
+        if self.student != nil {
+            if myLinks.contains(where: { link in link.studentId == self.student!.person.id }) {
+                return [ self.student! ]
+            } else { return [] }
+        } else {
+            return family.compactMap( {$0 as? Student} ).filter({ student in
+                myLinks.contains(where: { link in link.studentId == student.person.id })
+            }).sorted(by: { (a, b) in
+                a.person.fullName < b.person.fullName
             })
-        })[0].rehearsals.filter({ rehearsal in
+        }
+    }
+    
+    func getOtherStudentsForRehearsal(_ rehearsal: Rehearsal) -> [Student] {
+        let otherLinks = getOtherCastForRehearsal(rehearsal)
+        
+        return otherStudents.filter({ student in
+            otherLinks.contains(where: { link in link.studentId == student.person.id})
+        }).sorted(by: { (a, b) in
+            a.person.fullName < b.person.fullName
+        })
+    }
+    
+    // MARK: Get Conflicts for Student
+    func getConflictForStudent(_ student: Student, atRehearsal rehearsal: Rehearsal) -> ConflictType? {
+        return familyConflicts.first(where: { conflict in
+            rehearsal.id == conflict.rehearsalId
+                && student.person.id == conflict.studentId
+        }).map({ conflict in
+            return conflict.type
+        })
+    }
+    
+    //**********************************************************************
+    // MARK: - PRODUCTION FUNCTIONS: Get by ID
+    //**********************************************************************
+    func getRehearsalWithId(_ id: Int) -> Rehearsal? {
+        return productions.flatMap({ production in
+            production.rehearsals
+        }).first(where: { rehearsal in
             rehearsal.id == id
-        })[0]
-    }
-    
-    func getStudentsInProduction(_ production: Production) -> [Student] {
-        var students = [Student]()
-        
-        for castDetail in production.cast {
-            if !students.contains(where: { student in
-                student.id == castDetail.student.id
-            }) {
-                students.append(castDetail.student)
-            }
-        }
-        
-        for person in family {
-            if students.contains(where: { student in
-                student.id == person.person.id
-            }) {
-                students.removeAll(where: { student in
-                    student.id == person.person.id
-                })
-                
-                students.append(person as! Student)
-            }
-        }
-        
-        return students.sorted(by: { (a, b) in
-            if family.contains(where: { member in
-                member.person.id == a.person.id
-            }) == family.contains(where: { member in
-                member.person.id == b.person.id
-            }) {
-                return a.person.fullName < b.person.fullName
-            } else {
-                return family.contains(where: { member in
-                    member.person.id == a.person.id
-                })
-            }
         })
     }
     
-    func getStudentWithId(_ id: Int, inProduction production: Production) -> Student? {
-        return getStudentsInProduction(production).first(where: { student in
-            student.id == id
+    func getCharacterWithId(_ id: Int) -> Character? {
+        return productions.flatMap({ production in
+            production.characters
+        }).first(where: { character in
+            character.id == id
         })
     }
-
+    
+    func getStudentWithId(_ id: Int) -> Student? {
+        if self.student?.person.id == id { return self.student! }
+        
+        if family.compactMap({ $0.person.id }).contains(id) {
+            return family.first(where: { $0.person.id == id }) as? Student
+        }
+        
+        return otherStudents.first(where: { $0.person.id == id })
+    }
+    
+    //**********************************************************************
+    // MARK: - PRODUCTION FUNCTIONS: String Conversions
+    //**********************************************************************
     func getProductionTitleForRehearsal(_ rehearsal: Rehearsal) -> String? {
         return self.getProductionForRehearsal(rehearsal)?.title
     }
@@ -482,5 +506,18 @@ class Portal: ObservableObject {
         return rehearsal.start.toStringWithFormat("h:mm a")
         + "-"
             + rehearsal.end.toStringWithFormat("h:mm a")
+    }
+    
+    //**********************************************************************
+    // MARK: - PRIVATE HELPER FUNCTIONS
+    //**********************************************************************
+    
+    private func getStudentIdsForUser() -> [Int] {
+        if self.student != nil { return [ self.student!.person.id ]}
+        else {
+            return family.compactMap( { $0 as? Student } ).map({ student in
+                return student.person.id
+            })
+        }
     }
 }

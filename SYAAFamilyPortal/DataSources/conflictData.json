@@ -1,0 +1,152 @@
+[
+    {
+        "id": 3152,
+        "rehearsalId": 3,
+        "studentId": 152,
+        "type": "conflict"
+    },
+    {
+        "id": 1152,
+        "rehearsalId": 1,
+        "studentId": 152,
+        "type": "arrive_late"
+    },
+    {
+        "id": 6147,
+        "rehearsalId": 6,
+        "studentId": 147,
+        "type": "arrive_late"
+    },
+    {
+        "id": 15147,
+        "rehearsalId": 15,
+        "studentId": 147,
+        "type": "arrive_late"
+    },
+    {
+        "id": 20147,
+        "rehearsalId": 20,
+        "studentId": 147,
+        "type": "arrive_late"
+    },
+    {
+        "id": 11150,
+        "rehearsalId": 11,
+        "studentId": 150,
+        "type": "conflict"
+    },
+    {
+        "id": 1156,
+        "rehearsalId": 1,
+        "studentId": 156,
+        "type": "arrive_late"
+    },
+    {
+        "id": 2152,
+        "rehearsalId": 2,
+        "studentId": 152,
+        "type": "leave_early"
+    },
+    {
+        "id": 6163,
+        "rehearsalId": 6,
+        "studentId": 163,
+        "type": "arrive_late"
+    },
+    {
+        "id": 7163,
+        "rehearsalId": 7,
+        "studentId": 163,
+        "type": "arrive_late"
+    },
+    {
+        "id": 15163,
+        "rehearsalId": 15,
+        "studentId": 163,
+        "type": "arrive_late"
+    },
+    {
+        "id": 16163,
+        "rehearsalId": 16,
+        "studentId": 163,
+        "type": "arrive_late"
+    },
+    {
+        "id": 20163,
+        "rehearsalId": 20,
+        "studentId": 163,
+        "type": "arrive_late"
+    },
+    {
+        "id": 21163,
+        "rehearsalId": 21,
+        "studentId": 163,
+        "type": "arrive_late"
+    },
+    {
+        "id": 1164,
+        "rehearsalId": 1,
+        "studentId": 164,
+        "type": "conflict"
+    },
+    {
+        "id": 11166,
+        "rehearsalId": 11,
+        "studentId": 166,
+        "type": "conflict"
+    },
+    {
+        "id": 21166,
+        "rehearsalId": 21,
+        "studentId": 166,
+        "type": "arrive_late"
+    },
+    {
+        "id": 4164,
+        "rehearsalId": 4,
+        "studentId": 164,
+        "type": "conflict"
+    },
+    {
+        "id": 2173,
+        "rehearsalId": 2,
+        "studentId": 173,
+        "type": "arrive_late"
+    },
+    {
+        "id": 1175,
+        "rehearsalId": 1,
+        "studentId": 175,
+        "type": "arrive_late"
+    },
+    {
+        "id": 2175,
+        "rehearsalId": 2,
+        "studentId": 175,
+        "type": "arrive_late"
+    },
+    {
+        "id": 4175,
+        "rehearsalId": 4,
+        "studentId": 175,
+        "type": "conflict"
+    },
+    {
+        "id": 5176,
+        "rehearsalId": 5,
+        "studentId": 176,
+        "type": "conflict"
+    },
+    {
+        "id": 6176,
+        "rehearsalId": 6,
+        "studentId": 176,
+        "type": "conflict"
+    },
+    {
+        "id": 7176,
+        "rehearsalId": 7,
+        "studentId": 176,
+        "type": "conflict"
+    }
+]

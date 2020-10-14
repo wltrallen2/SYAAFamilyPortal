@@ -30,14 +30,13 @@ struct ConflictTab: View, Hashable {
                         .italic()
                     }
                     .padding(.leading, 4)
+                    .padding(.bottom, 4)
 
-                    HStack (spacing: 0){
+                    HStack (spacing: 16){
                         ForEach(students, id:\.id) { student in
                             StudentTab(name: student.person.firstName,
                                        color: student.profileColor,
                                        conflict: conflictType)
-                                .frame(width: 120)
-                                .scaleEffect(0.75)
                         }
                         
                         Spacer()
@@ -59,15 +58,19 @@ struct ConflictTab: View, Hashable {
 }
 
 struct ConflictTab_Previews: PreviewProvider {
+    static var student1 = Portal().getStudentWithId(Production.default.castingLinks[0].studentId)!
+    static var student2 =
+        Portal().getStudentWithId(Production.default.castingLinks[2].studentId)!
+    
     static var previews: some View {
         Group {
-        ConflictTab(students: [Production.default.cast[0].student,Production.default.cast[2].student], date: Date(), conflictType: .Conflict)
+            ConflictTab(students: [student1, student2], date: Date(), conflictType: .Conflict)
             .previewLayout(.sizeThatFits)
         
-        ConflictTab(students: [Production.default.cast[0].student,Production.default.cast[2].student], date: Date(), conflictType: .LeaveEarly)
+        ConflictTab(students: [student1, student2], date: Date(), conflictType: .LeaveEarly)
             .previewLayout(.sizeThatFits)
 
-        ConflictTab(students: [Production.default.cast[0].student,Production.default.cast[2].student], date: Date(), conflictType: .ArriveLate)
+        ConflictTab(students: [student1, student2], date: Date(), conflictType: .ArriveLate)
                 .previewLayout(.sizeThatFits)
 
         }

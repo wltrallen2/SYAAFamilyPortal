@@ -72,7 +72,7 @@ struct ConflictsList: View {
                 })
             }
             
-            students.append(portal.getStudentWithId(conflict.studentId, inProduction: portal.getProductionForRehearsal(rehearsal!)!)!)
+            students.append(portal.getStudentWithId(conflict.studentId)!)
             
             elements.append(
                 ConflictTabElement(date: date!,
@@ -88,7 +88,7 @@ struct ConflictsList: View {
 
 struct ConflictsList_Previews: PreviewProvider {
     static var previews: some View {
-        ConflictsList(conflicts: Portal().getAllConflictsForFamily())
+        ConflictsList(conflicts: Portal().familyConflicts)
             .environmentObject(Portal())
     }
 }

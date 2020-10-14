@@ -51,7 +51,9 @@ struct CharacterTab: View {
 
 struct CharacterListView_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterListView(otherCharacters: Portal().getCharactersForRehearsal(Production.default.rehearsals[0]), myCharacters: [Production.default.cast[Production.default.rehearsals[0].characterIds[0]].character, Production.default.cast[Production.default.rehearsals[0].characterIds[2]].character])
+        CharacterListView(otherCharacters:
+                            Portal().getOtherCharactersForRehearsal(Production.default.rehearsals[0]),
+                          myCharacters: Portal().getMyCharactersForRehearsal(Production.default.rehearsals[0]))
             .environmentObject(Portal())
     }
 }

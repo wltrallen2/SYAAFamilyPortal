@@ -25,9 +25,9 @@ struct RehearsalsView: View {
                         NavigationLink(destination:
                                         RehearsalDetailView(
                                             rehearsal: rehearsal,
-                                            students: portal.getStudentsForRehearsal(rehearsal))) {
+                                            students: portal.getMyStudentsForRehearsal(rehearsal))) {
                             RehearsalTab(rehearsal: rehearsal,
-                                         students: portal.getStudentsForRehearsal(rehearsal))
+                                         students: portal.getMyStudentsForRehearsal(rehearsal))
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
@@ -55,7 +55,7 @@ struct RehearsalsViewBarItems : View {
     var body: some View {
         HStack {
             NavigationLink(
-                destination: ConflictsList(conflicts: portal.getAllConflictsForFamily()),
+                destination: ConflictsList(conflicts: portal.familyConflicts),
                 label: {
                     Text("Manage Conflicts")
                 })

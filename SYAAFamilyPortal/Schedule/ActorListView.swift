@@ -24,8 +24,10 @@ struct ActorCellElements: Hashable, Equatable {
 // MARK: - ACTOR LIST VIEW
 //**********************************************************************
 struct ActorListView: View {
-    var otherCast: [Cast] = []
-    var myCast: [Cast] = []
+    @EnvironmentObject var portal: Portal
+    
+    var otherCast: [CastingLink] = []
+    var myCast: [CastingLink] = []
     
     var body: some View {
         ScrollView {
@@ -51,36 +53,46 @@ struct ActorListView: View {
  */
     func getActorSet() -> [ActorCellElements] {
         var actors = [ActorCellElements]()
-        
-        var allCast = [Cast]()
+                
+        var allCast = [CastingLink]()
         allCast.append(contentsOf: myCast)
-        allCast.append(contentsOf: otherCast.sorted(by: {(a, b) in
-            return a.student.person.firstName < b.student.person.firstName
-        }))
+        allCast.append(contentsOf: otherCast) // This array should already be sorted when passed into the view.
+        
+        var allStudents = [Student]()
+        allStudents.append(contentsOf: portal.family.compactMap( { $0 as? Student}))
+        allStudents.append(contentsOf: portal.otherStudents)
         
         for cast in allCast {
+            let charName = portal.getCharacterWithId(cast.characterId)!.name
+            
             if !actors.contains(where: { elements in
-                return elements.id == cast.student.id
+                elements.id == cast.studentId
             }) {
-                let student = cast.student
+                let student = allStudents.first(where: { student in
+                    student.id == cast.studentId
+                })!
+                
+                
                 actors.append(ActorCellElements(
-                                    id: student.id,
-                                    name: getFullNameFor(student),
-                                    image: getImageFor(student),
-                                    roles: [cast.character.name],
-                    color: myCast.contains(cast) ? student.profileColor : Color(hex: "E8E8E8")
-                            )
+                    id: student.person.id,
+                    name: student.person.fullName,
+                    image: getImageFor(student),
+                    roles: [ charName ],
+                    color: myCast.contains(cast)
+                        ? student.profileColor
+                        : Color(hex: "E8E8E8")
+                )
                 )
             } else {
                 let actor = actors.first(where: { actor in
-                    return actor.id == cast.student.id
+                    return actor.id == cast.studentId
                 })
                 
-                if !actor!.roles.contains(cast.character.name) {
+                if !actor!.roles.contains(charName) {
                 
                     var roles = [String]()
                     roles.append(contentsOf: actor!.roles)
-                    roles.append(cast.character.name)
+                    roles.append(charName)
                     
                     let newElements = ActorCellElements(
                         id: actor!.id,
@@ -96,11 +108,6 @@ struct ActorListView: View {
         }
                 
         return actors
-    }
-    
-    // Returns the full name of the student
-    func getFullNameFor(_ student: Student) -> String {
-        return student.person.firstName + " " + student.person.lastName
     }
     
     // Returns the image for the student

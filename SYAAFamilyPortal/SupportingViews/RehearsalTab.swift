@@ -20,20 +20,20 @@ struct RehearsalTab: View {
                     Text(portal.getProductionTitleForRehearsal(rehearsal) ?? "Title")
                         .font(.caption).bold()
                     
-                    HStack {
-                        if(students.count > 0) {
+                    
+                    if(students.count > 0) {
+                        HStack {
                             ForEach(students, id:\.id) { student in
                                 StudentTab(
                                     name: student.person.firstName,
                                     color: student.profileColor,
                                     conflict: portal.getConflictForStudent(student, atRehearsal: rehearsal))
-                                    .frame(width: 120)
-                                    .scaleEffect(0.75)
+                                // FIXME: How do I show more than two students? Need to build in a collectionView here for StudentTabs (as well as wherever else they are used).
                             }
                         }
+                        .padding(.vertical, students.count > 0
+                                    ? -2 : 0)
                     }
-                    .padding(.vertical, students.count > 0
-                                ? -4 : 0)
                     
                     Text(portal.getRehearsalDateStringForRehearsal(rehearsal))
                         .font(.headline).bold()
@@ -66,9 +66,14 @@ struct RehearsalTab: View {
 }
 
 struct RehearsalTab_Previews: PreviewProvider {
+    static var students: [Student] = load("studentData.json")
+    static var student1 = students.first(where: { student in student.id == 164 })!
+    static var student2 =
+        Portal().getStudentWithId(Production.default.castingLinks[2].studentId)!
+
     static var previews: some View {
         RehearsalTab(rehearsal: Production.default.rehearsals[0],
-                     students: [Production.default.cast[0].student, Production.default.cast[2].student])
+                     students: [student1, student2])
             .environmentObject(Portal())
             .previewLayout(.sizeThatFits)
     }
