@@ -14,7 +14,7 @@ struct SaveButtonWithPresentationToggle: View {
         HStack {
             Spacer()
             Button("Save", action: {
-                withAnimation {
+                withAnimation (.easeIn) {
                     self.presentationMode.toggle()
                 }
             })
@@ -74,7 +74,7 @@ struct SaveButtonWithStudentFieldPicker: View {
         HStack {
             Spacer()
             Button("Save", action: {
-                withAnimation {
+                withAnimation (.easeOut) {
                     self.presentationMode = .None
                 }
             })
@@ -171,13 +171,62 @@ struct GradeSliderView: View {
     }
 }
 
+struct PortalRehearsalPicker: View {
+    @Binding var rehearsal: Rehearsal
+    @Binding var presentationMode: Bool
+        
+    var rehearsals: [Rehearsal]
+    
+    var body: some View {
+        
+        VStack {
+            SaveButtonWithPresentationToggle(presentationMode: $presentationMode)
+            
+            Picker("Rehearsal", selection: $rehearsal) {
+                ForEach(rehearsals, id:\.self) { rehearsal in
+                    Text(getStringForRehearsal(rehearsal))
+                        .font(.callout)
+                }
+            }
+        }
+        .portalPickerStyle()
+    }
+    
+    private func getStringForRehearsal(_ rehearsal: Rehearsal) -> String {
+        return rehearsal.start.toStringWithFormat("EEE, MMM d, y (h:mm a")
+            + rehearsal.end.toStringWithFormat("-h:mm a)")
+    }
+}
+
+struct PortalConflictTypePicker: View {
+    @Binding var type: ConflictType
+    @Binding var presentationMode: Bool
+    
+    var types: [ConflictType] = [.Conflict, .ArriveLate, .LeaveEarly]
+        
+    var body: some View {
+        VStack {
+            SaveButtonWithPresentationToggle(presentationMode: $presentationMode)
+            
+            Picker(selection: $type, label: Text("Conflict Type")) {
+                ForEach(types, id: \.self) { type in
+                    Text(type.description)
+                }
+            }
+        }
+        .portalPickerStyle()
+    }
+}
+
 struct PickerViews_Previews: PreviewProvider {
     @State static var adult: Adult = Adult.default
     @State static var student: Student = Student.default
     @State static var showBirthdate: StudentFieldPicker = .Birthdate
     @State static var showGraduation: StudentFieldPicker = .Graduation
     @State static var showGrade: StudentFieldPicker = .Grade
-
+    
+    @State static var rehearsal: Rehearsal = getRehearsals()[4]
+    
     static var previews: some View {
         Group {
             StatesPicker(state: $adult.state,
@@ -199,6 +248,16 @@ struct PickerViews_Previews: PreviewProvider {
             GradeSliderView(grade: $student.currentGrade,
                             presentationMode: $showGrade)
                 .previewLayout(.sizeThatFits)
+            
+            PortalRehearsalPicker(rehearsal: $rehearsal,
+                                  presentationMode: .constant(true),
+                                  rehearsals: getRehearsals())
+                .previewLayout(.sizeThatFits)
         }
+    }
+    
+    static func getRehearsals() -> [Rehearsal] {
+        let productions: [Production] = load("productionData.json")
+        return productions.compactMap({ $0.rehearsals }).flatMap({ $0 })
     }
 }

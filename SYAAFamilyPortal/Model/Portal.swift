@@ -335,9 +335,6 @@ class Portal: ObservableObject {
     func setProductions() {
         // FIXME: Temporary Implementation
         productions = db.load("productionData.json");
-        for rehearsal in productions.flatMap({ $0.rehearsals }) {
-            print("\(rehearsal.description)")
-        }
     }
         
     func setOtherStudents() {
@@ -363,6 +360,26 @@ class Portal: ObservableObject {
                 student?.person.id == conflict.studentId
             })
         }))
+        
+        familyConflicts.sort(by: { (a, b) in
+            if getRehearsalWithId(a.rehearsalId)!.start == getRehearsalWithId(b.rehearsalId)!.start {
+                return getStudentWithId(a.studentId)!.person.fullName < getStudentWithId(b.studentId)!.person.fullName
+            } else {
+                return getRehearsalWithId(a.rehearsalId)!.start < getRehearsalWithId(b.rehearsalId)!.start
+            }
+        })
+    }
+    
+    func getMyStudents() -> [Student] {
+        var students = [Student]()
+        
+        if self.student != nil {
+            students.append(self.student!)
+        } else {
+            students.append(contentsOf: self.family.compactMap({ $0 as? Student }))
+        }
+
+        return students.sorted(by: { (a, b) in a.person.fullName < b.person.fullName })
     }
     
     //**********************************************************************
@@ -429,17 +446,20 @@ class Portal: ObservableObject {
     func getMyStudentsForRehearsal(_ rehearsal: Rehearsal) -> [Student] {
         let myLinks = getMyCastForRehearsal(rehearsal)
         
+        var students = [Student]()
         if self.student != nil {
             if myLinks.contains(where: { link in link.studentId == self.student!.person.id }) {
-                return [ self.student! ]
+                students.append(self.student!)
             } else { return [] }
         } else {
-            return family.compactMap( {$0 as? Student} ).filter({ student in
+            students.append(contentsOf: family.compactMap( {$0 as? Student} ).filter({ student in
                 myLinks.contains(where: { link in link.studentId == student.person.id })
             }).sorted(by: { (a, b) in
                 a.person.fullName < b.person.fullName
-            })
+            }))
         }
+        
+        return students
     }
     
     func getOtherStudentsForRehearsal(_ rehearsal: Rehearsal) -> [Student] {
@@ -492,6 +512,33 @@ class Portal: ObservableObject {
     }
     
     //**********************************************************************
+    // MARK: - PRODUCTION FUNCTIONS: Other
+    //**********************************************************************
+    
+    func getAllCharacterIdsForStudent(_ student: Student) -> [Int] {
+        return productions.compactMap({ $0.castingLinks }).flatMap({ $0 })
+            .filter({ link in
+                link.studentId == student.person.id
+            }).compactMap({ $0.characterId})
+    }
+    
+    func getAllCharactersForStudent(_ student: Student) -> [Character] {
+        return getAllCharacterIdsForStudent(student).compactMap({ self.getCharacterWithId($0) })
+    }
+
+    func getCharacterIdsForStudent(_ student: Student, inProduction production: Production) -> [Int] {
+        return production.castingLinks.filter({ link in
+            link.studentId == student.person.id
+        }).compactMap({ $0.characterId })
+    }
+    
+    func getCharactersForStudent(_ student: Student, inProduction production: Production) -> [Character] {
+        return getCharacterIdsForStudent(student, inProduction: production)
+            .compactMap({ self.getCharacterWithId($0) })
+    }
+    
+    
+    //**********************************************************************
     // MARK: - PRODUCTION FUNCTIONS: String Conversions
     //**********************************************************************
     func getProductionTitleForRehearsal(_ rehearsal: Rehearsal) -> String? {
@@ -509,6 +556,99 @@ class Portal: ObservableObject {
     }
     
     //**********************************************************************
+    // MARK: - CONFLICT FUNCTIONS
+    //**********************************************************************
+    func removeConflict(_ conflict: Conflict) {
+        familyConflicts.removeAll(where: { c in
+            c.id == conflict.id
+        })
+        
+        saveConflictsToDb()
+    }
+    
+    func removeConflictsWithIds(_ ids: [Int]) {
+        for id in ids {
+            guard let conflict = familyConflicts.first(where: { c in c.id == id }) else { break }
+            removeConflict(conflict)
+        }
+    }
+    
+    func addConflicts(withDetails elements: ConflictTabElement) {
+        var students = [Student]()
+        students.append(contentsOf: elements.students)
+        
+        for id in elements.ids {
+            // FIXME: Test to make sure a conflict for this student on this date doesn't already exist.
+//            if familyConflicts.contains(where: { c in
+//                c.id == id
+//            }) {
+//                throw ConflictError.AlreadyExists
+//            }
+            
+            let student = students.first!
+            let conflict = Conflict(id: id,
+                                    rehearsalId: elements.rehearsal.id,
+                                    studentId: student.person.id,
+                                    type: elements.type)
+            familyConflicts.append(conflict)
+            
+            students.removeFirst()
+        }
+        
+        saveConflictsToDb()
+    }
+    
+    func updateConflicts(withDetails elements: ConflictTabElement) {
+        var students = elements.students
+        for id in elements.ids {
+            familyConflicts.removeAll(where: { conflict in conflict.id == id })
+            if let student = students.first {
+                let newConflict = Conflict(id: id,
+                                           rehearsalId: elements.rehearsal.id,
+                                           studentId: student.person.id,
+                                           type: elements.type)
+                familyConflicts.append(newConflict)
+                
+                students.removeFirst()
+            }
+        }
+        
+        for student in students {
+            let intString = "\(elements.rehearsal.id)\(student.person.id)"
+            let newConflict = Conflict(id: Int(intString) ?? 0,
+                                       rehearsalId: elements.rehearsal.id,
+                                       studentId: student.person.id,
+                                       type: elements.type)
+            
+            familyConflicts.append(newConflict)
+        }
+        
+        saveConflictsToDb()
+    }
+    
+    func saveConflictsToDb() {
+        // Load original data from database
+        var conflicts: [Conflict] = db.load("conflictData.json")
+        
+        // Remove all family conflicts from original data
+        conflicts.removeAll(where: { conflict in
+            self.student?.person.id == conflict.studentId
+                || family.compactMap({ $0 as? Student }).contains(where: { student in
+                    student.person.id == conflict.studentId
+                })
+        })
+        
+        // Add in new list of family conflicts
+        conflicts.append(contentsOf: familyConflicts)
+        
+        // Encode and save
+        db.save(encodableObject: familyConflicts, toFileWithName: "conflictData.json")
+        
+        setFamilyConflicts()
+    }
+    
+    
+    //**********************************************************************
     // MARK: - PRIVATE HELPER FUNCTIONS
     //**********************************************************************
     
@@ -520,4 +660,8 @@ class Portal: ObservableObject {
             })
         }
     }
+}
+
+enum ConflictError: Error {
+    case AlreadyExists
 }

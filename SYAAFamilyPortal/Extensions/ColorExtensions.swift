@@ -43,7 +43,6 @@ extension Color {
         self.init(.sRGB, red: r, green: g, blue: b, opacity: a)
         return
     }
-        
     
     func hexValue(withHash: Bool) -> String {
         let (outputR, outputG, outputB) = self.getComponents()
@@ -57,6 +56,7 @@ extension Color {
     func getComponents() -> (Int, Int, Int) {
         let values = self.cgColor?.components
         
+        // TODO: Fix this so that it supports named arguments (i.e. Color.red, Color.blue, etc.
         let outputR: Int = Int(255 * values![0])
         let outputG: Int = Int(255 * (values!.count < 3
                                 ? values![0] : values![1]))
@@ -70,5 +70,11 @@ extension Color {
         let (r, g, b) = self.getComponents()
         return (Double(r + g + b) / 3.0) / 255
     }
+}
+
+extension Color {
+    static var lightGray = Color("LightGray")
+    static var darkGray = Color("DarkGray")
+    static var myGreen = Color("MyGreen")
 }
 

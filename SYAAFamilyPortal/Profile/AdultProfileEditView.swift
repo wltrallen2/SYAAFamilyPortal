@@ -55,6 +55,7 @@ struct AdultProfileEditView: View {
             if self.showStatePopover {
                 StatesPicker(state: $adult.state,
                              presentationMode: $showStatePopover)
+                    .animation(.easeIn)
                     .transition(.move(edge: .bottom))
             }
             
@@ -64,6 +65,7 @@ struct AdultProfileEditView: View {
                                     : Binding($adult.phone2Type,
                                               replacingNilWith: PhoneType.NilValue),
                                 presentationMode: $showPhonePopover)
+                    .animation(.easeIn)
                     .transition(.move(edge: .bottom))
             }
         }

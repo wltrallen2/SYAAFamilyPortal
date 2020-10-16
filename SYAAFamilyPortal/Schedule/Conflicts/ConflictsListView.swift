@@ -9,12 +9,13 @@ import SwiftUI
 
 struct ConflictTabElement: Hashable, Equatable {
     var ids: [Int]
-    var date: Date
+    var rehearsal: Rehearsal
     var type: ConflictType
     var students: [Student]
-    
+            
     func hash(into hasher: inout Hasher) {
-        hasher.combine(date)
+        hasher.combine(rehearsal.id)
+        hasher.combine(ids)
         hasher.combine(type)
     }
 }
@@ -22,16 +23,28 @@ struct ConflictTabElement: Hashable, Equatable {
 struct ConflictsListView: View {
     @EnvironmentObject var portal: Portal
 
-    @State var conflicts: [Conflict]
+    @Binding var selection: RehearsalViewTag?
+    @Binding var conflicts: [Conflict]
     
     var body: some View {
         List {
-            ForEach(getConflictTabs(), id:\.self) { conflictTab in
-                    conflictTab
+            ForEach(getConflictTabElements(), id:\.self) { element in
+                ZStack {
+                    NavigationLink(destination:
+                                    ConflictEditView(
+                                        element: element)) {
+                        EmptyView()
+                    }
+                    
+                    ConflictTab(students: element.students,
+                                rehearsal: element.rehearsal,
+                                conflictType: element.type)
+                }
             }
             .onDelete(perform: delete)
         }
         .navigationTitle("Conflicts List")
+        .navigationBarItems(trailing: AddConflictBarItem(selection: $selection))
     }
     
     func delete(at offsets: IndexSet) {
@@ -49,41 +62,27 @@ struct ConflictsListView: View {
         }
     }
     
-    func getConflictTabs() -> [ConflictTab] {
-        var tabs = [ConflictTab]()
-        
-        for element in getConflictTabElements() {
-            tabs.append(ConflictTab(
-                            students: element.students,
-                            date: element.date,
-                            conflictType: element.type))
-        }
-        
-        return tabs
-    }
-    
     func getConflictTabElements() -> [ConflictTabElement] {
         var elements = [ConflictTabElement]()
         
         for conflict in conflicts {
-            let rehearsal = portal.getRehearsalWithId(conflict.rehearsalId)
-            let date = rehearsal?.start
+            guard let rehearsal = portal.getRehearsalWithId(conflict.rehearsalId) else { break }
             
             var students = [Student]()
             var ids = [Int]()
             if elements.contains(where: { element in
-                return date == element.date
+                return rehearsal.id == element.rehearsal.id
                     && conflict.type == element.type
             }) {
                 let element = elements.first(where: {element in
-                    element.date == date
+                    element.rehearsal.id == rehearsal.id
                         && conflict.type == element.type
                 })
                 
                 ids.append(contentsOf: element?.ids ?? [])
                 students.append(contentsOf: element?.students ?? [])
                 elements.removeAll(where: { element in
-                    element.date == date
+                    element.rehearsal.id == rehearsal.id
                         && element.type == conflict.type
                 })
             }
@@ -93,7 +92,7 @@ struct ConflictsListView: View {
             
             elements.append(
                 ConflictTabElement(ids: ids,
-                                   date: date!,
+                                   rehearsal: rehearsal,
                                    type: conflict.type,
                                    students: students)
             )
@@ -104,11 +103,38 @@ struct ConflictsListView: View {
     }
 }
 
+struct AddConflictBarItem: View {
+    @Binding var selection: RehearsalViewTag?
+    
+    var body: some View {
+        HStack {
+            NavigationLink(
+                destination: ConflictAddView(selected: $selection),
+                tag: RehearsalViewTag.AddItem,
+                selection: $selection) {
+                EmptyView()
+            }
+            .isDetailLink(false)
+            Button(action: {
+                self.selection = .AddItem
+            },
+                   label: {
+                    Text("Add Conflict")
+                    Image(systemName: "plus.circle")
+                })
+        }
+    }
+}
+
 struct ConflictsList_Previews: PreviewProvider {
-    static var conflicts: [Conflict] = load("conflictData.json")
+    @State static var selection: RehearsalViewTag? = .ManageConflicts
+    @State static var conflicts: [Conflict] = load("conflictData.json")
     
     static var previews: some View {
-        ConflictsListView(conflicts: conflicts)
-            .environmentObject(Portal())
+        NavigationView {
+            ConflictsListView(selection: $selection,
+                              conflicts: $conflicts)
+                .environmentObject(Portal())
+        }
     }
 }

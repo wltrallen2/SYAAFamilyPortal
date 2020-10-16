@@ -50,16 +50,22 @@ struct StudentProfileEditView: View {
             if self.showPicker == .Birthdate {
                 BirthdatePickerView(date: $student.birthdate,
                                     presentationMode: $showPicker)
+                    .animation(.easeOut)
+                    .transition(.move(edge: .bottom))
             }
             
             if self.showPicker == .Graduation {
                 GraduationPickerView(gradYear: $student.expectedGraduation,
                                      presentationMode: $showPicker)
+                    .animation(.easeOut)
+                    .transition(.move(edge: .bottom))
             }
             
             if self.showPicker == .Grade {
                 GradeSliderView(grade: $student.currentGrade,
                                 presentationMode: $showPicker)
+                    .animation(.easeOut)
+                    .transition(.move(edge: .bottom))
             }
         }
     }

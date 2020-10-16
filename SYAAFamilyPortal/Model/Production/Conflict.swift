@@ -7,6 +7,8 @@
 
 import Foundation
 
+// FIXME: In future iteration, conflicts definitely need to be refractored to not be tied to a rehearsal, but rather to a date and time range.
+
 enum ConflictType: String {
     case Conflict = "conflict"
     case ArriveLate = "arrive_late"

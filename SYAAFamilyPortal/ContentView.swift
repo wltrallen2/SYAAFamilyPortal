@@ -17,7 +17,9 @@ struct ContentView: View {
             if(!self.portal.user!.isLinked) {
                 LinkUserView()
             } else {
-                HomeTabbedView(selection: hasVerified() ? .Rehearsals : .Profile)
+                HomeTabbedView(
+                    selection: hasVerified() ? .Rehearsals : .Profile,
+                    rehearsalFilter: RehearsalFilter(portal: portal))
             }
         }
     }

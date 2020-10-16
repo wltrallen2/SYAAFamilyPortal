@@ -14,6 +14,7 @@ enum CallView {
 
 struct RehearsalDetailView: View {
     @EnvironmentObject var portal: Portal
+    @Binding var selection: RehearsalViewTag?
     var rehearsal: Rehearsal
     var students: [Student]
         
@@ -43,11 +44,21 @@ struct RehearsalDetailView: View {
                     myCast: portal.getMyCastForRehearsal(rehearsal))
             }
             
-            // TODO: Continue developing here.
             Spacer()
         }
         .padding(16)
         .navigationTitle("Schedule Detail")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(
+            leading:
+                HStack {
+                    Button(action: {
+                        self.selection = .NilValue
+                    }, label: {
+                        Label("Back", systemImage: "chevron.left")
+                    })
+                }
+        )
     }
 }
 
@@ -87,9 +98,14 @@ struct RehearsalDetails: View {
 }
 
 struct RehearsalDetailView_Previews: PreviewProvider {
+    @State static var selection: RehearsalViewTag? = .RehearsalDetail
     static var previews: some View {
-        RehearsalDetailView(rehearsal: Production.default.rehearsals[0],
-                            students: [Portal().otherStudents[0]])
-            .environmentObject(Portal())
+        NavigationView {
+            RehearsalDetailView(
+                selection: $selection,
+                rehearsal: Production.default.rehearsals[0],
+                                students: [Portal().otherStudents[0]])
+                .environmentObject(Portal())
+        }
     }
 }

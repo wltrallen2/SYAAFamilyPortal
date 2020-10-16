@@ -7,13 +7,29 @@
 
 import Foundation
 
-struct Rehearsal: IdCodable {
+struct Rehearsal: IdCodable, Equatable, Hashable {
     var id: Int
     var productionId: Int
     var start: Date
     var end: Date
     var description: String
     var characterIds: [Int]
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (a: Rehearsal, b: Rehearsal) -> Bool {
+        let arrayA = a.characterIds.sorted(by: { (a, b) in a < b})
+        let arrayB = b.characterIds.sorted(by: { (a, b) in a < b})
+
+        return a.id == b.id
+            && a.productionId == b.productionId
+            && a.start == b.start
+            && a.end == b.end
+            && a.description == b.description
+            && arrayA.elementsEqual(arrayB)
+    }
 }
 
 enum RehearsalCodingKeys: CodingKey {
