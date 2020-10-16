@@ -20,6 +20,7 @@ struct ConflictTabElement: Hashable, Equatable {
     }
 }
 
+// FIXME: Adding or editing a conflict resets the RehearsalFilter object. Debug in a future iteration.
 struct ConflictsListView: View {
     @EnvironmentObject var portal: Portal
 

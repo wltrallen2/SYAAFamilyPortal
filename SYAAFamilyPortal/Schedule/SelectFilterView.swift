@@ -39,24 +39,33 @@ struct SelectFilterView: View {
             .frame(maxWidth: maxWidth)
             .background(Color.lightGray)
             
-            VStack (alignment: .leading, spacing: 16){
-                FilterByStudentView(
-                    selectedStudents: $rehearsalFilter.selectedStudents,
-                    showAllOtherStudents: $rehearsalFilter.showAllOtherStudents)
-                
-                Divider()
-                    .frame(maxWidth: maxWidth - 32)
-                
-                FilterByDateView(dateRange: $rehearsalFilter.dateRange)
-                
-                Divider()
-                    .frame(maxWidth: maxWidth - 32)
-                
-                FilterByConflictsView(
-                    withConflictsOnly: $rehearsalFilter.withConflictsOnly)
+            ScrollView {
+                VStack (alignment: .leading, spacing: 16){
+                    FilterByStudentView(
+                        selectedStudents: $rehearsalFilter.selectedStudents,
+                        showAllOtherStudents: $rehearsalFilter.showAllOtherStudents)
+                    
+                    Divider()
+                    
+                    FilterByDateView(rehearsalFilter: rehearsalFilter,
+                                     showAll: rehearsalFilter.showAll)
+                    
+                    Divider()
+                    
+                    FilterByConflictsView(
+                        withConflicts: $rehearsalFilter.withConflicts,
+                        showConflicts:
+                            rehearsalFilter.withConflicts == .With
+                            || rehearsalFilter.withConflicts == .All,
+                        showNoConflicts:
+                            rehearsalFilter.withConflicts == .Without
+                            || rehearsalFilter.withConflicts == .All)
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 16)
+                .frame(maxWidth: maxWidth)
             }
-            .padding(.vertical, 8)
-            .padding(.horizontal, 16)
+
             
             Spacer()
             
@@ -69,7 +78,8 @@ struct SelectFilterView: View {
             .padding(16)
             .frame(maxWidth: maxWidth)
             .onTapGesture {
-                // NEXT: Insert closure to clear filter here
+                rehearsalFilter.clearFilter()
+                showFilter = false
             }
             
         }
@@ -143,19 +153,65 @@ struct FilterByStudentView : View {
 // MARK: - Filter by Date View
 //**********************************************************************
 struct FilterByDateView: View {
-    @Binding var dateRange: Range<Date>?
-    @State var showAll: Bool = true
+    @ObservedObject var rehearsalFilter: RehearsalFilter
+    @State var showAll: Bool
     
     var body: some View {
-        VStack {
+        VStack (alignment: .leading){
             Text("Filter by Dates View")
                 .portalLabelStyle()
             
-            Toggle(isOn: $showAll,
-                   label: {
-                Text("Show All")
-            })
-        }
+            HStack {
+                Toggle("Show All", isOn: $showAll)
+                    .labelsHidden()
+                    .onChange(
+                        of: showAll,
+                        perform: { _ in
+                            if showAll {
+                                rehearsalFilter.resetDateRange()
+                            }
+                        }
+                    )
+                
+                Text("Show All Dates")
+            }.padding(.leading, 16)
+            
+            if !showAll {
+                VStack (alignment: .leading, spacing: 16) {
+                    HStack {
+                        Text("From: ")
+                            .frame(width: 50, alignment: .leading)
+                        DatePicker(selection: $rehearsalFilter.startDate,
+                                   displayedComponents: .date,
+                                   label: {
+                                    Text("From")
+                                   }
+                        )
+                        .labelsHidden()
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, -4)
+                        .portalFieldStyle()
+                    }
+                    
+                    HStack {
+                        Text("To: ")
+                            .frame(width: 50, alignment: .leading)
+                        DatePicker(selection: $rehearsalFilter.endDate,
+                                   displayedComponents: .date,
+                                   label: {
+                                    Text("From")
+                                   }
+                        )
+                        .labelsHidden()
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, -4)
+                        .portalFieldStyle()
+
+                    }
+                }.padding(.leading, 16)
+
+            }
+        }.frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -163,11 +219,70 @@ struct FilterByDateView: View {
 // MARK: - Filter by Conflicts View
 //**********************************************************************
 struct FilterByConflictsView: View {
-    @Binding var withConflictsOnly: Bool
+    @Binding var withConflicts: ShowConflicts
+    
+    @State var showConflicts: Bool
+    @State var showNoConflicts: Bool
     
     var body: some View {
-        VStack {
+        VStack (alignment: .leading){
             Text("Filter by Conflicts View")
+                .portalLabelStyle()
+                        
+            HStack {
+                Toggle("No Conflicts", isOn: $showNoConflicts)
+                    .labelsHidden()
+                    .onChange(
+                        of: showNoConflicts,
+                        perform: { _ in
+                            if showNoConflicts {
+                                withConflicts = showConflicts
+                                    ? .All : .Without
+                            } else {
+                                withConflicts = showConflicts
+                                    ? .With : .None
+                            }
+                        }
+                    )
+                
+                VStack {
+                    Text("Show Rehearsal\nfor which I have\n")
+                        + Text("NO conflicts")
+                        .fontWeight(.heavy)
+                        .foregroundColor(.myGreen)
+                }.frame(height: 75)
+                .padding(.leading, 8)
+
+            }.padding(.leading, 16)
+            
+            HStack {
+                Toggle("Conflicts", isOn: $showConflicts)
+                    .labelsHidden()
+                    .onChange(
+                        of: showConflicts,
+                        perform: { _ in
+                            if showConflicts {
+                                withConflicts = showNoConflicts
+                                    ? .All : .With
+                            } else {
+                                withConflicts = showNoConflicts
+                                    ? .Without : .None
+                            }
+                        }
+                    )
+                
+                VStack {
+                    Text("Show Rehearsal\nfor which\nI have ")
+                        + Text("Conflicts")
+                        .fontWeight(.heavy)
+                        .foregroundColor(.red)
+                }.frame(height: 75)
+                .padding(.leading, 8)
+
+                
+            }.padding(.leading, 16)
+
+
         }
     }
 }
