@@ -11,6 +11,10 @@
 		36012A22253B768300F048FD /* RequestPwdResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36012A21253B768300F048FD /* RequestPwdResetView.swift */; };
 		36012A27253B768700F048FD /* SentPwdResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36012A26253B768700F048FD /* SentPwdResetView.swift */; };
 		36012A2F253B76C700F048FD /* CustomText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36012A2E253B76C700F048FD /* CustomText.swift */; };
+		36012A41253B838300F048FD /* Secure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36012A40253B838300F048FD /* Secure.plist */; };
+		36012A46253B863A00F048FD /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36012A45253B863A00F048FD /* API.swift */; };
+		36012A4B253B890F00F048FD /* HTTPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36012A4A253B890F00F048FD /* HTTPError.swift */; };
+		36012A50253B8B4B00F048FD /* HTTPOutputProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36012A4F253B8B4B00F048FD /* HTTPOutputProcessor.swift */; };
 		3602867225258E30009E0CA9 /* RehearsalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3602867125258E30009E0CA9 /* RehearsalsView.swift */; };
 		362D0BEB2537D41600DFCBEA /* ConflictAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362D0BEA2537D41600DFCBEA /* ConflictAddView.swift */; };
 		3630BDA425324AF3002B5AC4 /* adultData.json in Resources */ = {isa = PBXBuildFile; fileRef = 3630BDA325324AF3002B5AC4 /* adultData.json */; };
@@ -100,6 +104,10 @@
 		36012A21253B768300F048FD /* RequestPwdResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPwdResetView.swift; sourceTree = "<group>"; };
 		36012A26253B768700F048FD /* SentPwdResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentPwdResetView.swift; sourceTree = "<group>"; };
 		36012A2E253B76C700F048FD /* CustomText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomText.swift; sourceTree = "<group>"; };
+		36012A40253B838300F048FD /* Secure.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secure.plist; sourceTree = "<group>"; };
+		36012A45253B863A00F048FD /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		36012A4A253B890F00F048FD /* HTTPError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPError.swift; sourceTree = "<group>"; };
+		36012A4F253B8B4B00F048FD /* HTTPOutputProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPOutputProcessor.swift; sourceTree = "<group>"; };
 		3602867125258E30009E0CA9 /* RehearsalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RehearsalsView.swift; sourceTree = "<group>"; };
 		362D0BEA2537D41600DFCBEA /* ConflictAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictAddView.swift; sourceTree = "<group>"; };
 		3630BDA325324AF3002B5AC4 /* adultData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = adultData.json; sourceTree = "<group>"; };
@@ -249,6 +257,9 @@
 			isa = PBXGroup;
 			children = (
 				365801642527D801004AE6A7 /* PortalDatabase.swift */,
+				36012A45253B863A00F048FD /* API.swift */,
+				36012A4A253B890F00F048FD /* HTTPError.swift */,
+				36012A4F253B8B4B00F048FD /* HTTPOutputProcessor.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -351,6 +362,7 @@
 				36B467032526EE660056E349 /* Colors.xcassets */,
 				36B49342253AAED100B77B79 /* Constants.swift */,
 				36ED5F08252529030022945C /* Info.plist */,
+				36012A40253B838300F048FD /* Secure.plist */,
 				36ED5F33252529FF0022945C /* DataSources */,
 				36ED5F05252529030022945C /* Preview Content */,
 			);
@@ -532,6 +544,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36012A41253B838300F048FD /* Secure.plist in Resources */,
 				3630BDA425324AF3002B5AC4 /* adultData.json in Resources */,
 				368C571A2536364C0061419B /* conflictData.json in Resources */,
 				3630BDB425324F05002B5AC4 /* studentData.json in Resources */,
@@ -605,6 +618,7 @@
 				36ED5F4425252C970022945C /* Adult.swift in Sources */,
 				367367B3253530B00010FA43 /* ActorListView.swift in Sources */,
 				36B49321253A2BC400B77B79 /* PrintableSchedule.swift in Sources */,
+				36012A50253B8B4B00F048FD /* HTTPOutputProcessor.swift in Sources */,
 				366A9E25252FA11B0066CDB6 /* PortalPickerViews.swift in Sources */,
 				36ED5F02252529030022945C /* ContentView.swift in Sources */,
 				36B49339253AAE3900B77B79 /* CustomButton.swift in Sources */,
@@ -632,6 +646,8 @@
 				36B49334253AADC900B77B79 /* CustomField.swift in Sources */,
 				366A9E1F252F9E210066CDB6 /* StudentProfileEditView.swift in Sources */,
 				36B492D52538D1B100B77B79 /* SelectFilterView.swift in Sources */,
+				36012A4B253B890F00F048FD /* HTTPError.swift in Sources */,
+				36012A46253B863A00F048FD /* API.swift in Sources */,
 				3630BDFD2533AAD3002B5AC4 /* RehearsalTab.swift in Sources */,
 				36012A27253B768700F048FD /* SentPwdResetView.swift in Sources */,
 				366A9E81252FE6550066CDB6 /* StudentTab.swift in Sources */,
