@@ -22,14 +22,6 @@ struct RehearsalsView: View {
     @Binding var showFilter: Bool
     @ObservedObject var rehearsalFilter: RehearsalFilter
 
-    
-    // NEXT: Write filter code in this view
-    // NEXT: Complete filter view, passing filter info back to this view
-    // NEXT: Add graphics back to Login screens
-    // NEXT: Connect to database
-    
-    // NEXT: Family disappears at bottom of home parent when home parent is edited. Might have to do with local data storage.
-    
     var body: some View {
         ZStack (alignment: .topTrailing){
             ScrollView {
@@ -59,6 +51,7 @@ struct RehearsalsView: View {
         }
         .navigationTitle("Rehearsal Schedule")
         .navigationBarItems(trailing: RehearsalsViewBarItems(
+                                rehearsalFilter: rehearsalFilter,
                                 selection: $selection,
                                 showFilter: $showFilter))
     }
@@ -71,6 +64,7 @@ struct RehearsalsView: View {
 
 struct RehearsalsViewBarItems : View {
     @EnvironmentObject var portal: Portal
+    @ObservedObject var rehearsalFilter: RehearsalFilter
     @Binding var selection: RehearsalViewTag?
     @Binding var showFilter: Bool
         
@@ -86,17 +80,39 @@ struct RehearsalsViewBarItems : View {
             }
             .isDetailLink(false)
         Menu {
-            Button(action: {
-                self.selection = .ManageConflicts
-            }, label: {
-                Label("Manage Conflicts", systemImage: "calendar")
-            })
-            
-            Button(action: {
-                self.showFilter.toggle()
-            }, label: {
-                Label("Filter By...", systemImage: "line.horizontal.3.decrease.circle")
-            })
+                Button(action: {
+                    self.selection = .ManageConflicts
+                }, label: {
+                    Label("Manage Conflicts", systemImage: "calendar")
+                })
+                
+                Button(action: {
+                    self.showFilter.toggle()
+                }, label: {
+                    Label("Filter By...", systemImage: "line.horizontal.3.decrease.circle")
+                })
+                
+                Button(action: {
+                    let printController = UIPrintInteractionController.shared
+                    let printInfo = UIPrintInfo(dictionary: nil)
+                    printInfo.outputType = .general
+                    printInfo.jobName = "Print Job"
+                    printController.printInfo = printInfo
+                    
+                    let htmlRehearsalPrint = RehearsalPrint(
+                        forStudents: rehearsalFilter.selectedStudents,
+                        andRehearsals: rehearsalFilter.filteredRehearsals,
+                        usingPortal: portal)
+                    
+                    let formatter = UIMarkupTextPrintFormatter(markupText: htmlRehearsalPrint.html)
+                    formatter.perPageContentInsets = UIEdgeInsets(top: 36, left: 36, bottom: 36, right: 36)
+                    printController.printFormatter = formatter
+                    
+                    printController.present(animated: true, completionHandler: nil)
+                }, label: {
+                    Label("Print Schedule", systemImage: "printer")
+                })
+
             } label: {
                 Label("More", systemImage: "ellipsis.circle")
             }

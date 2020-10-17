@@ -40,5 +40,6 @@ struct ForgotPasswordParentView: View {
 struct ForgotPasswordView_Previews: PreviewProvider {
     static var previews: some View {
         ForgotPasswordParentView()
+            .environmentObject(Portal())
     }
 }

@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+// NEXT: Connect to Database
+
+// NEXT: Family disappears at bottom of home parent when home parent is edited. Might have to do with local data storage.
+
 struct ContentView: View {
     @EnvironmentObject var portal: Portal
     
@@ -39,7 +43,21 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-            .environmentObject(Portal())
+        Group {
+            ContentView()
+                .environmentObject(Portal())
+                .previewDevice("iPhone 8")
+                .previewDisplayName("iPhone 8")
+            
+            ContentView()
+                .environmentObject(Portal())
+                .previewDevice("iPhone 11")
+                .previewDisplayName("iPhone 11")
+
+//            ContentView()
+//                .environmentObject(Portal())
+//                .previewDevice("iPhone 11 Pro Max")
+//                .previewDisplayName("iPhone 11 Pro Max")
+        }
     }
 }

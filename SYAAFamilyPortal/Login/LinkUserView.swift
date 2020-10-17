@@ -13,17 +13,38 @@ struct LinkUserView: View {
     @State var code: String = ""
     
     var body: some View {
-        VStack(spacing: 16) {
-            Text("LinkUserView")
+        ZStack {
+            Color.lightGray
+                .edgesIgnoringSafeArea(.all)
             
-            TextField("Linking Code", text: $code)
-                .padding()
-            
-            Button("Link with Success") {
-                _ = self.portal.selectPerson(usingLinkingCode: self.code)
+            VStack {
+                MainHeader(subHeadImageString: "Text-LinkAccount")
+                Spacer()
+                
+                CustomText(text: "Your login is not yet linked to an account.",
+                           textType: .Italic)
+                
+                CustomText(text: Constants.Content.LinkAccountInstructionString,
+                           textType: .Bold)
+                Spacer()
+                
+                CustomField(fieldType: .TextField,
+                            iconName: "number.circle.fill",
+                            placeholder: "Link Code",
+                            text: $code)
+
+                                
+                CustomButton(style: .Traditional,
+                             action: {
+                                _ = portal.selectPerson(usingLinkingCode: code)
+                            },
+                             labelString: "Link To My Account")
+                
+                CustomErrorArea(message: portal.error)
+                    .padding(.top, 8)
+                
             }
-            
-            Button("Link with Failure") {}
+            .padding(16)
         }
     }
 }

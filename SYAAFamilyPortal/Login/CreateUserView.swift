@@ -16,28 +16,57 @@ struct CreateUserView: View {
     @State var passwordVerification: String = ""
     
     var body: some View {
-        VStack (spacing: 16) {
-            Text("Create User View")
+        ZStack {
+            Color.lightGray
+                .edgesIgnoringSafeArea(.all)
             
-            TextField("Username", text: $userToken)
-                .autocapitalization(.none)
-            SecureField("Password", text: $password)
-                .autocapitalization(.none)
-            SecureField("Verify Password", text: $passwordVerification)
-                .autocapitalization(.none)
-            
-            Button("Register as New User", action: {
-                _ = self.portal.createUser(
-                    self.userToken,
-                    withPassword: self.password,
-                    andVerificationPassword: self.passwordVerification)
-            })
-            
-            Button("Return to Login Screen") {
-                self.currentView = .Verify
+            VStack (spacing: 0){
+                MainHeader(subHeadImageString: "Text-CreateAccount")
+                    .scaledToFit()
+                Spacer()
+                
+                VStack(spacing: 2) {
+                    CustomField(fieldType: .TextField,
+                                iconName: "person.circle.fill",
+                                placeholder: "Choose a Username",
+                                text: $userToken)
+                    
+                    CustomField(fieldType: .SecureField,
+                                iconName: "lock.circle.fill",
+                                placeholder: "Choose a password",
+                                text: $password)
+                    
+                    CustomField(fieldType: .SecureField,
+                                iconName: "lock.circle.fill",
+                                placeholder: "Reenter your password to verify",
+                                text: $passwordVerification)
+                }
+                
+                CustomButton(style: .Traditional,
+                             action: {
+                                _ = portal
+                                    .createUser(
+                                        userToken,
+                                        withPassword: password,
+                                        andVerificationPassword: passwordVerification)
+                             },
+                             labelString: "Register Now")
+                
+                CustomErrorArea(message: portal.error)
+                    .padding(.top, 8)
+                
+                VStack {
+                    CustomButton(style: .TextOnly,
+                                 action: {
+                                    portal.error = ""
+                                    currentView = .Verify
+                                },
+                                 labelString: "I already have an account.\n Return to Login.")
+                }
             }
+            .scaledToFit()
+            .padding(16)
         }
-        .padding()
     }
 }
 

@@ -199,6 +199,7 @@ class Portal: ObservableObject {
         }
         
         // TODO: Implement this function
+        // FIXME: Temporary implementation
         let links: [[String: Int]] = db.load("userPersonLinksData.json")
         
         let link = links.first(where: { link -> Bool in
