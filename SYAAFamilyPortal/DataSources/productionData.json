@@ -2,7 +2,12 @@
     {
         "id": 1,
         "title": "Willy Wonka and the Chocolate Factory, Jr.",
-        "season": "2020-2021",
+        "season": {
+            "id": 1,
+            "description": "2020-2021 Season",
+            "start": "2020-08-01",
+            "end": "2021-05-31"
+        },
         "start": "2020-08-01",
         "end": "2020-11-01",
         "rehearsals": [
@@ -1370,7 +1375,12 @@
     {
         "id": 2,
         "title": "Holiday Hoedown 2: Christmas Around the Campfire",
-        "season": "2020-2021",
+        "season": {
+            "id": 1,
+            "description": "2020-2021 Season",
+            "start": "2020-08-01",
+            "end": "2021-05-31"
+        },
         "start": "2020-10-24",
         "end": "2020-12-20",
         "rehearsals": [],
