@@ -20,6 +20,8 @@
 		<string>update/student</string>
 		<key>SelectFamily</key>
 		<string>select/family</string>
+		<key>SelectUpcomingProductions</key>
+		<string>select/productions/upcoming</string>
 	</dict>
 	<key>APIPrefix_Remote</key>
 	<string>http://www.syaaonline.com/api/</string>

@@ -19,7 +19,9 @@ protocol IdCodable: Codable {
 // FIXME: Update website to use SSL and remove the exception to the NSAppTransportSecurity in the Info.plist
 class PortalDatabase {
     var api: API
-    private var cancellable: AnyCancellable?
+//    var queue = OperationQueue();
+//    var cancellable: AnyCancellable?
+    var cancellables = [AnyCancellable]()
     
     init() {
         guard let path = Bundle.main.path(forResource: "Secure", ofType: "plist"),
@@ -40,7 +42,7 @@ class PortalDatabase {
             return
         }
         
-        self.cancellable = URLSession.shared.dataTaskPublisher(for: request)
+        let cancellable = URLSession.shared.dataTaskPublisher(for: request)
             .tryMap{ output -> ReceivingType in
                 let processor = HTTPOutputProcessor(output: output)
                 return try processor.decode(toType: type)
@@ -60,6 +62,8 @@ class PortalDatabase {
             }, receiveValue: { object in
                 callback(object)
             })
+        
+        cancellable.store(in: &cancellables)
     }
     
     //**********************************************************************

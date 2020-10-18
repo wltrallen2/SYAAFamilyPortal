@@ -309,8 +309,20 @@ class Portal: ObservableObject {
     //**********************************************************************
     
     func setProductions() {
-        // FIXME: Temporary Implementation
-        productions = db.load("productionData.json");
+        // There is no data needed for this API call, so I pass in an empty array to utilize existing executeAPICall method, which requires some sort of dictionary to encode. Empty data will simply be ignored by API.
+        let emptyDict = [String: String]()
+        
+        db.executeAPICall(onPath: db.api.path(.SelectUpcomingProductions),
+                          withEncodable: emptyDict,
+                          withTypeToReceive: [Production].self,
+                          onFail: { error, errorMsg in
+                            print("failed")
+                            self.receiveError(error, errorMsg, forAPIRequest: .SelectUpcomingProductions)},
+                          andOnSuccess: { (productions: [Production]) in
+                            print("success")
+                            self.productions.removeAll()
+                            self.productions.append(contentsOf: productions)
+                          })
     }
         
     func setOtherStudents() {
