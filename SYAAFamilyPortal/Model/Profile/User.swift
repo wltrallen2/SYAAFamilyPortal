@@ -10,7 +10,7 @@
 struct User : IdCodable {    
     var id:Int
     let userToken:String
-    var isLinked:Bool = false
+    var isLinked:Bool
     
     static let `default` = User(id: 1, userToken: "wltrallen2", isLinked: true)
 }

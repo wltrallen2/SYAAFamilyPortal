@@ -9,8 +9,6 @@ import SwiftUI
 
 // NEXT: Connect to Database
 
-// NEXT: Family disappears at bottom of home parent when home parent is edited. Might have to do with local data storage.
-
 struct ContentView: View {
     @EnvironmentObject var portal: Portal
     
@@ -20,10 +18,13 @@ struct ContentView: View {
         } else {
             if(!self.portal.user!.isLinked) {
                 LinkUserView()
-            } else {
+            } else if (portal.adult != nil || portal.student != nil){
                 HomeTabbedView(
                     selection: hasVerified() ? .Rehearsals : .Profile,
                     rehearsalFilter: RehearsalFilter(portal: portal))
+            } else {
+                // FIXME: Replace this with a spinning icon?
+                Text("Logging in...")
             }
         }
     }

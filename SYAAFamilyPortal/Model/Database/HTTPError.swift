@@ -19,6 +19,7 @@ enum HTTPError: Int, LocalizedError {
     case PasswordMatch = 462
     case InvalidLinkingCode = 469
     case InternalServiceError = 500
+    case InvalidJsonObjectType = 501
     
     var description: String {
         switch self {
@@ -42,6 +43,8 @@ enum HTTPError: Int, LocalizedError {
             return "InvalidLinkingCode"
         case .InternalServiceError:
             return "InternalServiceError"
+        case .InvalidJsonObjectType:
+            return "InvalidJsonObjectType"
         }
     }
 }

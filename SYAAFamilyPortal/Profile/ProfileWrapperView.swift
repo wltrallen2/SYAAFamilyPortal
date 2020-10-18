@@ -40,8 +40,8 @@ struct ProfileWrapperView: View {
                           message: Text(alertMessage),
                           dismissButton: .default(Text("OK"), action: {
                             self.showAlert = false;
-                            if adult != nil { adult!.person.verify()}
-                            else if student != nil { student!.person.verify() }
+                            if adult != nil { adult!.person.hasVerified.toggle()}
+                            else if student != nil { student!.person.hasVerified.toggle() }
                             saveData()
                           }))
                    })
@@ -64,9 +64,9 @@ struct ProfileWrapperView: View {
     private func saveData() {
         if portal.isLoggedIn {
             if self.adult != nil {
-                _ = portal.updatePersonUsing(adult!)
+                portal.updatePersonUsing(adult!)
             } else if self.student != nil {
-                _ = portal.updatePersonUsing(student!)
+                portal.updatePersonUsing(student!)
             }
         }
     }

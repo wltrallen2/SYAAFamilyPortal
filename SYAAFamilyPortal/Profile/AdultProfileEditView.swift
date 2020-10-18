@@ -15,6 +15,9 @@ enum PhoneIndicator {
     case Phone2
 }
 
+// FIXME: There's some weirdness with extra motion in the phoneTypePicker
+// NEXT: When you change a person detail, the family disappears until you navigate away from the screen and back to it again.
+
 // MARK: -
 struct AdultProfileEditView: View {
     @EnvironmentObject var portal: Portal

@@ -28,7 +28,8 @@ struct HTTPOutputProcessor {
             let httpError = HTTPError.init(rawValue: response.statusCode) ?? HTTPError.InternalServiceError
             throw httpError }
         guard let obj = try? JSONDecoder().decode(type, from: output.data) else {
-            throw HTTPError.InternalServiceError }
+            print("Type: \(T.self)")
+            throw HTTPError.InvalidJsonObjectType }
         return obj
     }
 }

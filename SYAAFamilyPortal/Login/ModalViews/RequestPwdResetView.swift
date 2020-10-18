@@ -36,7 +36,11 @@ struct RequestPwdResetView: View {
                     
                     CustomButton(style: .Traditional,
                                  action: {
-                                    emailSent = portal.requestPwdReset(forUserWithEmail: email)
+                                    portal.requestPwdReset(
+                                        forUserWithEmail: email,
+                                        onCompletion: { success in
+                                            self.emailSent = success
+                                        })
                                  },
                                  labelString: "Send Reset Instructions")
                     

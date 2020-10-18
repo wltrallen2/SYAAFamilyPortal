@@ -22,7 +22,7 @@ class Portal: ObservableObject {
     }
     @Published var adult: Adult? {
         didSet {
-            if self.adult != nil {
+            if self.adult != nil && self.family.count == 0 {
                 self.fetchFamily()
             }
         }
@@ -33,11 +33,7 @@ class Portal: ObservableObject {
         }
     }
     
-    @Published var family: [Personable] = [
-                                    Student.default, Student.default,
-                                    Adult.default,
-                                    Adult.default
-                                ] {
+    @Published var family: [Personable] = [] {
         didSet {
             self.setFamilyConflicts()
         }
@@ -67,6 +63,7 @@ class Portal: ObservableObject {
         self.error = ""
         self.isLoggedIn = false
     }
+    
     /**
      Logs in a user based on their userToken and password combination.
      
@@ -74,37 +71,25 @@ class Portal: ObservableObject {
      
      If the user is not valid, sets isLoggedIn to false, sets the current user error message, and returns false.
      */
-    func verifyUser(_ userToken: String, withPassword pwd: String) -> Bool {
-        var success = false
+    func verifyUser(_ userToken: String, withPassword pwd: String) {
+
+        let dataDict = [
+            "userToken": userToken,
+            "password": pwd
+        ]
         
-        // TODO: Implement this function.
-        // FIXME: Temporary implementation
-        var tempToken = userToken
-        var tempPwd = pwd
-        if tempToken == "" {
-            tempToken = "wltrallen2"
-            tempPwd = "password"
-        }
-        let users: [User] = db.load("userData.json") // Load local data for users
-        let userIterator = users.makeIterator()
-        
-        if let validUser = userIterator.first(where: { user -> Bool in
-            return user.userToken == tempToken
-                && tempPwd == "password"
-        }) {
-            self.user = validUser
-            self.isLoggedIn = true
-            
-            if(self.user!.isLinked) {
-                _ = self.selectPersonForUser(self.user!)
-            }
-            
-            success = true
-        } else {
-            self.error = "The username/password combination you entered does not appear in our database."
-        }
-        
-        return success
+        db.executeAPICall(onPath: db.api.path(.VerifyUser),
+                          withEncodable: dataDict,
+                          withTypeToReceive: User.self,
+                          onFail: { self.receiveError($0, $1, forAPIRequest: .VerifyUser) },
+                          andOnSuccess: { (user : User) in
+                            self.user = user
+                            self.isLoggedIn = true
+                            
+                            if(self.user!.isLinked) {
+                                self.selectPersonForUser(self.user!)
+                            }
+                          })
     }
     
     /**
@@ -114,20 +99,33 @@ class Portal: ObservableObject {
      
      If not valid, set isLoggedIn to false, set the current user error message, and return false.
      */
-    func createUser(_ userToken: String, withPassword pwd: String, andVerificationPassword pwd2: String) -> Bool {
-        // TODO: Implement this function.
-        // FIXME: Temporary implementation
-        let users: [User] = db.load("userData.json")
-        let count = users.count
+    func createUser(_ userToken: String, withPassword pwd: String, andVerificationPassword pwd2: String) {
+        if pwd != pwd2 {
+            error = "The passwords you entered did not match. Please try again."
+            return
+        } else if userToken.count < 8 {
+            error = "Please choose a username that has at least eight (8) characters."
+            return
+        }
         
-        let user = User(id: count + 1, userToken: userToken, isLinked: false)
-        db.insert(codableObject: user,
-                  intoArray: users,
-                  usingFileWithName: "userData.json")
+        let dataDict = [
+            "userToken": userToken,
+            "password": pwd,
+            "password_verify": pwd2
+        ]
         
-        self.user = user
-        self.isLoggedIn = true
-        return true
+        db.executeAPICall(onPath: db.api.path(.CreateUser),
+                          withEncodable: dataDict,
+                          withTypeToReceive: User.self,
+                          onFail: { self.receiveError($0, $1, forAPIRequest: .CreateUser) },
+                          andOnSuccess: { (user: User) in
+                            self.user = user
+                            self.isLoggedIn = true
+                            
+                            if(self.user!.isLinked) {
+                                self.selectPersonForUser(self.user!)
+                            }
+                          })
     }
     
     /**
@@ -136,9 +134,19 @@ class Portal: ObservableObject {
      NOTE: The API currently only resets the password for adult users since only adult users are required to have email addresses on file. For the future, implement an option that accepts a userToken instead. This will also allow for users to have more than one userToken tied to their account.
      */
     // FIXME: Implement a version of this function that allows users to reset their password using their userToken, not their email. This will allow for students to reset their password as well.
-    func requestPwdReset(forUserWithEmail email: String) -> Bool {
-        // TODO: Implement this function.
-        return true
+    func requestPwdReset(forUserWithEmail email: String, onCompletion completion:@escaping (Bool) -> Void) {
+        if !email.isValidEmail() {
+            error = "Please enter a valid email address."
+            return
+        }
+        
+        db.executeAPICall(onPath: db.api.path(.PasswordReset),
+                          withEncodable: ["email":email],
+                          withTypeToReceive: [String:Bool].self,
+                          onFail: { self.receiveError($0, $1, forAPIRequest: .PasswordReset) },
+                          andOnSuccess: { (outcome: [String:Bool]) in
+                            completion(outcome["success"] ?? false)
+                          })
     }
     
     //**********************************************************************
@@ -148,171 +156,138 @@ class Portal: ObservableObject {
     /**
      Using the userId, queries the API to select the user information and sets the primary user for this session. If successful, returns true. If unsuccessful, sets the current user error message and returns false.
      */
-    func selectPersonForUser(_ user: User) -> Bool {
-        // TODO: Implement this function
-        var success = false
-        
+    func selectPersonForUser(_ user: User) {
         guard self.user != nil else {
             fatalError("No user logged in.")
         }
         
         if !self.user!.isLinked {
             self.error = "User has not been linked to person accoutn yet"
-            return false
+            return
         }
         
-        // TODO: Implement this function
-        let links: [[String: Int]] = db.load("userPersonLinksData.json")
-        
-        let link = links.first(where: { link -> Bool in
-            return link["userId"] == self.user!.id
-        })
-        
-        let adults: [Adult] = db.load("adultData.json")
-        let students: [Student] = db.load("studentData.json")
-        
-        if let personId = link?["personId"] {
-            self.adult = adults.first(where: { adult -> Bool in
-                return adult.id == personId
-            })
-            
-            if self.adult == nil {
-                self.student = students.first(where: { student -> Bool in
-                    return student.id == personId
-                })
-            }
-            
-            success = self.adult != nil || self.student != nil
-        }
-        
-        return success
+        db.executeAPICall(onPath: db.api.path(.SelectUser),
+                          withEncodable: ["userId":self.user!.id],
+                          withTypeToReceive: Adult.self,
+                          onFail: { (error, errorMsg) in
+                            self.receiveError(error, "SelectUser API Call - No Adult Found: \(error)", forAPIRequest: .SelectUser)
+                            self.db.executeAPICall(onPath: self.db.api.path(.SelectUser),
+                                              withEncodable: ["userId":self.user!.id],
+                                              withTypeToReceive: Student.self,
+                                              onFail: { (error, errorMsg) in
+                                                self.receiveError(error, "SelectUser API Call - No Student Found: \(error)", forAPIRequest: .SelectUser)
+                                              },
+                                              andOnSuccess: { (student: Student) in
+                                                self.student = student
+                                              })
+                          }, andOnSuccess: { (adult: Adult) in
+                            self.adult = adult
+                          })
     }
     
     /**
      Using the userId and the linking code, queries the API to link the user to a person and then sets the primary user for this session based off of the response data. If successful, returns true. Else, sets the current user error message and returns false.
      */
-    func selectPerson(usingLinkingCode code: String) -> Bool {
-        var success = false
-        
+    func selectPerson(usingLinkingCode code: String) {
         guard self.user != nil else {
             fatalError("No user logged in.")
         }
         
-        // TODO: Implement this function
-        // FIXME: Temporary implementation
-        let links: [[String: Int]] = db.load("userPersonLinksData.json")
-        
-        let link = links.first(where: { link -> Bool in
-            return link["userId"] == self.user!.id
-        })
-        
-        let adults: [Adult] = db.load("adultData.json")
-        if let personId = link?["personId"] {
-            self.adult = adults.first(where: { adult -> Bool in
-                return adult.id == personId
-            })
-            
-            if self.adult == nil {
-                let students: [Student] = db.load("studentData.json")
-                self.student = students.first(where: { student -> Bool in
-                    return student.id == personId
-                })
-            }
-        
-            if self.adult != nil || self.student != nil {
-                self.user!.isLinked = true
-                let users: [User] = load("userData.json")
-                db.insert(codableObject: self.user!,
-                          intoArray: users,
-                          usingFileWithName: "userData.json")
-                
-                success = true
-            }
-        
+        struct CodePair: Codable {
+            var userId: Int
+            var code: String
         }
         
-        return success
+        let codePair = CodePair(userId: user!.id, code: code)
+        
+        db.executeAPICall(onPath: db.api.path(.LinkUser),
+                          withEncodable: codePair,
+                          withTypeToReceive: Adult.self,
+                          onFail: { (error, errorMsg) in
+                            self.receiveError(error, "SelectUser API Call - No Adult Found: \(error)", forAPIRequest: .LinkUser)
+                            if error as? HTTPError == HTTPError.InvalidJsonObjectType {
+                                self.db.executeAPICall(
+                                    onPath: self.db.api.path(.SelectUser),
+                                    withEncodable: ["userId": self.user!.id],
+                                    withTypeToReceive: Student.self,
+                                    onFail: { (error, errorMsg) in
+                                        self.receiveError(error, "SelectUser API Call - No Student Found: \(error)", forAPIRequest: .SelectUser)
+                                    },
+                                    andOnSuccess: { student in
+                                        self.user?.isLinked = true
+                                        self.student = student
+                                    })
+                            } else {
+                                self.db.executeAPICall(onPath: self.db.api.path(.LinkUser),
+                                                  withEncodable: codePair,
+                                                  withTypeToReceive: Student.self,
+                                                  onFail: { (error, errorMsg) in
+                                                    self.receiveError(error, "SelectUser API Call - No Stuent Found: \(error)", forAPIRequest: .LinkUser)
+                                                  },
+                                                  andOnSuccess: { (student: Student) in
+                                                    self.user?.isLinked = true
+                                                    self.student = student
+                                                  })
+                            }
+                          }, andOnSuccess: { (adult: Adult) in
+                            self.user?.isLinked = true
+                            self.adult = adult
+                          })
     }
     
     /**
      Updates the database with the given person information. Returns true on success. Else, sets the current user error message and returns false.
      */
-    func updatePersonUsing(_ person: Personable) -> Bool {
-        // TODO: Implement this function
-        var success = false
-        
-        // FIXME: Temporary Implementation
+    func updatePersonUsing(_ person: Personable) {
         if person is Adult {
-            var adults: [Adult] = db.load("adultData.json")
-            adults.removeAll(where: { adult -> Bool in
-                return adult.id == person.id
-            })
-            
-            adults.append(person as! Adult)
-            db.save(encodableObject: adults, toFileWithName: "adultData.json")
-            
-            success = true
+            let adult = person as! Adult
+            db.executeAPICall(onPath: db.api.path(.UpdateAdult),
+                              withEncodable: adult,
+                              withTypeToReceive: Adult.self,
+                              onFail: { self.receiveError($0, $1, forAPIRequest: .UpdateAdult) },
+                              andOnSuccess: { self.updateLocalPeople(withPerson: $0) })
         } else if person is Student {
-            var students: [Student] = db.load("studentData.json")
-            students.removeAll(where: { student -> Bool in
-                return student.id == person.id
-            })
-            
-            students.append(person as! Student)
-            db.save(encodableObject: students, toFileWithName: "studentData.json")
-            
-            success = true
+            let student = person as! Student
+            db.executeAPICall(onPath: db.api.path(.UpdateStudent),
+                              withEncodable: student,
+                              withTypeToReceive: Student.self,
+                              onFail: { self.receiveError($0, $1, forAPIRequest: .UpdateStudent)},
+                              andOnSuccess: { self.updateLocalPeople(withPerson: $0) })
         }
-        
-        if adult?.id == person.id { adult = person as? Adult}
-        else if student?.id == person.id { student = person as? Student }
-        else if(family.contains(where: { familyMember in
-                return familyMember.id == person.id
-            })) {
-            
-            family.removeAll(where: { familyMember in
-                return familyMember.id == person.id
-            })
-            family.append(person)
-        }
-        
-        return success
     }
-    
+       
     func fetchFamily() {
-        // TODO: Implement this function.
         guard let adultId = self.adult?.person.id else { return }
         self.family.removeAll()
         
-        // FIXME: Temporary Implementation
-        let families: [[Int]] = db.load("familyLinksData.json")
-        var ids = families.first(where: { ids -> Bool in
-            return ids.contains(adultId)
-        })
-        
-        if ids == nil { return }
-        if ids!.count <= 1 { return }
-        
-        let adults: [Adult] = db.load("adultData.json")
-        let students: [Student] = db.load("studentData.json")
-        
-        ids!.removeAll(where: {id in
-            return id == adultId
-        })
-        
-        for id in ids! {
-            var person: Personable? = adults.first(where: { adult in
-                return adult.id == id
-            })
-            
-            if person == nil {
-                person = students.first(where: { student in
-                    return student.id == id
-                })
-            }
-            
-            if person != nil { self.family.append(person!) }
+        struct FamilyDataDict: Encodable {
+            var personId: Int
+            var typeLimit: String
         }
+        
+        let adultDataDict = FamilyDataDict(personId: self.adult!.person.id,
+                                           typeLimit: "Adult")
+        
+        let studentDataDict = FamilyDataDict(personId: self.adult!.person.id,
+                                             typeLimit: "Student")
+        
+        db.executeAPICall(onPath: db.api.path(.SelectFamily),
+                          withEncodable: adultDataDict,
+                          withTypeToReceive: Array<Adult>.self,
+                          onFail: { self.receiveError($0, $1, forAPIRequest: .SelectFamily)},
+                          andOnSuccess: { (adults: [Adult]) in
+                            self.family.append(
+                                contentsOf: adults.filter(
+                                    { $0.person.id != adultId}))
+                            
+                            self.db.executeAPICall(onPath: self.db.api.path(.SelectFamily),
+                                              withEncodable: studentDataDict,
+                                              withTypeToReceive: Array<Student>.self,
+                                              onFail: { self.receiveError($0, $1, forAPIRequest: .SelectFamily)},
+                                              andOnSuccess: { (students: [Student]) in
+                                                self.family.append(contentsOf: students)
+                                              })
+                          })
     }
     
     func getFamilyMembersOfType<T: Personable>(_ type: T.Type) -> [T] {
@@ -653,12 +628,31 @@ class Portal: ObservableObject {
     // MARK: - PRIVATE HELPER FUNCTIONS
     //**********************************************************************
     
+    private func receiveError(_ error: LocalizedError, _ errorMsg: String, forAPIRequest apiRequest: APIPath) {
+        print("Error executing \(apiRequest.rawValue) API Request: \(error)")
+        self.error = errorMsg
+    }
+    
     private func getStudentIdsForUser() -> [Int] {
         if self.student != nil { return [ self.student!.person.id ]}
         else {
             return family.compactMap( { $0 as? Student } ).map({ student in
                 return student.person.id
             })
+        }
+    }
+    
+    private func updateLocalPeople(withPerson person: Personable) {
+        if adult?.id == person.id { adult = person as? Adult}
+        else if student?.id == person.id { student = person as? Student }
+        else if(family.contains(where: { familyMember in
+                return familyMember.id == person.id
+            })) {
+            
+            family.removeAll(where: { familyMember in
+                return familyMember.id == person.id
+            })
+            family.append(person)
         }
     }
 }

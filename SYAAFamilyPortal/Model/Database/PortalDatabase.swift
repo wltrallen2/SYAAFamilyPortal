@@ -16,6 +16,7 @@ protocol IdCodable: Codable {
     var id: Int { get }
 }
 
+// FIXME: Update website to use SSL and remove the exception to the NSAppTransportSecurity in the Info.plist
 class PortalDatabase {
     var api: API
     private var cancellable: AnyCancellable?
@@ -30,7 +31,7 @@ class PortalDatabase {
         self.api = api
     }
 
-    func executeAPICall<SendingType: Encodable, ReceivingType: Decodable>(onPath path: String, withEncodable dataObj: SendingType, onFail failCallback:@escaping (LocalizedError, String) -> Void, andOnSuccess callback:@escaping (ReceivingType) -> Void) {
+    func executeAPICall<SendingType: Encodable, ReceivingType: Decodable>(onPath path: String, withEncodable dataObj: SendingType, withTypeToReceive type: ReceivingType.Type, onFail failCallback:@escaping (LocalizedError, String) -> Void, andOnSuccess callback:@escaping (ReceivingType) -> Void) {
         
         guard let request = createRequest(onApiPath: path,
                                           usingData: dataObj) else {
@@ -42,7 +43,7 @@ class PortalDatabase {
         self.cancellable = URLSession.shared.dataTaskPublisher(for: request)
             .tryMap{ output -> ReceivingType in
                 let processor = HTTPOutputProcessor(output: output)
-                return try processor.decode(toType: ReceivingType.self)
+                return try processor.decode(toType: type)
             }
             .eraseToAnyPublisher()
             .receive(on: RunLoop.main)
@@ -51,10 +52,10 @@ class PortalDatabase {
                 case .finished:
                     break
                 case .failure(let httpError as HTTPError):
-                    failCallback(httpError, "Error in PortalDatabase, line 54)")
+                    failCallback(httpError, self.getErrorMessage(forAPICall: path, andError: httpError))
                     break
                 case .failure(let error):
-                    failCallback(AppError.Coding, "Error in PortalDatabase, line 54: \(error.localizedDescription)")
+                    failCallback(AppError.Coding, "Error in PortalDatabase, line 58: \(error.localizedDescription)")
                 }
             }, receiveValue: { object in
                 callback(object)
@@ -82,8 +83,8 @@ class PortalDatabase {
     }
     
     // Accepts an object that conforms to the Encodable protocol
-    public func createRequest(onApiPath path: String, usingData data: Encodable) -> URLRequest? {
-        guard let requestBody = try? JSONSerialization.data(withJSONObject: data) else {
+    public func createRequest<T: Encodable>(onApiPath path: String, usingData data: T) -> URLRequest? {
+        guard let requestBody = try? JSONEncoder().encode(data) else {
             print("Failed to encode json with given data in APICall object")
             return nil }
         return createRequest(onApiPath: path, withRequestBody: requestBody)
@@ -184,14 +185,14 @@ class PortalDatabase {
     // FIXME: Retool this to have appropriate error messages and switches
     private func getErrorMessage(forAPICall apiCall: String, andError error: HTTPError) -> String {
         switch apiCall {
-        case Constants.API.VerifyUser:
+        case api.path(.VerifyUser):
             switch error {
             case .NotFound:
                 return Constants.Content.UserNotFound
             default:
                 return Constants.Content.ServerAccessError
             }
-        case Constants.API.CreateUser:
+        case api.path(.CreateUser):
             switch error {
             case .UsernameLength:
                 return Constants.Content.UsernameLengthError

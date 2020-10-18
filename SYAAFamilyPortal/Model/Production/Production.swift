@@ -31,16 +31,25 @@ enum ProductionCodingKeys: CodingKey {
     case casting
 }
 
+enum SeasonCodingKeys: CodingKey {
+    case id
+    case description
+    case start
+    case end
+}
+
 extension Production: Decodable {
     init(from decoder: Decoder) throws {
         let prodValues = try decoder.container(keyedBy: ProductionCodingKeys.self)
         
         id = try prodValues.decode(Int.self, forKey: .id)
         title = try prodValues.decode(String.self, forKey: .title)
-        season = try prodValues.decode(String.self, forKey: .season)
         rehearsals = try prodValues.decode(Array<Rehearsal>.self, forKey: .rehearsals)
         characters = try prodValues.decode(Array<Character>.self, forKey: .characters)
         castingLinks = try prodValues.decode(Array<CastingLink>.self, forKey: .casting)
+        
+        let seasonContainer = try prodValues.nestedContainer(keyedBy: SeasonCodingKeys.self, forKey: .season)
+        season = try seasonContainer.decode(String.self, forKey: .description)
         
         let startString = try prodValues.decode(String.self, forKey: .start)
         let endString = try prodValues.decode(String.self, forKey: .end)

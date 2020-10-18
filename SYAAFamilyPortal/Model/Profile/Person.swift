@@ -22,11 +22,7 @@ struct Person: Codable, Comparable, IdCodable {
     var fullName: String {
         firstName + " " + lastName
     }
-    
-    mutating func verify() {
-        self.hasVerified = true
-    }
-        
+            
     static func == (a: Person, b: Person) -> Bool {
         return a.id == b.id
             && a.firstName == b.firstName

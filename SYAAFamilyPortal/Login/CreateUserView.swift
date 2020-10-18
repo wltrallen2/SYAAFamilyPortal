@@ -44,7 +44,7 @@ struct CreateUserView: View {
                 
                 CustomButton(style: .Traditional,
                              action: {
-                                _ = portal
+                                portal
                                     .createUser(
                                         userToken,
                                         withPassword: password,

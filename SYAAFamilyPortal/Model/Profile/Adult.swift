@@ -69,6 +69,16 @@ enum AdultCodingKeys: CodingKey {
     case phone2
     case phone2Type
     case email
+    
+    case personId
+    case firstName
+    case lastName
+    case hasVerified
+    case address1
+    case address2
+    case city
+    case state
+    case zip
 }
 
 enum AddressCodingKeys: CodingKey {
@@ -118,14 +128,24 @@ extension Adult: Encodable {
         try addressContainer.encode(addressId, forKey: .id)
         try addressContainer.encode(address1, forKey: .address1)
         try addressContainer.encode(address2, forKey: .address2)
+        try container.encode(address1, forKey: .address1)
+        try container.encode(address2, forKey: .address2)
         
         var cityContainer = addressContainer.nestedContainer(keyedBy: CityCodingKeys.self, forKey: .city)
         try cityContainer.encode(city, forKey: .city)
         try cityContainer.encode(state, forKey: .state)
         try cityContainer.encode(zip, forKey: .zip)
+        try container.encode(city, forKey: .city)
+        try container.encode(state, forKey: .state)
+        try container.encode(zip, forKey: .zip)
+        
+        try container.encode(person, forKey: .person)
+        try container.encode(person.id, forKey: .personId)
+        try container.encode(person.firstName, forKey: .firstName)
+        try container.encode(person.lastName, forKey: .lastName)
+        try container.encode(person.hasVerified, forKey: .hasVerified)
         
         try container.encode(id, forKey: .id)
-        try container.encode(person, forKey: .person)
         try container.encode(phone1, forKey: .phone1)
         try container.encode(phone1Type, forKey: .phone1Type)
         try container.encode(phone2, forKey: .phone2)

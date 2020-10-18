@@ -36,7 +36,7 @@ struct LinkUserView: View {
                                 
                 CustomButton(style: .Traditional,
                              action: {
-                                _ = portal.selectPerson(usingLinkingCode: code)
+                                portal.selectPerson(usingLinkingCode: code)
                             },
                              labelString: "Link To My Account")
                 

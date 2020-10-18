@@ -52,6 +52,11 @@ enum StudentCodingKeys: CodingKey {
     case profileColor
     case headshotURL
     case auditionVideoURL
+    
+    case personId
+    case firstName
+    case lastName
+    case hasVerified
 }
 
 extension Student: Decodable {
@@ -88,8 +93,13 @@ extension Student: Encodable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: StudentCodingKeys.self)
         
-        try container.encode(id, forKey: .id)
         try container.encode(person, forKey: .person)
+        try container.encode(person.id, forKey: .personId)
+        try container.encode(person.firstName, forKey: .firstName)
+        try container.encode(person.lastName, forKey: .lastName)
+        try container.encode(person.hasVerified, forKey: .hasVerified)
+        
+        try container.encode(id, forKey: .id)
         try container.encode(school, forKey: .school)
         try container.encode(teacher, forKey: .teacher)
         try container.encode(currentGrade, forKey: .currentGrade)

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Paths</key>
+	<dict>
+		<key>VerifyUser</key>
+		<string>verify/user</string>
+		<key>CreateUser</key>
+		<string>add/user</string>
+		<key>PasswordReset</key>
+		<string>requestPwdReset</string>
+		<key>LinkUser</key>
+		<string>link/user</string>
+		<key>SelectUser</key>
+		<string>select/user</string>
+		<key>UpdateAdult</key>
+		<string>update/adult</string>
+		<key>UpdateStudent</key>
+		<string>update/student</string>
+		<key>SelectFamily</key>
+		<string>select/family</string>
+	</dict>
+	<key>APIPrefix_Remote</key>
+	<string>http://www.syaaonline.com/api/</string>
+	<key>APIPrefix_Local</key>
+	<string>http://localhost:8888/api/</string>
+	<key>APIKey</key>
+	<string>10.6437e7b.759cb6323612f68bc646f34e8e7e47328bef2239ca7d721ad1cbcd9de</string>
+</dict>
+</plist>

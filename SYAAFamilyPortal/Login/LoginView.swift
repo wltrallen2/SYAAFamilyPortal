@@ -40,7 +40,7 @@ struct LoginView: View {
                 }
                 
                 CustomButton(action: {
-                    _ = portal.verifyUser(userToken,
+                    portal.verifyUser(userToken,
                                       withPassword: password)
                 },
                              labelString: "Sign In")
