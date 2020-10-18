@@ -29,25 +29,29 @@ class Portal: ObservableObject {
     }
     @Published var student: Student? {
         didSet {
-            self.setFamilyConflicts()
+            if self.student != nil {
+                self.setFamilyConflicts()
+            }
         }
     }
     
     @Published var family: [Personable] = [] {
         didSet {
-            self.setFamilyConflicts()
+            if family.count > 0 {
+                self.setFamilyConflicts()
+                
+            }
         }
     }
     @Published var familyConflicts: [Conflict] = []
 
     
-    @Published var productions: [Production] = [Production.default] {
+    @Published var productions: [Production] = [] {
         didSet {
             self.setOtherStudents()
         }
     }
-    @Published var otherStudents: [Student] = load("studentData.json") // NEXT: Remove all default values from testing
-            
+    @Published var otherStudents: [Student] = []
     //**********************************************************************
     // MARK: - USER FUNCTIONS
     //**********************************************************************
@@ -326,36 +330,37 @@ class Portal: ObservableObject {
     }
         
     func setOtherStudents() {
-        // FIXME: Temporary Implementation
-        let students: [Student] = db.load("studentData.json");
+        // There is no data needed for this API call, so I pass in an empty array to utilize existing executeAPICall method, which requires some sort of dictionary to encode. Empty data will simply be ignored by API.
+        let emptyDict = [String:String]()
         
-        otherStudents.append(contentsOf: students.filter( { student in
-            !family.contains(where: { person in
-                person.person.id == student.person.id
-            })
-        }))
+        db.executeAPICall(onPath: db.api.path(.SelectAllStudents)
+                          , withEncodable: emptyDict,
+                          withTypeToReceive: [Student].self,
+                          onFail: { self.receiveError($0, $1, forAPIRequest: .SelectAllStudents)},
+                          andOnSuccess: { self.setOtherStudentsUsing($0) }
+        )
     }
     
     func setFamilyConflicts() {
-        // FIXME: Temporary Implementation
-        let conflicts: [Conflict] = db.load("conflictData.json")
+        struct SelectConflictsData: Encodable {
+            var studentIds: [Int]
+            var startDate: String
+        }
         
-        let students = self.student != nil ? [ self.student ] : family.compactMap( { $0 as? Student })
+        var studentIds = [Int]()
+        if self.student != nil {
+            studentIds.append(self.student!.person.id)
+        } else {
+            studentIds.append(contentsOf: family.compactMap({ $0 as? Student}).flatMap({ $0.person.id }))
+        }
         
-        familyConflicts.removeAll()
-        familyConflicts.append(contentsOf: conflicts.filter({ conflict in
-            students.contains(where: { student in
-                student?.person.id == conflict.studentId
-            })
-        }))
+        let selectConflictsData = SelectConflictsData(studentIds: studentIds, startDate: Date().toStringWithFormat("y-M-d"))
         
-        familyConflicts.sort(by: { (a, b) in
-            if getRehearsalWithId(a.rehearsalId)!.start == getRehearsalWithId(b.rehearsalId)!.start {
-                return getStudentWithId(a.studentId)!.person.fullName < getStudentWithId(b.studentId)!.person.fullName
-            } else {
-                return getRehearsalWithId(a.rehearsalId)!.start < getRehearsalWithId(b.rehearsalId)!.start
-            }
-        })
+        db.executeAPICall(onPath: db.api.path(.SelectUpcomingConflicts),
+                          withEncodable: selectConflictsData,
+                          withTypeToReceive: [Conflict].self,
+                          onFail: { self.receiveError($0, $1, forAPIRequest: .SelectUpcomingConflicts)},
+                          andOnSuccess: { self.setAndSortFamilyConflicts($0) })
     }
     
     func getMyStudents() -> [Student] {
@@ -652,6 +657,27 @@ class Portal: ObservableObject {
                 return student.person.id
             })
         }
+    }
+    
+    private func setAndSortFamilyConflicts(_ conflicts: [Conflict]) {
+        familyConflicts.removeAll()
+        familyConflicts.append(contentsOf: conflicts)
+        
+        familyConflicts.sort(by: { (a, b) in
+            if getRehearsalWithId(a.rehearsalId)!.start == getRehearsalWithId(b.rehearsalId)!.start {
+                return getStudentWithId(a.studentId)!.person.fullName < getStudentWithId(b.studentId)!.person.fullName
+            } else {
+                return getRehearsalWithId(a.rehearsalId)!.start < getRehearsalWithId(b.rehearsalId)!.start
+            }
+        })
+    }
+    
+    private func setOtherStudentsUsing(_ students: [Student]) {
+        otherStudents.append(contentsOf: students.filter( { student in
+            !family.contains(where: { person in
+                person.person.id == student.person.id
+            })
+        }))
     }
     
     private func updateLocalPeople(withPerson person: Personable) {

@@ -17,6 +17,7 @@ enum PhoneIndicator {
 
 // FIXME: There's some weirdness with extra motion in the phoneTypePicker
 // NEXT: When you change a person detail, the family disappears until you navigate away from the screen and back to it again.
+// NEXT: Bug: When you link in for the first time, your family doesn't appear in profile?
 
 // MARK: -
 struct AdultProfileEditView: View {

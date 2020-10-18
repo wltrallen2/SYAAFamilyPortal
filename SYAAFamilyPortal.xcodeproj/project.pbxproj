@@ -29,6 +29,7 @@
 		3630BE0E2533D230002B5AC4 /* RehearsalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3630BE0D2533D230002B5AC4 /* RehearsalDetailView.swift */; };
 		364B2DB32530A331001E3436 /* AdultTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364B2DB22530A331001E3436 /* AdultTab.swift */; };
 		365801652527D801004AE6A7 /* PortalDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365801642527D801004AE6A7 /* PortalDatabase.swift */; };
+		3658425C253CE87500EFB91B /* Secure.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3658425B253CE87500EFB91B /* Secure.plist */; };
 		36596BFD253C1418009050DB /* UpdateAdultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36596BFC253C1418009050DB /* UpdateAdultData.swift */; };
 		36596C05253C14EE009050DB /* UpdateStudentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36596C04253C14EE009050DB /* UpdateStudentData.swift */; };
 		365B78842535FD0800CB49F0 /* ConflictsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365B78832535FD0800CB49F0 /* ConflictsListView.swift */; };
@@ -124,6 +125,7 @@
 		3630BE0D2533D230002B5AC4 /* RehearsalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RehearsalDetailView.swift; sourceTree = "<group>"; };
 		364B2DB22530A331001E3436 /* AdultTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdultTab.swift; sourceTree = "<group>"; };
 		365801642527D801004AE6A7 /* PortalDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalDatabase.swift; sourceTree = "<group>"; };
+		3658425B253CE87500EFB91B /* Secure.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Secure.plist; sourceTree = "<group>"; };
 		36596BFC253C1418009050DB /* UpdateAdultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAdultData.swift; sourceTree = "<group>"; };
 		36596C04253C14EE009050DB /* UpdateStudentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentData.swift; sourceTree = "<group>"; };
 		365B78832535FD0800CB49F0 /* ConflictsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictsListView.swift; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				36B467032526EE660056E349 /* Colors.xcassets */,
 				36B49342253AAED100B77B79 /* Constants.swift */,
 				36ED5F08252529030022945C /* Info.plist */,
+				3658425B253CE87500EFB91B /* Secure.plist */,
 				36ED5F33252529FF0022945C /* DataSources */,
 				36ED5F05252529030022945C /* Preview Content */,
 			);
@@ -558,6 +561,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3658425C253CE87500EFB91B /* Secure.plist in Resources */,
 				3630BDA425324AF3002B5AC4 /* adultData.json in Resources */,
 				368C571A2536364C0061419B /* conflictData.json in Resources */,
 				3630BDB425324F05002B5AC4 /* studentData.json in Resources */,
