@@ -15,6 +15,9 @@ enum RehearsalViewTag: Int {
     case AddItem
 }
 
+// NEXT: There's a weird bug where the detail doesn't equate to the list item? Error Language: SwiftUI encountered an issue when pushing aNavigationLink. Please file a bug.
+
+
 struct RehearsalsView: View {
     @EnvironmentObject var portal: Portal
     @State private var selection: RehearsalViewTag? = .NilValue

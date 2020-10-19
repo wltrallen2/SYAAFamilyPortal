@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-// NEXT: Connect to Database
-
 struct ContentView: View {
     @EnvironmentObject var portal: Portal
     

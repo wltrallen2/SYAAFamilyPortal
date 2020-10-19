@@ -31,6 +31,9 @@ enum APIPath: String, Codable {
     case SelectUpcomingProductions
     case SelectAllStudents
     case SelectUpcomingConflicts
+    case InsertConflict
+    case UpdateConflict
+    case DeleteConflict
 }
 
 enum APICodingKeys: CodingKey {

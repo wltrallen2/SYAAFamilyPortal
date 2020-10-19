@@ -283,6 +283,7 @@ class Portal: ObservableObject {
                             self.family.append(
                                 contentsOf: adults.filter(
                                     { $0.person.id != adultId}))
+                            self.family.sort(by: { $0.person.fullName < $1.person.fullName })
                             
                             self.db.executeAPICall(onPath: self.db.api.path(.SelectFamily),
                                               withEncodable: studentDataDict,
@@ -290,6 +291,7 @@ class Portal: ObservableObject {
                                               onFail: { self.receiveError($0, $1, forAPIRequest: .SelectFamily)},
                                               andOnSuccess: { (students: [Student]) in
                                                 self.family.append(contentsOf: students)
+                                                self.family.sort(by: { $0.person.fullName < $1.person.fullName })
                                               })
                           })
     }
@@ -326,6 +328,7 @@ class Portal: ObservableObject {
                             print("success")
                             self.productions.removeAll()
                             self.productions.append(contentsOf: productions)
+                            self.productions.sort(by: { $0.start < $1.start })
                           })
     }
         
@@ -351,10 +354,18 @@ class Portal: ObservableObject {
         if self.student != nil {
             studentIds.append(self.student!.person.id)
         } else {
-            studentIds.append(contentsOf: family.compactMap({ $0 as? Student}).flatMap({ $0.person.id }))
+            studentIds.append(contentsOf: family.compactMap({ $0 as? Student}).compactMap({ $0.person.id }))
         }
         
-        let selectConflictsData = SelectConflictsData(studentIds: studentIds, startDate: Date().toStringWithFormat("y-M-d"))
+        var date = Date()
+        if let startDate = productions.compactMap({ $0.start }).sorted().first {
+            date = startDate
+        }
+        
+        // FIXME: Remove this test code.
+        date = Calendar.current.date(byAdding: .year, value: -3, to: Date())!
+        
+        let selectConflictsData = SelectConflictsData(studentIds: studentIds, startDate: date.toStringWithFormat("y-M-d"))
         
         db.executeAPICall(onPath: db.api.path(.SelectUpcomingConflicts),
                           withEncodable: selectConflictsData,
@@ -552,11 +563,16 @@ class Portal: ObservableObject {
     // MARK: - CONFLICT FUNCTIONS
     //**********************************************************************
     func removeConflict(_ conflict: Conflict) {
-        familyConflicts.removeAll(where: { c in
-            c.id == conflict.id
-        })
-        
-        saveConflictsToDb()
+        db.executeAPICall(onPath: db.api.path(.DeleteConflict),
+                          withEncodable: conflict,
+                          withTypeToReceive: [String:Bool].self,
+                          onFail: { self.receiveError($0, $1, forAPIRequest: .DeleteConflict)},
+                          andOnSuccess: { (success: [String: Bool]) in
+                            if(success["success"] == true) {
+                                self.familyConflicts.removeAll(where: { $0.id == conflict.id })
+                                self.sortFamilyConflict()
+                            }
+                          })
     }
     
     func removeConflictsWithIds(_ ids: [Int]) {
@@ -572,36 +588,40 @@ class Portal: ObservableObject {
         
         for id in elements.ids {
             // FIXME: Test to make sure a conflict for this student on this date doesn't already exist.
-//            if familyConflicts.contains(where: { c in
-//                c.id == id
-//            }) {
-//                throw ConflictError.AlreadyExists
-//            }
-            
             let student = students.first!
             let conflict = Conflict(id: id,
                                     rehearsalId: elements.rehearsal.id,
                                     studentId: student.person.id,
                                     type: elements.type)
-            familyConflicts.append(conflict)
             
+            self.addConflict(conflict)
             students.removeFirst()
         }
-        
-        saveConflictsToDb()
+    }
+    
+    func addConflict(_ conflict: Conflict) {
+        db.executeAPICall(onPath: db.api.path(.InsertConflict),
+                          withEncodable: conflict,
+                          withTypeToReceive: [String:Bool].self,
+                          onFail: { self.receiveError($0, $1, forAPIRequest: .InsertConflict)},
+                          andOnSuccess: { (success: [String: Bool]) in
+                            if(success["success"] == true) {
+                                self.familyConflicts.append(conflict)
+                                self.sortFamilyConflict()
+                            }
+                          })
     }
     
     func updateConflicts(withDetails elements: ConflictTabElement) {
         var students = elements.students
         for id in elements.ids {
-            familyConflicts.removeAll(where: { conflict in conflict.id == id })
+            self.removeConflictsWithIds([id])
             if let student = students.first {
                 let newConflict = Conflict(id: id,
                                            rehearsalId: elements.rehearsal.id,
                                            studentId: student.person.id,
                                            type: elements.type)
-                familyConflicts.append(newConflict)
-                
+                self.addConflict(newConflict)
                 students.removeFirst()
             }
         }
@@ -612,34 +632,9 @@ class Portal: ObservableObject {
                                        rehearsalId: elements.rehearsal.id,
                                        studentId: student.person.id,
                                        type: elements.type)
-            
-            familyConflicts.append(newConflict)
+            self.addConflict(newConflict)
         }
-        
-        saveConflictsToDb()
     }
-    
-    func saveConflictsToDb() {
-        // Load original data from database
-        var conflicts: [Conflict] = db.load("conflictData.json")
-        
-        // Remove all family conflicts from original data
-        conflicts.removeAll(where: { conflict in
-            self.student?.person.id == conflict.studentId
-                || family.compactMap({ $0 as? Student }).contains(where: { student in
-                    student.person.id == conflict.studentId
-                })
-        })
-        
-        // Add in new list of family conflicts
-        conflicts.append(contentsOf: familyConflicts)
-        
-        // Encode and save
-        db.save(encodableObject: familyConflicts, toFileWithName: "conflictData.json")
-        
-        setFamilyConflicts()
-    }
-    
     
     //**********************************************************************
     // MARK: - PRIVATE HELPER FUNCTIONS
@@ -663,6 +658,10 @@ class Portal: ObservableObject {
         familyConflicts.removeAll()
         familyConflicts.append(contentsOf: conflicts)
         
+        sortFamilyConflict()
+    }
+    
+    private func sortFamilyConflict() {
         familyConflicts.sort(by: { (a, b) in
             if getRehearsalWithId(a.rehearsalId)!.start == getRehearsalWithId(b.rehearsalId)!.start {
                 return getStudentWithId(a.studentId)!.person.fullName < getStudentWithId(b.studentId)!.person.fullName
@@ -678,6 +677,8 @@ class Portal: ObservableObject {
                 person.person.id == student.person.id
             })
         }))
+        
+        otherStudents.sort(by: { $0.person.fullName < $1.person.fullName } )
     }
     
     private func updateLocalPeople(withPerson person: Personable) {

@@ -17,18 +17,17 @@ struct HTTPOutputProcessor {
             throw HTTPError.InternalServiceError }
         
         // FIXME: Remove or comment out debugging code.
-        print()
-        print("Response Code: \(response.statusCode)")
-        let responseString = String(bytes: output.data, encoding: .utf8)
-        print("Response String:\n\(responseString ?? "No Response")")
-        print()
+//        print()
+//        print("Response Code: \(response.statusCode)")
+//        let responseString = String(bytes: output.data, encoding: .utf8)
+//        print("Response String:\n\(responseString ?? "No Response")")
+//        print()
 
         guard response.statusCode == 200 else {
             // FIXME: Insert new errors into HTTPError so that we get meaninful errors.
             let httpError = HTTPError.init(rawValue: response.statusCode) ?? HTTPError.InternalServiceError
             throw httpError }
         guard let obj = try? JSONDecoder().decode(type, from: output.data) else {
-            print("Type: \(T.self)")
             throw HTTPError.InvalidJsonObjectType }
         return obj
     }
